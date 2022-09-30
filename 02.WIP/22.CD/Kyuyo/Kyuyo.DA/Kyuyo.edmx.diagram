@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a7f25447cfdb41748cdbb0968d13e274" Name="Diagram1" ZoomLevel="54">
+        <EntityTypeShape EntityType="KyuyoModel.KY_CLOSING_DATE" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_LONGTERM_ABSENCE" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_OVERTIME_TOTAL" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_SALARY_ARREAR_DISTRIBUTION" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KyuyoModel.TB_M_COMPANY" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KyuyoModel.TB_M_SYSTEM" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KyuyoModel.TB_M_DEPARTMENT" Width="1.5" PointX="17.375" PointY="9.75" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_ALLOWANCE_MASTER" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_ALLOWANCE_RESULT" Width="1.5" PointX="17.375" PointY="17.75" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_AUTHORITY" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_POLICY_MASTER" Width="1.5" PointX="11.375" PointY="17.75" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_DEPENDENT" Width="1.5" PointX="7.375" PointY="8.75" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_SALARY_FORMULA_MASTER" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_OTHER_PAY" Width="1.5" PointX="9.375" PointY="9.75" />
+        <EntityTypeShape EntityType="KyuyoModel.TB_M_EMP_DEPT" Width="1.5" PointX="7.375" PointY="14.75" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_EMPLOYEE_MASTER" Width="1.5" PointX="3.375" PointY="18.75" />
+        <EntityTypeShape EntityType="KyuyoModel.TB_R_WORKING_TIME" Width="1.5" PointX="13.375" PointY="17.75" />
+        <EntityTypeShape EntityType="KyuyoModel.TB_R_WORKING_TIME_HIS" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_SALARY_RESULT" Width="1.5" PointX="19.375" PointY="0.75" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_RATE" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_WORKINGTIME_TOTAL" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_SALARY_MASTER" Width="1.5" PointX="3.375" PointY="10.75" />
+        <EntityTypeShape EntityType="KyuyoModel.KY_QUANTITY_PRODUCT" Width="1.5" PointX="11.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

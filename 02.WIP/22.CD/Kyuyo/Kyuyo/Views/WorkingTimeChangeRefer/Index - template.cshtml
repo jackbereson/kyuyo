@@ -1,0 +1,173 @@
+﻿@using Kyuyo.BL.Resources;
+@using Kyuyo.BL.Resources.WorkingTimeChangeRefer;
+@using Kyuyo.Infrastructure.Utils;
+@using Kyuyo.Models;
+@using Newtonsoft.Json;
+@model WorkingTimeChangeReferModel
+@{
+    Layout = "~/Views/Shared/_AITLayout.cshtml";
+    ViewBag.Title = @StringsM018.Title;
+}
+
+@section header{
+    <h4 class="titleHeader">
+        <i class="ait-icon fa fa-briefcase"></i> ...
+        @StringsM018.Title
+    </h4>
+}
+
+<div class="page-content-wrapper-inner container-fluid" ng-init="init(@JsonConvert.SerializeObject(Model))">
+    <form name="form.workingTimeChangeReferForm" ng-validate="validationOptions">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Tìm kiếm</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="form-horizontal box-body">
+                        <!--Validate client message-->
+                        <div class="group-messages" role="alert" ng-show="isBodyMessage == false"></div>
+
+                        <!--Validate server-->
+                        <div class="alert" ng-class="classBodyMessage" ng-if="isBodyMessage == true">
+                            <div ng-repeat="message in errorBodyMessage">{{message}}</div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM018.Company</label>
+                                    <div class="col-sm-8">
+                                        <select id="cbCompany" class="selectpicker required" ng-model="search.CompanyCd" selectpicker>
+                                            @*@{
+                                    foreach (var company in Model.ListCompany)
+                                    {
+                                    <option value=@company.CompanyCd>@company.CompanyCd</option>
+                                    }
+                                    }*@
+                                            <option>AIT</option>
+                                            <option>ACSD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM018.MonthYear</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="calMonthYear" ng-disabled="control.calMonthYear" ng-model="model.MonthYear" class="form-control" date-picker-month />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM018.FirstDayCalSal</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtFirstDayCalSal" maxlength="20" disabled autofocus type="text" name="FirstDayCalSal" ng-model="model.FirstDayCalSal" class="form-control" ng-init="model.FirstDayCalSal = 26" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Tháng tính lương</label>
+                                    <div class="col-sm-8">
+                                        <select id="cbCompany" class="selectpicker required" ng-model="search.Month" selectpicker>
+                                            <option>01</option>
+                                            <option>02</option>
+                                            <option>03</option>
+                                            <option>04</option>
+                                            <option>05</option>
+                                            <option>06</option>
+                                            <option>07</option>
+                                            <option>08</option>
+                                            <option>09</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" ng-disabled="control.btnCompareFile" ng-click="">@StringsM018.CompareBtn</button>
+                            <button type="button" class="btn btn-primary" ng-disabled="control.btnImportFile" ng-click="">@Strings.Import</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">@StringsM018.ChooseData</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="form-horizontal box-body">
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM018.CompareFile</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group input-group-sm"><input id="txtCompareFile" maxlength="20" ng-disabled="control.txtCompareFile" autofocus type="text" name="CompareFile" ng-model="model.CompareFile" class="form-control" />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-primary" ng-disabled="control.btnBrowse" ng-click="">@Strings.Browse</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM018.ImportFile</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group input-group-sm">
+                                            <input id="txtImportFile" maxlength="20" ng-disabled="control.txtImportFile" autofocus type="text" name="ImportFile" ng-model="model.CompareFile" class="form-control" />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-primary" ng-disabled="control.btnBrowse" ng-click="">@Strings.Browse</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,16 @@
+﻿@using Kyuyo.BL.Resources;
+@{
+    Layout = null;
+}
+
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">{{data.title}}</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div>{{data.message}}</div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="okFn()">@Strings.BtnYes</button>
+    <button class="btn btn-primary" type="button" ng-if="data.btnNo !== false" ng-click="noFn()">@Strings.BtnNo</button>
+    <button class="btn btn-primary" type="button" ng-if="data.btnCancel === true" ng-click="cancelFn()">@Strings.BtnCancel</button>
+</div>

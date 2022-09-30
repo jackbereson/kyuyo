@@ -1,0 +1,49 @@
+﻿Tham gia: 
+Axis: Kanayama, Linh, Miki, Kanayama
+日本側: 中村
+AIT: Matsushima,Ogawa, Hasegawa, Duyen, Trangpt, Minh
+
+Noi Dung:
+ -Ogawa: mấy hôm trước AIT và Axis có họp vài lần, bàn về flow vận dụng, các report cần thiết, nội dung yêu cầu, danh sách kadai hiện tại khi tính lương từ AXIS.
+ -Ogawa: giải thích file đề án (bản cập nhật)
+　Nakamura: 金額は前回のとどのぐらい増えましたか？
+　　－＞3,500,000円増えました。
+　Nakamura: về master nhân viên. mã số nhân viên lấy từ PE-Mitani, đối với nhân viên không có PE thì phải đưa thêm rule để quản lý. sẽ có nhiều khó khăn.
+ Nakayama: các report -> chức năng thêm nhiều
+ Ogawa: trước đây chưa có suy nghĩ đến nhiều về report -> lần này xem xét chi tiết nên bổ sung thêm nhiều report cũng như master
+ Nakamura: hiệu quả sau khi hệ thống như thế nào.
+ Ogawa: ngoài các hiệu quả về giảm chi phí khi tính lương, còn giảm việc sai sót / tránh phát sinh claim.
+ Linh+Nakayama: Không chỉ tính về giảm chi phí, hiệu quả thấy rõ ràng: hệ thống hóa sẽ thực hiện đơn giản, chính xác, truy cập và báo cáo nhanh chóng.
+ Nakayama: có suy nghĩ sau này luôn cho nhà máy: ABCD, AFCP?
+ Ogawa: AIT đã có hearing trước với ABCD để xác nhận trước về cách thức tính lương của nhà máy, nhằm tránh trường hợp logic thay đổi quá nhiều sau này.
+   trong flow đề án cũng đã có ghi về điểm này.
+ Nakamura: Nhà máy sẽ có customize có phải là thêm report?
+ Ogawa: đúng như vậy, có thể phải bổ sung thêm các report mới.
+ Nakamura: nếu dự toán trước được sau cho không phát sinh thì tốt hơn....
+ Ogawa: có suy nghĩ và đối ứng trước, nhưng không thể 100% nên về logic không thay đổi nhiều, nhưng cũng có phát sinh ít.
+ Nakamura: trang 11, backup: ....nhờ anh Hasegawa
+ Hasegawa: 
+ Nakamura: Ootani có tham gia vào thể chế, đã có báo giá từ Ootani chưa?
+ Minh: chỉ mới có nói chuyện một ít, nhưng chưa có bao giá
+ Nakamura: phải thêm báo giá từ Ootani (Minh đứng trên vai trò la khách hàng)
+ Ogawa: sẽ thêm. (Minh liệt kê các điểm chi tiết cần báo giá)
+ Nakamura: suy nghĩ schedule sử dụng của nhà máy chưa?
+ Ogawa: chưa suy nghĩ, có thể là sau khi hoàn thành hệ thống
+ Linh: trước đây dự định là tháng 10, nhưng thời điểm này chưa có bàn đến hệ thống lương.
+ Linh+Ogawa: để AIT và AIXS, ACSD sử dụng hoàn chỉnh OK rồi tính đến AFCP sẽ tốt hơn.
+ Nakamura: lúc nãy Minh có nói là format import có bao gồm luôn cho phần của nhà máy, nhưng thực tế khi áp dụng ở nhà máy thì có thể sẽ phát sinh thay đổi thêm
+ Ogawa: có thể là như vậy
+ Nakamura: trong schedule: có ghi Nakamura/Nakayama review công thức lương, DB...cái này chắc là nhầm lẫn.
+ Ogawa: bị nhầm, đổi lại thành Matsushima
+ Ogawa: bắt đầu từ bây giờ ringi, thì tháng 8 là tháng thứ 1, tháng 12 là tháng thứ 5....
+ Nakayama: dự định như vậy cũng OK.
+ Matsushima: về giá trị: không phải là ít mà sẽ có rất nhiều. hơn nữa AXIS sẽ leveup đươc nhiều. ...nhờ anh Hasegawa
+ Nakayama: phần tính lương tháng 6 đã phát sinnh vấn đề, Minh + Linh xem xét
+ Linh: 2 vấn đề bị phát sinh đều liên quan đến truy thu lương
+ Matsushima: sau này hệ thống quản lý master chính xác thì hệ  thống sẽ truy thu chính xác... và không phát sinh vấn đề
+ Linh: hiện tại tháng tính lương giữa AIT và Axis/ACSD đang khác nhau. AIT: 26-25, ACSD: 1-30. truy thu lương mới rất phức tạp, và đã phát sinh vấn đề. có thể AIT đổi lại?
+ Matsushima: trả lương khi nào?
+ Linh: cuối tháng, nhưng OT thì tính từ 26-25
+ Nakamura: cho dù có đổi lại 1-30, thì tính OT sẽ phức tạp lại....
+ Matsushima + Minh: sau này đổi lại hệ thống tính, nên vấn đề sẽ không phát sinh 
+ Linh + Kanazawa: nếu thực hiện suông sẽ điểm này thì rất tốt.

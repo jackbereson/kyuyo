@@ -1,0 +1,582 @@
+﻿@using Kyuyo.BL.Resources;
+@using Kyuyo.BL.Resources.Salary;
+@using Kyuyo.Infrastructure.Utils;
+@using Kyuyo.Models;
+@using Newtonsoft.Json;
+@*@model SalaryModel*@
+@{
+    Layout = "~/Views/Shared/_AITLayout.cshtml";
+    ViewBag.Title = StringsM012.Title;
+    ViewBag.Ctrl = "/AppJs/Salary/SalaryCtrl.js";
+}
+
+@section header{
+    <h4 class="titleHeader">
+        <i class="ait-icon fa fa-briefcase"></i> ...
+        @StringsM012.Title
+    </h4>
+}
+<div class="page-content-wrapper-inner container-fluid"  ng-controller="SalaryCtrl"
+     ng-init="init(@JsonConvert.SerializeObject(Model))">
+
+
+    <form name="form.salarySearchForm" ng-validate="validationOptions">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tìm kiếm</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="form-horizontal box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM012.Company</label>
+                            <div class="col-sm-8">
+                                <select class="form-control required"
+                                        ng-options="opt.CompanyCd as opt.CompanyCd for opt in listCompany track by opt.CompanyCd"
+                                        ng-change="onChangeCompany(search.CompanyCd)"
+                                        id="cbCompanyCd" name="CompanyCd" ng-model="search.CompanyCd" selectpicker></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM012.Department</label>
+                            <div class="col-sm-8">
+                                <select class="form-control"
+                                        ng-options="opt.DeptCd as opt.DeptName for opt in listDept track by opt.DeptCd"
+                                        id="cbDeptCd" name="DeptCd" ng-model="search.DeptCd" selectpicker>
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM012.EmployeeNo</label>
+                            <div class="col-sm-8">
+                                <input id="txtEmployeeNoSearch" maxlength="20" ng-disabled="control.txtEmployeeNoSearch" autofocus type="text" name="EmployeeNoSearch" ng-model="search.
+                                       No" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM012.EmployeeName</label>
+                            <div class="col-sm-8">
+                                <input id="txtEmployeeNameSearch" maxlength="100" ng-disabled="control.txtEmployeeNameSearch" autofocus type="text" name="EmployeeNameSearch" ng-model="search.EmployeeName" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM012.EffectiveDt</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input type="text" id="calValidateFrom1" ng-disabled="control.calValidateFrom1" ng-model="search.EffectDtFrom" class="form-control" date-picker />
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                    <input type="text" id="calValidateTo1" ng-disabled="control.calValidateTo1" ng-model="search.EffectDtTo" class="form-control" date-picker />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button class="btn btn-primary" ng-click="searchFnc();">@Strings.Search</button>
+            </div>
+        </div>
+
+    </form>
+
+    <form name="form.salaryImportForm" ng-validate="validationOptions">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">@StringsM012.ImportSalary</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="form-horizontal box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM012.Company</label>
+                            <div class="col-sm-8">
+                                Aureole Infonation Technology Inc.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Strings.File</label>
+                            <div class="col-sm-8">
+                                <div class="input-group input-group-sm">
+                                    <input id="txtSalary" readonly ng-disabled="control.txtSalary" type="text" name="Salary" ng-model="file.name" class="form-control" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" ng-disabled="control.btnBrowse" ngf-select="changeFile($file, IMPORT)" ngf-accept="'.xlsx,.xls'">@Strings.Browse</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <button type="button" class="btn btn-primary" ng-disabled="control.btnImport" ng-click="importFn(IMPORT)">@Strings.Import</button>
+                                <button type="button" class="btn btn-primary" ng-disabled="control.btnExportTemplate" ng-click="">@Strings.ExportTemplate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">@StringsM012.ImportNewSalary</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="form-horizontal box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM012.Company</label>
+                            <div class="col-sm-8">
+                                Aureole Infonation Technology Inc.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Strings.File</label>
+                            <div class="col-sm-8">
+                                <div class="input-group input-group-sm">
+                                    <input id="txtSalary" readonly ng-disabled="control.txtSalary" type="text" name="Salary" ng-model="fileNew.name" class="form-control" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" ng-disabled="control.btnBrowse" ngf-select="changeFile($file, IMPORT_NEW)" ngf-accept="'.xlsx,.xls'">@Strings.Browse</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <button type="button" class="btn btn-primary" ng-disabled="control.btnImport" ng-click="importFn(IMPORT_NEW)">@Strings.Import</button>
+                                <button type="button" class="btn btn-primary" ng-disabled="control.btnExportTemplate" ng-click="">@Strings.ExportTemplate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+            </div>
+        </div>
+        <div class="float-functions">
+            <div id="insert">
+                <button type="button" ng-disabled="control.btnInsert" ng-click="insertFn()" class="btn btn-social btn-info  btn-flat">
+                    <i class="fa fa-plus"></i>
+                    <span class="btn-label">@Strings.Insert</span>
+                </button>
+            </div>
+
+            <div id="update">
+                <button type="button" ng-readonly="control.btnUpdate" ng-click="updateFn()" class="btn btn-social btn-success btn-flat">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <span class="btn-label">@Strings.Update</span>
+                </button>
+            </div>
+            <div id="cancel">
+                <button type="button" ng-disabled="control.btnCancel" ng-click="cancelFn()" class="btn btn-social btn-warning btn-flat">
+                    <i class="fa fa-repeat "></i>
+                    <span class="btn-label">@Strings.Cancel</span>
+                </button>
+            </div>
+            <div id="delete">
+                <button type="button" ng-disabled="control.btnDelete" ng-click="deleteFn()" class="btn btn-social btn-danger btn-flat">
+                    <i class="fa fa-trash-o"></i>
+                    <span class="btn-label">@Strings.Delete</span>
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+
+
+
+
+    <form name="form.salaryForm" ng-submit="form.specialInsuranceForm.validate() && insertFn()" ng-validate="validationOptions">
+
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">@StringsM012.SalaryInfo</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="form-horizontal box-body">
+                <!--Validate client message-->
+                <div class="group-messages" role="alert" ng-show="isBodyMessage == false"></div>
+
+                <!--Validate server-->
+                <div class="alert" ng-class="classBodyMessage" ng-if="isBodyMessage == true">
+                    <div ng-repeat="message in errorBodyMessage">{{message}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM012.Employee</label>
+                            <div class="col-sm-8">
+
+                                <app-search-employee default-company="@Helper.CompanyId()" multiple="false" ng-model="allData.Employee"></app-search-employee>
+
+                                @*<input id="txtEmployee" maxlength="20" ng-disabled="control.txtEmployee" autofocus type="text" name="Employee" ng-model="allData.EmployeeNo" class="form-control required" />*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 col-md-4 control-label">@StringsM012.EffectiveDt</label>
+                            <div class="col-sm-8">
+                                <input type="text" date-picker id="calEffectiveDt" ng-disabled="control.calEffectiveDt" ng-model="allData.EffectiveDt" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM012.BasicSalary</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input id="txtBasicSalary" maxlength="20" type="text"
+                                            ng-change="calProbationSalary()"
+                                            name="BasicSalary" ng-model="allData.BasicSalary" class="form-control required" />
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-money"></i>
+                                    </div>
+                                    <select class="form-control"
+                                            ng-options="item.Cd as item.Value for item in foreignCur track by item.Cd"
+                                            ng-change="changeUnitBasicSalary()"
+                                            id="cbForeignCur" name="cbForeignCur" ng-model="allData.ForeignCur" selectpicker>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 col-md-4  control-label">
+                                @StringsM012.ProbationSalary
+                            </label>
+                            <div class="col-xs-1">
+                                <label style="padding:3px;">
+                                    <input type="checkbox" name="chbAutoCal"
+                                           ng-change="calProbationSalary()"
+                                           id="ckbAutoCal" ng-model="allData.AutoCal"><span></span>
+                                </label>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="input-group">
+                                    <input id="txtRate" maxlength="10" ng-disabled="control.txtRate" autofocus type="text"
+                                           ng-change="calProbationSalary()"
+                                           name="Rate" ng-model="allData.Rate" class="form-control" />
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-percent"></i>
+                                    </div>
+                                    <input id="txtProbationSalary" maxlength="20" ng-disabled="control.txtProbationSalary" autofocus type="text" name="ProbationSalary" ng-model="allData.ProbationSalary" class="form-control" />
+                                    <div class="input-group-addon">
+                                        <span ng-bind="allData.ForeignCur"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Lương sản phẩm</label>
+                            <div class="col-sm-8">
+                                <label>
+                                    <input type="checkbox"><span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 col-md-4 control-label">Đơn giá lương giờ</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input id="txtBasicSalary" maxlength="20" type="text" ng-change="calProbationSalary()" name="BasicSalary" ng-model="allData.BasicSalary" class="form-control required ng-pristine ng-valid ng-empty ng-valid-maxlength ng-touched" style="">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-money"></i>
+                                    </div>
+                                    <select class="form-control"
+                                            ng-options="item.Cd as item.Value for item in foreignCur track by item.Cd"
+                                            ng-change="changeUnitBasicSalary()"
+                                            id="cbForeignCur" name="cbForeignCur" ng-model="allData.ForeignCur" selectpicker></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM012.InsuranceCalSalary</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input id="txtInsuranceCalSalary" maxlength="20" ng-disabled="control.txtInsuranceCalSalary" autofocus type="text" name="InsuranceCalSalary" ng-model="allData.InsuranceCalSalary" class="form-control" />
+                                    <div class="input-group-addon">
+                                        <span ng-bind ="allData.UnitInsuranceSalary"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 col-md-4  control-label">@StringsM012.InsuranceCalSalaryRate</label>
+                            <div class="col-sm-8 ">
+                                <input id="txtInsuranceCalSalaryRate" maxlength="20" ng-disabled="control.txtInsuranceCalSalaryRate" autofocus type="text" name="InsuranceCalSalaryRate" ng-model="allData.InsuranceCalSalaryRate" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM012.BankAccount</label>
+                            <div class="col-sm-8">
+                                <input id="txtBankAccount" maxlength="20" autofocus type="text" name="BankName"  class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3  col-md-4 control-label">@StringsM012.BankName</label>
+                            <div class="col-sm-8">
+                                <input id="txtBankName" maxlength="20" ng-disabled="allData.BankName" autofocus type="text" name="BankName" ng-model="allData.BankName" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM012.OTType</label>
+                            <div class="col-sm-8">
+                                <select class="form-control"
+                                        ng-options="opt.Cd as opt.Value for opt in listOTType track by opt.Cd"
+                                        id="cbOTType" name="cbOTType" ng-model="allData.OTType" selectpicker></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 col-md-4  control-label">@StringsM012.SalaryType</label>
+                            <div class="col-sm-8">
+                                <div class="group-checkbox-radio">
+                                    <div class="form-inline">
+                                        <label class="radio">
+                                            <input type="radio" name="rdoSalaryType" id="net" value="0" ng-model="allData.SalaryType"><span></span>
+                                            @StringsM012.SalaryGross
+                                        </label>
+
+                                        <label class="radio">
+                                            <input type="radio" name="rdoSalaryType" id="gross" value="1" ng-model="allData.SalaryType"><span></span>
+                                            @StringsM012.SalaryNet
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM012.SalaryFormular</label>
+                            <div class="col-sm-8">
+                                <select class="form-control required"
+                                        ng-options="opt.FormulaCd as opt.FormulaName for opt in SalaryFormula track by opt.FormulaCd"
+                                        id="cboSalaryFormular" name="cboSalaryFormular" ng-model="allData.SalaryFormular" selectpicker></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                      
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 subbox-padding-right">
+                        <div class="subbox-header">
+                            @StringsM012.Allowance
+                        </div>
+                        <div class="subbox-body">
+                            <table class="table table-striped table-basic table-hover table-bordered" id="table">
+                                <tbody>
+                                    <tr ng-repeat="elm in allData.Allowance">
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="Title" id="ckb1" ng-model="elm.selected"><span></span>{{elm.AllowanceName}}
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" date-picker id="calValidateFrom1" class="form-control" ng-model="elm.EffectiveFrom" />
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-arrow-right"></i>
+                                                </div>
+                                                <input type="text" date-picker id="calValidateTo1" class="form-control" ng-model="elm.EffectiveTo" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 subbox-padding-left">
+                        <div class="subbox-header">
+                            @StringsM012.Subsidize
+                        </div>
+                        <div class="subbox-body">
+                            <table class="table table-striped table-basic table-hover table-bordered" id="table">
+                                <tbody>
+                                    <tr class="row" ng-repeat="elm in allData.Subsidize">
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="parkingfee" id="ckb4" value="0" checked=""><span></span>{{elm.AllowanceName}}
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" date-picker id="calValidateFrom4" class="form-control" ng-disabled="control.calValidateFrom4" ng-model="model.ValidateFrom4" />
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-arrow-right"></i>
+                                                </div>
+                                                <input type="text" date-picker id="calValidateTo4" class="form-control" ng-disabled="control.calValidateTo4" ng-model="model.ValidateTo4" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+  
+            </div>
+        </div>
+
+        
+
+    </form>
+
+    <div class="primary-form no-border-top">
+        <!-- Main content zone -->
+        <div id="main-content-zone" class="table-responsive">
+            <table class="table table-striped table-basic table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">STT</th>
+                        <th class="col-xs-2">@StringsM012.Employee</th>
+                        <th class="col-xs-2">@StringsM012.InsuranceCalSalary</th>
+                        <th class="col-xs-2">@StringsM012.BasicSalary</th>
+                        <th class="col-xs-2">@StringsM012.ProbationSalary</th>
+                        <th class="col-xs-1">@StringsM012.Unit</th>
+                        <th class="col-xs-1">@StringsM012.AccountNo</th>
+                        <th class="col-xs-3">@StringsM012.BankName</th>
+                        <th class="col-xs-2">@StringsM012.OTType</th>
+                        <th class="col-xs-2">@StringsM012.SalaryType</th>
+                        <th class="col-xs-2">@StringsM012.EffectiveDt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="elm in allData.ListSalary">
+                        <td class="text-center">{{$index + 1}}</td>
+                        <td>{{elm.EmployeeName}}</td>
+                        <td>
+                            {{elm.SalaryCalSocialInsu|number : 0}}
+                        </td>
+                        <td>{{elm. BasicSalaryOffical|number : 2}}</td>
+                        <td>{{elm.BasicSalaryProbasion|number : 2}}</td>
+                        <td>{{elm.Unit}}</td>
+                        <td>{{elm.BankAccount}}</td>
+                        <td>{{elm.BankName }}</td>
+                        <td>{{elm.OtTypeValue }}</td>
+                        <td>{{elm.SalaryTypeValue }}</td>
+                        <td>{{elm.EffectiveDt |datetime }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

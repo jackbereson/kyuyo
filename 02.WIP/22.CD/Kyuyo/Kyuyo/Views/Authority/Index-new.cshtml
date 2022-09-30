@@ -1,0 +1,118 @@
+﻿@using Kyuyo.BL.Resources;
+@using Kyuyo.BL.Resources.Authority;
+@using Kyuyo.Infrastructure.Utils;
+@using Kyuyo.Models;
+@using Newtonsoft.Json;
+@model AuthorityModel
+@{
+    Layout = "~/Views/Shared/_AITLayout.cshtml";
+    ViewBag.Title = StringsM004.Title;
+    ViewBag.Ctrl = "/AppJs/Authority/AuthorityCtrl.js";
+}
+@section header{
+    <h4 class="titleHeader">
+        <i class="ait-icon fa fa-briefcase"></i> ...
+        @StringsM004.Title
+        <small style="color:#fff">... Các chức năng hiển thị dưới đây</small>
+    </h4>
+}
+<div class="page-content-wrapper-inner container-fluid" ng-controller="AuthorityCtrl" ng-init="init(@JsonConvert.SerializeObject(Model))">
+    <div class="row">
+        <div class="col-xs-12">
+            <!--Validate server-->
+            <div class="alert" ng-class="classBodyMessage" ng-if="isShowMessage == true">
+                <div ng-repeat="message in errorMessage">{{message}}</div>
+            </div>
+        </div>
+        <!--Select employee-->
+        <div class="col-md-5">
+            <h4 class="function-header">
+                @StringsM004.Employee
+            </h4>
+
+            <div class="form-group">
+                <app-search-employee default-company="@Helper.CompanyId()" multiple="false" ng-model="employeeDto" style="float:left;width:88%;margin-right:1%">
+                </app-search-employee>
+                <button type="button" class="btn btn-info btn-circle" ng-click="addFn()"><i class="fa fa-plus" aria-hidden="true" style="float:left;"></i></button>
+            </div>
+
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@StringsM004.EmplyeeName</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body" id="list-authority">
+                    <ul>
+                        <li ng-repeat="employee in listEmployee" ng-class="{'bg-OrangeAero' : $index == usedIndex}" ng-click="useEmployee(employee, $index)">
+                            <a href="javascript:void(0);">{{employee.EmployeeName}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" class="btn btn-success" ng-click="updateFn()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>@Strings.Update</button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteFn()"><i class="fa fa-trash-o" aria-hidden="true"></i>@Strings.Delete</button>
+                </div>
+            </div>
+        </div>
+        <!--Screen Role-->
+        <div class="col-md-7">
+            <h4 class="function-header">
+                @StringsM004.Screen
+            </h4>
+            <table class="table table-striped table-basic table-hover table-bordered" id="table">
+                <thead>
+                    <tr>
+                        <th class="col-xs-5">Chức năng</th>
+                        <th class="col-xs-3">Quyền hạn</th>
+                        <th class="col-xs-3">Công ty</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var menu in Model.ListScreen)
+                    {
+                        <tr>
+                            <td class="text-left">
+                                <label class="checkbox" style="margin-bottom: 0px;">
+                                    <input type="checkbox" ng-disabled="disableControl" ng-checked="checkedMenu('@menu.Cd')" ng-click="toggleMenuFn('@menu.Cd')">
+                                    <span></span>@menu.Remark
+                                </label>
+                            </td>
+                            <td>
+                                @{
+                                    if (menu.NumValue1.HasValue && ((int)menu.NumValue1 == 1))
+                                    {
+                                        <div class="group-checkbox-radio">
+                                            <div class="form-inline">
+                                                <label class="radio">
+                                                    <input type="radio" name="@menu.Cd" ng-click="setRoleFn('@menu.Cd', ACCESS_EDIT)" ng-checked="checkedRole('@menu.Cd', ACCESS_EDIT)" ng-disabled="disableControl || checkedMenu('@menu.Cd') == false"><span></span>
+                                                    @StringsM004.RoleEdit
+                                                </label>
+
+                                                <label class="radio">
+                                                    <input type="radio" name="@menu.Cd" ng-click="setRoleFn('@menu.Cd', ACCESS_VIEW)" ng-checked="checkedRole('@menu.Cd', ACCESS_VIEW)" ng-disabled="disableControl || checkedMenu('@menu.Cd') == false"><span></span>
+                                                    @StringsM004.RoleView
+                                                </label>
+
+                                            </div>
+                                        </div>
+
+                                    }
+                                }
+                            </td>
+                            <td>
+                                <select ng-disabled="disableControl || checkedMenu('@menu.Cd') == false" ng-model="accessCompany['@menu.Cd']" multiple selectpicker>
+                                    @foreach (var company in Model.ListCompany)
+                                    {
+                                        <option value="@company.Id">@company.CompanyCd</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DateFormat" xml:space="preserve">
+    <value>Dòng {0} {1} phải theo định dạng yyyyMMdd</value>
+  </data>
+  <data name="ErrorAllowanceNull" xml:space="preserve">
+    <value>Vui lòng nhập Thời gian được hưởng (Từ ngày) cho phụ cấp {0}</value>
+  </data>
+  <data name="ErrorBasicSalaryAndPriceHourEmpty" xml:space="preserve">
+    <value>Vui lòng nhập Lương chính thức hoặc Đơn giá lương giờ</value>
+  </data>
+  <data name="ErrorBasicSalaryToLarge" xml:space="preserve">
+    <value>Lương chính thức không được lớn hơn 999,999,999</value>
+  </data>
+  <data name="ErrorCompanyCdEmpty" xml:space="preserve">
+    <value>Vui lòng chọn Công ty ở vùng search và click nút Tìm kiếm trước khi thêm mới dữ liệu</value>
+  </data>
+  <data name="ErrorDataExist" xml:space="preserve">
+    <value>Đã tồn tại thông tin cơ bản tính lương có cùng ngày áp dụng</value>
+  </data>
+  <data name="ErrorDataWasDelete" xml:space="preserve">
+    <value>Dữ liệu đã bị xóa bởi người dùng khác</value>
+  </data>
+  <data name="ErrorDataWasModify" xml:space="preserve">
+    <value>Dữ liệu đã được cập nhật bởi người khác. Vui lòng nhấn nút tìm kiếm rồi thực hiện lại</value>
+  </data>
+  <data name="ErrorEffectiveDtEmpty" xml:space="preserve">
+    <value>Vui lòng nhập Ngày áp dụng</value>
+  </data>
+  <data name="ErrorEmployeeEmpty" xml:space="preserve">
+    <value>Vui lòng chọn Nhân viên</value>
+  </data>
+  <data name="ErrorForeignCurNull" xml:space="preserve">
+    <value>Vui lòng chọn Đơn vị tính lương chính thức</value>
+  </data>
+  <data name="ErrorInsuranceCalSalaryRateNull" xml:space="preserve">
+    <value>Vui lòng nhập Tỷ giá lương tính BHXH</value>
+  </data>
+  <data name="ErrorInsuranceCalSalaryRateToLarge" xml:space="preserve">
+    <value>Tỷ giá lương tính BHXH không được lớn hơn 9,999,999</value>
+  </data>
+  <data name="ErrorInsuranceCalSalaryToLarge" xml:space="preserve">
+    <value>Lương tính BHXH không được lớn hơn 999,999,999</value>
+  </data>
+  <data name="ErrorOTTypeNull" xml:space="preserve">
+    <value>Vui lòng chọn Loại OT</value>
+  </data>
+  <data name="ErrorPriceHoursToLarge" xml:space="preserve">
+    <value>Đơn giá lương giờ (part time) không được lớn hơn 9,999,999</value>
+  </data>
+  <data name="ErrorProbationSalaryToLarge" xml:space="preserve">
+    <value>Lương thử việc không được lớn hơn 999,999,999</value>
+  </data>
+  <data name="ErrorSalaryFormularNull" xml:space="preserve">
+    <value>Vui lòng chọn Công thức tính Lương</value>
+  </data>
+  <data name="ErrorSalaryUnitNull" xml:space="preserve">
+    <value>Vui lòng chọn Đơn vị tiền trả lương</value>
+  </data>
+  <data name="ErrorSubsidizeNull" xml:space="preserve">
+    <value>Vui lòng nhập Thời gian được hưởng (Từ ngày) cho trợ cấp {0}</value>
+  </data>
+  <data name="ListDate" xml:space="preserve">
+    <value>Dòng {0} Số phần tử của {1} phải giống với số phần tử của Các phụ cấp được nhận</value>
+  </data>
+  <data name="MaxLength" xml:space="preserve">
+    <value>Dòng {0} {1} không được lớn hơn {2} ký tự</value>
+  </data>
+  <data name="MaxNumber1" xml:space="preserve">
+    <value>Dòng {0} {1} không được lớn hơn 999,999,999</value>
+  </data>
+  <data name="MaxNumber2" xml:space="preserve">
+    <value>Dòng {0} {1} không được lớn hơn 9,999,999</value>
+  </data>
+  <data name="NotExist" xml:space="preserve">
+    <value>Dòng {0} {1} không tồn tại</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Dòng {0} {1} phải là kiểu số</value>
+  </data>
+  <data name="PointLength" xml:space="preserve">
+    <value>Dòng {0} {1} có phần thập phân không phù hợp</value>
+  </data>
+  <data name="ProductSalary" xml:space="preserve">
+    <value>Dòng {0} Lương theo sản phẩm phải là 0 hoặc 1</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Dòng {0} {1} không được rỗng</value>
+  </data>
+  <data name="RequiredSalary" xml:space="preserve">
+    <value>Dòng {0} Lương cơ bản chính thức hoặc Đơn giá lương giờ không được rỗng</value>
+  </data>
+  <data name="SalaryNotExist" xml:space="preserve">
+    <value>Dòng {0} Dữ liệu thông tin cơ bản tính lương của nhân viên {1} chưa tồn tại</value>
+  </data>
+  <data name="SalaryType" xml:space="preserve">
+    <value>Dòng {0} Loại lương phải là "GROSS" hoặc "NET"</value>
+  </data>
+</root>

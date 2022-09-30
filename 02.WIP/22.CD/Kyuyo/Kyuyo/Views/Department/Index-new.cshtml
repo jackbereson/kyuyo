@@ -1,0 +1,195 @@
+﻿@using Kyuyo.BL.Resources;
+@using Kyuyo.BL.Resources.Deparment;
+@using Kyuyo.Infrastructure.Utils;
+@using Kyuyo.Models;
+@using Newtonsoft.Json;
+@model DepartmentModel
+@{
+    Layout = "~/Views/Shared/_AITLayout.cshtml";
+    ViewBag.Title = StringsM020.Title;
+    ViewBag.Ctrl = "/AppJs/Department/DepartmentCtrl.js";
+}
+@section header{
+<h4 class="titleHeader">
+    <i class="ait-icon fa fa-briefcase"></i> ...
+    @StringsM020.Title
+    <small style="color:#fff">... Các chức năng hiển thị dưới đây</small>
+</h4>
+}
+@section scripts{
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
+@{
+    //var langExtention = Helper.GetLanguageKey() + ".js";
+    var langExtention = Helper.GetLanguageKey() + ".min.js";
+}
+<script src="~/Scripts/locales/bootstrap-datepicker.@langExtention"></script>
+@*<script src="/Scripts/i18n/datepicker_@langExtention"></script>*@
+
+<script>
+        $(document).ready(function () {
+            $('#table tbody').on( 'click', 'tr', function () {
+                if ( $(this).hasClass('selected') ) {
+                   
+                }
+                else {
+                    $('#table tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            } );      
+        })
+</script>
+    }
+<div class="page-content-wrapper-inner container-fluid" ng-controller="DepartmentCtrl" ng-init="init(@JsonConvert.SerializeObject(Model))">
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Tìm kiếm</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-horizontal">
+                        <label class="col-sm-3 col-xs-3 control-label">@StringsM020.CompanyCd</label>
+                        <div class="col-xs-6 col-md-3">
+                            <select id="cbCompany" class="selectpicker required" ng-model="search.CompanyCd" selectpicker>
+                                @{
+                                    foreach (var company in Model.ListCompany)
+                                    {
+                                        <option value=@company.CompanyCd>@company.CompanyCd</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <button class="btn btn-primary" ng-click="searchFn(); cancelFn();"><i class="fa fa-search" aria-hidden="true"></i> @Strings.Search</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-md-6">
+
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+
+        </div>
+    </div>
+   
+
+    <form name="form.deptForm" ng-validate="validationOptions">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">@StringsM020.TitleInfo</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group form-horizontal">
+                            <div class="form-group form-horizontal">
+                                <label class="col-sm-3 col-xs-3 control-label">@StringsM020.CompanyCd</label>
+                                <div class="col-sm-7 col-xs-7">
+                                    <input class="form-control" disabled value="{{companyName}}">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-6">
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group form-horizontal">
+                            <div class="form-group form-horizontal">
+                                <label class="col-sm-3 col-xs-3 control-label">@StringsM020.DeptCd</label>
+                                <div class="col-sm-7 col-xs-7">
+                                    <input id="txtDeptCd" maxlength="10" ng-disabled="control.txtDeptCd" autofocus type="text" name="DeptCd" ng-model="model.DeptCd" class="form-control required" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-6">
+                        <div class="form-group form-horizontal">
+                            <label class="col-sm-3 col-xs-3 control-label">@StringsM020.DeptName</label>
+                            <div class="col-sm-7 col-xs-7">
+                                <input id="txtDeptName" maxlength="100" ng-disabled="control.txtDeptName" type="text" name="DeptName" ng-model="model.DeptName" class="form-control required" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group form-horizontal">
+                            <label class="col-sm-3 col-xs-3 control-label"></label>
+                            <div class="col-sm-7 col-xs-7">
+                                <!-- checkbox -->
+                                <label class="checkbox">
+                                    <input type="checkbox" ng-disabled="control.rdActiveFlag" ng-model="model.ActiveFlag">
+                                    <span></span>@StringsM020.Acticve
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-6">
+                    </div>
+                    <!-- /.col -->
+                </div>
+                
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                    <button type="button" class="btn btn-primary" ng-disabled="control.btnInsert" ng-click="insertFn()"><i class="fa fa-plus" aria-hidden="true"></i>@Strings.Insert</button>
+                    <button type="button" class="btn btn-success" ng-disabled="control.btnUpdate" ng-click="updateFn()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>@Strings.Update</button>
+                    <button type="button" class="btn btn-warning" ng-disabled="control.btnCancel" ng-click="cancelFn()"><i class="fa fa-repeat" aria-hidden="true"></i>@Strings.Cancel</button>
+            </div>
+        </div>
+    </form>
+    <table class="table table-striped table-basic table-hover table-bordered" id="table">
+        <thead>
+            <tr>
+                <th class="col-xs-1 text-center">STT</th>
+                <th class="col-xs-2 text-center">@StringsM020.DeptCd</th>
+                <th class="col-xs-7 text-center">@StringsM020.DeptName</th>
+                <th class="col-xs-2 text-center">@StringsM020.Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="dept in listDept" ng-click="editModelFn(dept, form.deptForm)">
+                <td class="text-center">{{$index + 1}}</td>
+                <td  class="text-center" ng-if="control.linkDeptCd">
+                    {{dept.DeptCd}}
+                </td>
+                <td ng-if="control.linkDeptCd == false">
+                    {{dept.DeptCd}}
+                </td>
+                <td>{{dept.DeptName}}</td>
+                <td class="text-center">
+                    <span class="badge bg-green" ng-if="dept.ActiveFlag == true">@StringsM020.Acticve</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+

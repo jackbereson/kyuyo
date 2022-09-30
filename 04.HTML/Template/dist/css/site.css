@@ -1,0 +1,573 @@
+
+.functionbox .functionbox-content:first-child,
+.functionbox>.badge,
+.functionbox>.stat,
+.percentage {
+    font-weight: 700
+}
+
+
+.functionbox-container {
+    text-align: center;
+    font-size: 0
+}
+
+.functionbox {
+    display: inline-block;
+    min-width: 240px;
+    width:98%;
+    height: 80px;
+    color: #555;
+    background-color: #FFF;
+    box-shadow: none;
+    margin: -1px 0 10px -1px;
+    padding: 8px 3px 6px 9px;
+    border: 1px dotted;
+    border-color: #D8D8D8!important;
+    vertical-align: middle;
+    text-align: left;
+    position: relative;
+}
+
+.functionbox:hover{
+    background:#f6fcff;
+}
+
+.functionbox>.functionbox-icon {
+    display: inline-block;
+    vertical-align: top;
+    width: 44px
+}
+
+.functionbox>.functionbox-icon>.ait-icon {
+    display: inline-block;
+    height: 42px;
+    margin: 0;
+    padding: 1px 1px 0 2px;
+    background-color: transparent;
+    border-width: 0;
+    text-align: center;
+    position: relative;
+    border-radius: 100%;
+    -webkit-box-shadow: 1px 1px 0 rgba(0, 0, 0, .2);
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, .2)
+}
+
+.functionbox>.functionbox-icon>.ait-icon:before {
+    font-size: 24px;
+    display: block;
+    padding: 6px 0 7px;
+    width: 40px;
+    text-align: center;
+    border-radius: 100%;
+    color: #FFF;
+    color: rgba(255, 255, 255, .9);
+    background-color: transparent;
+    background-color: rgba(255, 255, 255, .2);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .14)
+}
+
+.functionbox .functionbox-content {
+    color: #555;
+    max-width: 140px
+}
+
+.functionbox>.functionbox-data {
+    display: inline-block;
+    border-width: 0;
+    font-size: 13px;
+    text-align: left;
+    line-height: 21px;
+    min-width: 130px;
+    padding-left: 3px;
+    position: relative;
+    top: 0
+}
+
+.functionbox>.functionbox-data>.functionbox-data-link {
+    display: block;
+    font-size: 22px;
+    margin: 2px 0 4px;
+    position: relative;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, .15);
+	text-decoration:none;
+
+}
+
+.functionbox>.functionbox-data>.functionbox-text {
+    display: block;
+    font-size: 16px;
+    margin: 2px 0 4px;
+    position: relative;
+    text-shadow: none
+}
+
+.functionbox.no-border {
+    border-width: 0!important
+}
+
+@media only screen and (max-width:479px) {
+    .functionbox {
+        min-width: 95%;
+        margin-top: 2px;
+        margin-bottom: 2px
+    }
+}
+
+.functionbox-purple {
+    color: #6F3CC4;
+    border-color: #6F3CC4
+}
+
+.functionbox-purple>.functionbox-icon>.ait-icon {
+    background-color: #6F3CC4
+}
+
+.functionbox-purple.functionbox-dark {
+    background-color: #6F3CC4;
+    border-color: #6F3CC4
+}
+
+.functionbox-purple2 {
+    color: #5F47B0;
+    border-color: #5F47B0
+}
+
+.functionbox-purple2>.functionbox-icon>.ait-icon {
+    background-color: #5F47B0
+}
+
+.functionbox-purple2.functionbox-dark {
+    background-color: #5F47B0;
+    border-color: #5F47B0
+}
+
+.functionbox-pink {
+    color: #CB6FD7;
+    border-color: #CB6FD7
+}
+
+.functionbox-pink>.functionbox-icon>.ait-icon {
+    background-color: #CB6FD7
+}
+
+.functionbox-pink.functionbox-dark {
+    background-color: #CB6FD7;
+    border-color: #CB6FD7
+}
+
+.functionbox-blue {
+    color: #6FB3E0;
+    border-color: #6FB3E0
+}
+
+.functionbox-blue>.functionbox-icon>.ait-icon {
+    background-color: #6FB3E0
+}
+
+.functionbox-blue.functionbox-dark {
+    background-color: #6FB3E0;
+    border-color: #6FB3E0
+}
+
+.functionbox-blue2 {
+    color: #3983C2;
+    border-color: #3983C2
+}
+
+.functionbox-blue2>.functionbox-icon>.ait-icon {
+    background-color: #3983C2
+}
+
+.functionbox-blue2.functionbox-dark {
+    background-color: #3983C2;
+    border-color: #3983C2
+}
+
+.functionbox-blue3 {
+    color: #1144EB;
+    border-color: #1144EB
+}
+
+.functionbox-blue3>.functionbox-icon>.ait-icon {
+    background-color: #1144EB
+}
+
+.functionbox-blue3.functionbox-dark {
+    background-color: #1144EB;
+    border-color: #1144EB
+}
+
+.functionbox-red {
+    color: #D53F40;
+    border-color: #D53F40
+}
+
+.functionbox-red>.functionbox-icon>.ait-icon {
+    background-color: #D53F40
+}
+
+.functionbox-red.functionbox-dark {
+    background-color: #D53F40;
+    border-color: #D53F40
+}
+
+.functionbox-brown {
+    color: #C67A3E;
+    border-color: #C67A3E
+}
+
+.functionbox-brown>.functionbox-icon>.ait-icon {
+    background-color: #C67A3E
+}
+
+.functionbox-brown.functionbox-dark {
+    background-color: #C67A3E;
+    border-color: #C67A3E
+}
+
+.functionbox-wood {
+    color: #7B3F25;
+    border-color: #7B3F25
+}
+
+.functionbox-wood>.functionbox-icon>.ait-icon {
+    background-color: #7B3F25
+}
+
+.functionbox-wood.functionbox-dark {
+    background-color: #7B3F25;
+    border-color: #7B3F25
+}
+
+.functionbox-light-brown {
+    color: #CEBEA5;
+    border-color: #CEBEA5
+}
+
+.functionbox-light-brown>.functionbox-icon>.ait-icon {
+    background-color: #CEBEA5
+}
+
+.functionbox-light-brown.functionbox-dark {
+    background-color: #CEBEA5;
+    border-color: #CEBEA5
+}
+
+.functionbox-orange {
+    color: #E8B110;
+    border-color: #E8B110
+}
+
+.functionbox-orange>.functionbox-icon>.ait-icon {
+    background-color: #E8B110
+}
+
+.functionbox-orange.functionbox-dark {
+    background-color: #E8B110;
+    border-color: #E8B110
+}
+
+.functionbox-orange2 {
+    color: #F79263;
+    border-color: #F79263
+}
+
+.functionbox-orange2>.functionbox-icon>.ait-icon {
+    background-color: #F79263
+}
+
+.functionbox-orange2.functionbox-dark {
+    background-color: #F79263;
+    border-color: #F79263
+}
+
+.functionbox-green {
+    color: #9ABC32;
+    border-color: #9ABC32
+}
+
+.functionbox-green>.functionbox-icon>.ait-icon {
+    background-color: #9ABC32
+}
+
+.functionbox-green.functionbox-dark {
+    background-color: #9ABC32;
+    border-color: #9ABC32
+}
+
+.functionbox-green2 {
+    color: #0490A6;
+    border-color: #0490A6
+}
+
+.functionbox-green2>.functionbox-icon>.ait-icon {
+    background-color: #0490A6
+}
+
+.functionbox-green2.functionbox-dark {
+    background-color: #0490A6;
+    border-color: #0490A6
+}
+
+.functionbox-grey {
+    color: #999;
+    border-color: #999
+}
+
+.functionbox-grey>.functionbox-icon>.ait-icon {
+    background-color: #999
+}
+
+.functionbox-grey.functionbox-dark {
+    background-color: #999;
+    border-color: #999
+}
+
+.functionbox-black {
+    color: #393939;
+    border-color: #393939
+}
+
+.functionbox-black>.functionbox-icon>.ait-icon {
+    background-color: #393939
+}
+
+.functionbox-black.functionbox-dark {
+    background-color: #393939;
+    border-color: #393939
+}
+
+.functionbox-dark {
+    margin: 1px 1px 0 0;
+    border-color: transparent!important;
+    border-width: 0;
+    color: #FFF;
+    padding: 4px
+}
+
+.functionbox-dark>.functionbox-icon>.ait-icon,
+.functionbox-dark>.functionbox-icon>.ait-icon:before {
+    background-color: transparent;
+    box-shadow: none!important;
+    text-shadow: none;
+    border-radius: 0;
+    font-size: 30px
+}
+
+.functionbox-dark .functionbox-content {
+    color: #FFF
+}
+
+.functionbox>.functionbox-progress {
+    padding-top: 0;
+    display: inline-block;
+    vertical-align: top;
+    width: 44px
+}
+
+.functionbox>.functionbox-chart {
+    padding-top: 0;
+    display: inline-block;
+    vertical-align: text-bottom;
+    width: 44px;
+    text-align: center
+}
+
+.functionbox>.functionbox-chart>.sparkline {
+    font-size: 24px
+}
+
+.functionbox>.functionbox-chart canvas {
+    vertical-align: middle!important
+}
+
+.functionbox>.stat {
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    top: 11px;
+    text-shadow: none;
+    color: #ABBAC3;
+    font-size: 13px;
+    padding-right: 18px;
+    padding-top: 3px
+}
+
+.functionbox>.stat:before {
+    display: inline-block;
+    width: 8px;
+    height: 11px;
+    background-color: #ABBAC3;
+    position: absolute;
+    right: 4px;
+    top: 7px
+}
+
+.functionbox>.stat:after {
+    display: inline-block;
+    position: absolute;
+    right: 1px;
+    top: -8px;
+    border: 12px solid transparent;
+    border-width: 8px 7px;
+    border-bottom-color: #ABBAC3
+}
+
+.functionbox>.stat.stat-success {
+    color: #77C646
+}
+
+.functionbox>.stat.stat-success:before {
+    background-color: #77C646
+}
+
+.functionbox>.stat.stat-success:after {
+    border-bottom-color: #77C646
+}
+
+.functionbox>.stat.stat-important {
+    color: #E4564F
+}
+
+.functionbox.functionbox-dark>.stat,
+.functionbox.functionbox-dark>.stat.stat-important,
+.functionbox.functionbox-dark>.stat.stat-success,
+.functionbox>.badge {
+    color: #FFF
+}
+
+.functionbox>.stat.stat-important:before {
+    background-color: #E4564F;
+    top: 3px
+}
+
+.functionbox>.stat.stat-important:after {
+    border-top-color: #E4564F;
+    border-bottom-color: transparent;
+    bottom: -6px;
+    top: auto
+}
+
+.functionbox.functionbox-dark>.stat:before {
+    background-color: #E1E5E8
+}
+
+.functionbox.functionbox-dark>.stat:after {
+    border-bottom-color: #E1E5E8
+}
+
+.functionbox.functionbox-dark>.stat.stat-success:before {
+    background-color: #D0E29E
+}
+
+.functionbox.functionbox-dark>.stat.stat-success:after {
+    border-bottom-color: #D0E29E
+}
+
+.functionbox.functionbox-dark>.stat.stat-important:before {
+    background-color: #FF8482;
+    top: 3px
+}
+
+.functionbox.functionbox-dark>.stat.stat-important:after {
+    border-top-color: #FF8482;
+    border-bottom-color: transparent;
+    bottom: -6px;
+    top: auto
+}
+
+.functionbox>.badge {
+    position: absolute;
+    right: 20px;
+    top: 11px;
+    border-radius: 0;
+    text-shadow: none;
+    font-size: 11px;
+    line-height: 15px;
+    height: 16px;
+    padding: 0 1px
+}
+
+.functionbox.functionbox-dark>.badge {
+    color: #FFF;
+    background-color: rgba(255, 255, 255, .2)!important;
+    border: 1px solid #F1F1F1;
+    top: 2px;
+    right: 2px
+}
+
+.functionbox.functionbox-dark>.badge.badge-success>.ait-icon {
+    color: #C6E9A1
+}
+
+.functionbox.functionbox-dark>.badge.badge-important>.ait-icon,
+.functionbox.functionbox-dark>.badge.badge-warning>.ait-icon {
+    color: #ECB792
+}
+
+.functionbox-small {
+    width: 135px;
+    height: 52px;
+    text-align: left;
+    padding-bottom: 5px
+}
+
+.functionbox-small>.functionbox-chart,
+.functionbox-small>.functionbox-icon,
+.functionbox-small>.functionbox-progress {
+    display: inline-block;
+    width: 40px;
+    max-width: 40px;
+    height: 42px;
+    line-height: 38px;
+    vertical-align: middle
+}
+
+.functionbox-small>.functionbox-data {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    max-width: 72px;
+    min-width: 0
+}
+
+.functionbox-small>.functionbox-chart>.sparkline {
+    font-size: 14px;
+    margin-left: 2px
+}
+
+.percentage {
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: top
+}
+
+.functionbox-small .percentage {
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 2px;
+    margin-left: 2px
+}
+
+
+h4.function-header{
+    color:#D53F40;
+    font-weight:bold
+}
+
+
+
+
+.table > thead > tr > th {
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a7cfdf+0,23538a+100;Blue+3d+%238 */
+background: #a7cfdf; /* Old browsers */
+background: -moz-linear-gradient(top,  #a7cfdf 0%, #23538a 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #a7cfdf 0%,#23538a 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #a7cfdf 0%,#23538a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a7cfdf', endColorstr='#23538a',GradientType=0 ); /* IE6-9 */
+
+  color:white;
+  vertical-align:middle
+}
+

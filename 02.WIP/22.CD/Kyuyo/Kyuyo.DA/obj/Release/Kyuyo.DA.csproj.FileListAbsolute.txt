@@ -1,0 +1,11 @@
+D:\Kyuyo (luong)\02.WIP\22.CD\Kyuyo\Kyuyo.DA\bin\Release\Kyuyo.DA.dll.config
+D:\Kyuyo (luong)\02.WIP\22.CD\Kyuyo\Kyuyo.DA\bin\Release\Kyuyo.DA.dll
+D:\Kyuyo (luong)\02.WIP\22.CD\Kyuyo\Kyuyo.DA\bin\Release\Kyuyo.DA.pdb
+D:\Kyuyo (luong)\02.WIP\22.CD\Kyuyo\Kyuyo.DA\bin\Release\EntityFramework.dll
+D:\Kyuyo (luong)\02.WIP\22.CD\Kyuyo\Kyuyo.DA\bin\Release\EntityFramework.SqlServer.dll
+D:\Kyuyo (luong)\02.WIP\22.CD\Kyuyo\Kyuyo.DA\bin\Release\log4net.dll
+D:\Kyuyo (luong)\02.WIP\22.CD\Kyuyo\Kyuyo.DA\bin\Release\EntityFramework.xml
+D:\Kyuyo (luong)\02.WIP\22.CD\Kyuyo\Kyuyo.DA\bin\Release\EntityFramework.SqlServer.xml
+D:\Kyuyo (luong)\02.WIP\22.CD\Kyuyo\Kyuyo.DA\bin\Release\log4net.xml
+D:\Kyuyo (luong)\02.WIP\22.CD\Kyuyo\Kyuyo.DA\obj\Release\Kyuyo.DA.dll
+D:\Kyuyo (luong)\02.WIP\22.CD\Kyuyo\Kyuyo.DA\obj\Release\Kyuyo.DA.pdb

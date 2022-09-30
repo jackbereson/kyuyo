@@ -1,0 +1,202 @@
+﻿@using Kyuyo.BL.Resources;
+@using Kyuyo.BL.Resources.SalaryArrear;
+@using Kyuyo.Infrastructure.Utils;
+@using Kyuyo.Models;
+@using Newtonsoft.Json;
+@model SalaryArrearModel
+@{
+    Layout = "~/Views/Shared/_AITLayout.cshtml";
+    ViewBag.Title = @StringsM016.Title;
+}
+
+@section header{
+    <h4 class="titleHeader">
+        <i class="ait-icon fa fa-briefcase"></i> ...
+        @StringsM016.Title
+    </h4>
+}
+
+<div class="page-content-wrapper-inner container-fluid" ng-init="init(@JsonConvert.SerializeObject(Model))">
+    <div class="page-header">
+        <h1 class="page-title">@StringsM016.Title</h1>
+    </div>
+
+    <!-- Primary form -->
+    <div class="primary-form">
+        <form name="form.bonusSearchForm" ng-validate="validationOptions">
+            @{
+                if (Model.Editable)
+                {
+                    <div ng-show="isErrorMessage" class="alert" ng-class="classMessage">
+                        <div class="alert-content" ng-repeat="message in errorMessage">
+                            {{message}}
+                        </div>
+                    </div>
+                }
+            }
+
+
+
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtFile">@StringsM016.Company</label>
+                        <b>Aureole Infonation Technology Inc.</b>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="calMonthYear">@StringsM016.MonthYear</label>
+                        <b>06/2016</b>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtEmployeeNoSearch">@StringsM016.EmployeeNo</label>
+                        <input id="txtEmployeeNoSearch" maxlength="20" ng-disabled="control.txtEmployeeNoSearch" autofocus type="text" name="EmployeeNoSearch" ng-model="model.EmployeeNoSearch" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="cbDepartment">@StringsM016.Deparment</label>
+                        <select id="cbDepartment" class="selectpicker" ng-model="search.DepartmentCd" selectpicker>
+                            <option>Vui lòng chọn...</option>
+                            <option>SI Group1</option>
+                            <option>SI Group2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtSearchDescription">@StringsM016.Description</label>
+                        <input id="txtSearchDescription" maxlength="20" ng-disabled="control.txtSearchDescription" autofocus type="text" name="SearchDescription" ng-model="model.SearchDescription" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtSearchDescription">@StringsM016.EmployeeName</label>
+                        <input id="txtSearchDescription" maxlength="20" ng-disabled="control.txtSearchDescription" autofocus type="text" name="SearchDescription" ng-model="model.SearchDescription" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <button class="btn btn-primary" ng-click="searchFn(); cancelFn();"><i class="fa fa-search" aria-hidden="true"></i> @Strings.Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Primary form -->
+    <div class="primary-form no-border-top">
+
+        <p><b>@StringsM016.ArrearAuto</b></p>
+
+        <form name="form.bonusForm" ng-submit="form.specialInsuranceForm.validate() && insertFn()" ng-validate="validationOptions">
+
+            <!--Validate client message-->
+            <div class="group-messages" role="alert" ng-show="isBodyMessage == false"></div>
+
+            <!--Validate server-->
+            <div class="alert" ng-class="classBodyMessage" ng-if="isBodyMessage == true">
+                <div ng-repeat="message in errorBodyMessage">{{message}}</div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="calMonthDistribute">@StringsM016.NumMonthArrear</label>
+                        <input type="text" class="form-control" id="calMonthDistribute" date-picker ng-disabled="control.calMonthDistribute" ng-model="model.MonthDistribute" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10 col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="txtNumMonthDistribute">Loại thay đổi</label>
+                        <div class="form-inline">
+                            <label class="radio">
+                                <input type="radio" name="IdentityPassport" ng-disabled="control.comInput && !model.IdPassportFlag" ng-checked="model.IdPassportFlag" ng-click="changeTypeFn(true)"><span></span>
+                                Giờ làm việc
+                            </label>
+
+                            <label class="radio">
+                                <input type="radio" name="IdentityPassport" ng-disabled="control.comInput && model.IdPassportFlag" ng-checked="!model.IdPassportFlag" ng-click="changeTypeFn(false)"><span></span>
+                                Master lương
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-primary" ng-disabled="control.btnCalculate" ng-click="">@StringsM016.Calculate</button>
+                    <button type="button" class="btn btn-primary" ng-disabled="control.btnExportReport" ng-click="">@StringsM016.ExportReport</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="primary-form no-border-top">
+
+        <p><b>Danh sách thu/truy lĩnh</b></p>
+
+        <!-- Main content zone -->
+        <div id="main-content-zone" class="table-responsive">
+            <table class="table table-striped table-basic table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">STT</th>
+                        <th class="col-xs-2">@StringsM016.Employee</th>
+                        <th class="col-xs-2">@StringsM016.NumMonthArrear</th>
+                        <th class="col-xs-2">@StringsM016.Description</th>
+                        <th class="col-xs-2">@StringsM016.Value</th>
+                        <th class="col-xs-2">@StringsM016.Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center" rowspan="2">1</td>
+                        <td rowspan="2">Nguyễn Văn A</td>
+                        <td>
+                            <a href="javascript:void(0)">04/2016</a>
+                        </td>
+                        <td>Truy lĩnh</td>
+                        <td>100</td>
+                        <td>USD</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="javascript:void(0)">05/2016</a>
+                        </td>
+                        <td>Truy lĩnh</td>
+                        <td>200</td>
+                        <td>USD</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" rowspan="2">2</td>
+                        <td rowspan="2">Nguyễn Văn B</td>
+                        <td>
+                            <a href="javascript:void(0)">04/2016</a>
+                        </td>
+                        <td>Truy lĩnh</td>
+                        <td>200</td>
+                        <td>USD</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="javascript:void(0)">05/2016</a>
+                        </td>
+                        <td>Truy lĩnh</td>
+                        <td>50 000</td>
+                        <td>VND</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

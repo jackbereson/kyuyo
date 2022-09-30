@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ECF4C6E6-12C9-4F95-9EF8-30B6A125465E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kyuyo.BL</RootNamespace>
+    <AssemblyName>Kyuyo.BL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EmailService">
+      <HintPath>C:\Users\thanhtv\Desktop\EmailService.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllowanceBL.cs" />
+    <Compile Include="AuthorityBL.cs" />
+    <Compile Include="CommonBL.cs" />
+    <Compile Include="CompanyBL.cs" />
+    <Compile Include="Core\AccessRole.cs" />
+    <Compile Include="Core\ScreenItem.cs" />
+    <Compile Include="Core\UserInfo.cs" />
+    <Compile Include="DepartmentBL.cs" />
+    <Compile Include="DTO\KYSalaryFormulaDto.cs" />
+    <Compile Include="DTO\QuantityProductDto.cs" />
+    <Compile Include="DTO\ReportListDto.cs" />
+    <Compile Include="DTO\SalaryCalulateDto.cs" />
+    <Compile Include="DTO\WorkingTimeChangeReferDto.cs" />
+    <Compile Include="QuantityProductBL.cs" />
+    <Compile Include="Resources\SalaryCalculate\MessagesM017.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessagesM017.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Salary\MessagesM012.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessagesM012.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Salary\StringsM012.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringsM012.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\WorkingTimeChangeRefer\MessagesM018.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessagesM018.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\WorkingTimeChangeRefer\StringsM018.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringsM018.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SalaryBL.cs" />
+    <Compile Include="DependentBL.cs" />
+    <Compile Include="DTO\AuthorityDto.cs" />
+    <Compile Include="DTO\BaseDto.cs" />
+    <Compile Include="DTO\DependentDto.cs" />
+    <Compile Include="DTO\EmpDeptDto.cs" />
+    <Compile Include="DTO\KYAllowanceDto.cs" />
+    <Compile Include="DTO\KYCompanyDto.cs" />
+    <Compile Include="DTO\KYDepartmentDto.cs" />
+    <Compile Include="DTO\KYEmployeeDto.cs" />
+    <Compile Include="DTO\KYLongtermAbsenceDto.cs" />
+    <Compile Include="DTO\KYSalaryDto.cs" />
+    <Compile Include="DTO\KYWorkingTimeDto.cs" />
+    <Compile Include="DTO\OtherPayDto.cs" />
+    <Compile Include="DTO\PolicyDto.cs" />
+    <Compile Include="DTO\SpecialInsuranceDto.cs" />
+    <Compile Include="DTO\TBMSystemDto.cs" />
+    <Compile Include="EmployeeBL.cs" />
+    <Compile Include="LongtermAbsenceBL.cs" />
+    <Compile Include="Mappings\AutoMapperConfiguration.cs" />
+    <Compile Include="Mappings\DTOToEntityMappingProfile.cs" />
+    <Compile Include="Mappings\EntityToDTOMappingProfile.cs" />
+    <Compile Include="Mappings\StoredResultToDTOMappingProfile.cs" />
+    <Compile Include="OtherPayBL.cs" />
+    <Compile Include="PolicyBL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\AbsenceNotPay\MessagesM013.Designer.cs" />
+    <Compile Include="Resources\AbsenceNotPay\StringsM013.Designer.cs" />
+    <Compile Include="Resources\Allowance\StringsM007.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringsM007.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Authority\MessagesM004.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessagesM004.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Authority\StringsM004.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringsM004.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Bonus\MessagesM014.Designer.cs" />
+    <Compile Include="Resources\Bonus\StringsM014.Designer.cs" />
+    <Compile Include="Resources\Deparment\MessagesM020.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessagesM020.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Deparment\StringsM020.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringsM020.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Dependent\MessagesM011.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessagesM011.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Dependent\StringsM011.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringsM011.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Employee\MessagesM009.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessagesM009.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Employee\StringsM009.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringsM009.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ImportWorkingTime\MessagesM015.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessagesM015.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ImportWorkingTime\StringsM015.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringsM015.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\InsuranceEmployee\MessagesM010.Designer.cs" />
+    <Compile Include="Resources\InsuranceEmployee\StringsM010.Designer.cs" />
+    <Compile Include="Resources\Messages.Designer.cs">
+      <DependentUpon>Messages.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Policy\MessagesM005.Designer.cs" />
+    <Compile Include="Resources\Policy\StringsM005.Designer.cs" />
+    <Compile Include="Resources\ReportList\MessagesM019.Designer.cs" />
+    <Compile Include="Resources\ReportList\StringsM019.Designer.cs" />
+    <Compile Include="Resources\SalaryArrear\MessagesM016.Designer.cs" />
+    <Compile Include="Resources\SalaryArrear\StringsM016.Designer.cs" />
+    <Compile Include="Resources\SalaryCalculate\StringsM017.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringsM017.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\SalaryFormular\MessagesM008.Designer.cs" />
+    <Compile Include="Resources\SalaryFormular\StringsM008.Designer.cs" />
+    <Compile Include="Resources\SpecialInsurance\MessagesM006.Designer.cs" />
+    <Compile Include="Resources\SpecialInsurance\StringsM006.Designer.cs" />
+    <Compile Include="Resources\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Taglib\StringsTaglib.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringsTaglib.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SalaryCalulateBL.cs" />
+    <Compile Include="SalaryFormulaBL.cs" />
+    <Compile Include="SpecialInsuranceBL.cs" />
+    <Compile Include="Utils\Constant.cs" />
+    <Compile Include="Utils\DateTimeFormat.cs" />
+    <Compile Include="Utils\ExcuteBLException.cs" />
+    <Compile Include="Utils\MD5Hash.cs" />
+    <Compile Include="Utils\DecimalFormat.cs" />
+    <Compile Include="WorkingTimeBL.cs" />
+    <Compile Include="WorkingTimeChangeReferBL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\AbsenceNotPay\MessagesM013.resx" />
+    <EmbeddedResource Include="Resources\AbsenceNotPay\StringsM013.resx" />
+    <EmbeddedResource Include="Resources\Allowance\StringsM007.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringsM007.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Authority\MessagesM004.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessagesM004.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Authority\StringsM004.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringsM004.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Bonus\MessagesM014.resx" />
+    <EmbeddedResource Include="Resources\Bonus\StringsM014.resx" />
+    <EmbeddedResource Include="Resources\Deparment\MessagesM020.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessagesM020.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Deparment\StringsM020.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringsM020.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Dependent\MessagesM011.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessagesM011.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Dependent\StringsM011.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringsM011.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Employee\MessagesM009.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessagesM009.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Employee\StringsM009.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringsM009.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ImportWorkingTime\MessagesM015.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessagesM015.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ImportWorkingTime\StringsM015.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringsM015.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\InsuranceEmployee\MessagesM010.resx" />
+    <EmbeddedResource Include="Resources\InsuranceEmployee\StringsM010.resx" />
+    <EmbeddedResource Include="Resources\Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Policy\MessagesM005.resx" />
+    <EmbeddedResource Include="Resources\Policy\StringsM005.resx" />
+    <EmbeddedResource Include="Resources\ReportList\MessagesM019.resx" />
+    <EmbeddedResource Include="Resources\ReportList\StringsM019.resx" />
+    <EmbeddedResource Include="Resources\SalaryArrear\MessagesM016.resx" />
+    <EmbeddedResource Include="Resources\SalaryArrear\StringsM016.resx" />
+    <EmbeddedResource Include="Resources\SalaryCalculate\MessagesM017.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessagesM017.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SalaryCalculate\StringsM017.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringsM017.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SalaryFormular\MessagesM008.resx" />
+    <EmbeddedResource Include="Resources\SalaryFormular\StringsM008.resx" />
+    <EmbeddedResource Include="Resources\Salary\MessagesM012.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessagesM012.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Salary\StringsM012.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringsM012.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SpecialInsurance\MessagesM006.resx" />
+    <EmbeddedResource Include="Resources\SpecialInsurance\StringsM006.resx" />
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Taglib\StringsTaglib.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringsTaglib.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\WorkingTimeChangeRefer\MessagesM018.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessagesM018.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\WorkingTimeChangeRefer\StringsM018.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringsM018.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kyuyo.DA\Kyuyo.DA.csproj">
+      <Project>{a9bc29f3-3e64-4eed-a1ab-de8bce1712fe}</Project>
+      <Name>Kyuyo.DA</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

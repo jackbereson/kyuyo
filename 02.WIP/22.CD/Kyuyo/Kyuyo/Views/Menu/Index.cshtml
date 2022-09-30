@@ -1,0 +1,117 @@
+﻿@using Kyuyo.Infrastructure.Utils;
+@using Kyuyo.BL.DTO;
+@using Kyuyo.BL.Utils;
+@using Kyuyo.BL.Resources.Authority;
+@using Kyuyo.BL.Resources;
+@model List<TBMSystemDto>
+@{
+    Layout = "~/Views/Shared/_AITLayout.cshtml";
+    ViewBag.Title = "Menu";
+    var userInfo = Helper.GetCurrentUserInfo();
+}
+@section header{
+    <h4 class="titleHeader">
+        <i class="ait-icon fa fa-briefcase"></i> ...
+        @ViewBag.Title
+    </h4>
+}
+@section scripts{
+    <script>
+        $(function () {
+            $.each($(".functionbox-data-link"), function (key, value) {
+                var elem = $(value);
+                if (elem.text().length > 40)
+                {
+                    elem.css("font-size","16px").css("font-weight","bolder")
+                }
+            });
+        });
+    </script>
+    }
+
+<div class="row">
+    <div class="col-md-11">
+        <div class="col-md-6">
+            <h4 class="function-header">
+                @Strings.MenuMaster
+            </h4>
+            <div class="functionbox functionbox-green">
+                <div class="functionbox-icon">
+                    <i class="ait-icon fa fa-cogs"></i>
+                </div>
+                <div class="functionbox-data">
+                    @if (Helper.HasAccessScreen(Constant.SCREEN_M004))
+                    {
+                        @Html.ActionLink(StringsM004.Title , "Index", new { controller = "Authority" }, new { @class = "functionbox-data-link" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink(StringsM004.Title, "Index", new { controller = "Authority" }, new { @class = "functionbox-data-link disabled" })
+                    }
+                    <div class="functionbox-content">@StringsM004.SubTitle</div>
+                </div>
+            </div>
+
+            @{
+                foreach (var menu in Model)
+                {
+                    if (menu.NumValue3 == 0 && menu.CharValue3 == "1")
+                    {
+                        string[] infoArr = menu.CharValue2.Split('|');//0 - description ----------------- 1 - fa-icon
+
+                        <div class="functionbox functionbox-green">
+                            <div class="functionbox-icon">
+                                <i class="ait-icon fa @infoArr[1]"></i>
+                            </div>
+                            <div class="functionbox-data">
+                                @if (Helper.HasAccessScreen(menu.Cd))
+                                {
+                                    @Html.ActionLink(menu.Remark, "Index", new { controller = menu.CharValue1 }, new { @class = "functionbox-data-link" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(menu.Remark, "Index", new { controller = menu.CharValue1 }, new { @class = "functionbox-data-link disabled" })
+                                }
+                                <div class="functionbox-content">@infoArr[0]</div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+        <div class="col-md-6">
+            <h4 class="function-header">
+                @Strings.MenuBus
+            </h4>
+            @{
+                foreach (var menu in Model)
+                {
+                    if (menu.NumValue3 == 1 && menu.CharValue3 == "1")
+                    {
+                        string[] infoArr = menu.CharValue2.Split('|');//0 - description ----------------- 1 - fa-icon
+
+                        <div class="functionbox functionbox-green">
+                            <div class="functionbox-icon">
+                                <i class="ait-icon fa @infoArr[1]"></i>
+                            </div>
+                            <div class="functionbox-data">
+                                @if (Helper.HasAccessScreen(menu.Cd))
+                                {
+                                    @Html.ActionLink(menu.Remark, "Index", new { controller = menu.CharValue1 }, new { @class = "functionbox-data-link" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(menu.Remark, "Index", new { controller = menu.CharValue1 }, new { @class = "functionbox-data-link disabled" })
+                                }
+                                <div class="functionbox-content">@infoArr[0]</div>
+                            </div>
+                        </div>
+                    }
+
+                }
+            }
+        </div>
+    </div>
+    <div class="col-md-1">
+    </div>
+</div>

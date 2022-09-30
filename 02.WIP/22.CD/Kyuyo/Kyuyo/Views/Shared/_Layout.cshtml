@@ -1,0 +1,105 @@
+﻿@using System.Threading
+@using Kyuyo.Infrastructure.Utils
+@using Kyuyo.BL.Resources
+@{
+    var userInfo = Helper.GetCurrentUserInfo();
+    var menus = Helper.GetMenus();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <base href="/">
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body ng-app="KyuyoApp" class="ng-cloak" ng-controller="CommonCtrl">
+    <div id="wrapper" class="">
+        <div id="sidebar-wrapper">
+            <div id="sidemenu-logo">
+                <h1>@Strings.AppTitle</h1>
+                <a href="javascript:void(0);" class="navbar-toggle collapse in" id="menu-toggle"></a>
+                <ul class="left-main-menu">
+                    <li class="menu-list-title">@Strings.MenuMaster</li>
+                    @{
+                        foreach (var menu in menus)
+                        {
+                            if (menu.NumValue3 == 0 && menu.CharValue3 == "1")
+                            {
+                                if (Helper.HasAccessScreen(menu.Cd))
+                                {
+                                    <li>@Html.ActionLink(@menu.Remark, "Index", new { controller = @menu.CharValue1 })</li>
+                                }
+                                else
+                                {
+                                    <li><a class="disabled">@menu.Remark</a></li>
+                                }
+                            }
+                        }
+                    }
+                </ul>
+                <ul class="left-main-menu">
+                    <li class="menu-list-title">@Strings.MenuBus</li>
+                    @{
+                        foreach (var menu in menus)
+                        {
+                            if (menu.NumValue3 == 1 && menu.CharValue3 == "1")
+                            {
+                                if (Helper.HasAccessScreen(menu.Cd))
+                                {
+                                    <li>@Html.ActionLink(@menu.Remark, "Index", new { controller = @menu.CharValue1 })</li>
+                                }
+                                else
+                                {
+                                    <li><a class="disabled">@menu.Remark</a></li>
+                                }
+                            }
+                        }
+                    }
+                </ul>
+                <div class="sidemenu-bottom">
+                    <div class="user-info"><strong>@userInfo.UserId</strong> - @userInfo.CompanyCd</div>
+                    <div class="back-home">
+                        <a class="back-home-text" href="/Menu"> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="page-content-wrapper">
+            @RenderBody()
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/angularMe")
+    @Scripts.Render("~/bundles/customScripts-plugins")
+    <script src="@ViewBag.Ctrl" type="text/javascript"></script>
+    <script src="/Resource/Strings?c=@Helper.GetLanguageKey()" type="text/javascript"></script>
+    <script src="/Resource/Messages?c=@Helper.GetLanguageKey()" type="text/javascript"></script>
+    @{ 
+        //var langExtention = Helper.GetLanguageKey() + ".js";
+        var langExtention = Helper.GetLanguageKey() + ".min.js";
+    }
+    <script src="~/Scripts/locales/bootstrap-datepicker.@langExtention"></script>
+    @*<script src="/Scripts/i18n/datepicker_@langExtention"></script>*@
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+            function fixHeight() {
+                $('#page-content-wrapper').css('min-height', (window.innerHeight - 20) + 'px');
+            }
+            fixHeight();
+            window.onresize = function (event) {
+                fixHeight();
+            };
+        })
+    </script>
+
+</body>
+</html>

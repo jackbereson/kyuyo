@@ -1,0 +1,2159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KyuyoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="KY_ALLOWANCE_MASTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COMPANY_ID" Type="int" Nullable="false" />
+          <Property Name="ALLOWANCE_CD" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ALLOWANCE_NAME" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="GROUP_CD" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="GROUP_NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="VALUE_OFFICAL" Type="numeric" Precision="11" Scale="1" Nullable="false" />
+          <Property Name="VALUE_PROB" Type="numeric" Precision="11" Scale="1" Nullable="false" />
+          <Property Name="UNIT" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ALLOWANCE_FLG" Type="char" MaxLength="1" />
+          <Property Name="EFFECTIVE_DT" Type="date" Nullable="false" />
+          <Property Name="DELETE_FLAG" Type="char" MaxLength="1" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="MAIN_ID" Type="int" />
+          <Property Name="HISTORY_NO" Type="int" />
+        </EntityType>
+        <EntityType Name="KY_ALLOWANCE_RESULT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ALLOWANCE_CD" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="YEAR_MONTH" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ALLOWANCE_PROB" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="ALLOWANCE_OFFI" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="TYPE_FLG" Type="char" MaxLength="1" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="KY_AUTHORITY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SCREEN_ACCESSES" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="KY_CLOSING_DATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COMPANY_ID" Type="int" Nullable="false" />
+          <Property Name="YEAR_MONTH" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CLOSING_DATE" Type="datetime" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="KY_DEPENDENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DEPENDENT" Type="nvarchar" MaxLength="100" />
+          <Property Name="BIRTH_DT" Type="date" />
+          <Property Name="NUMBER" Type="varchar" MaxLength="10" />
+          <Property Name="NUMBER_BOOK" Type="varchar" MaxLength="10" />
+          <Property Name="DEPENDENT_TAX_CODE" Type="varchar" MaxLength="20" />
+          <Property Name="IDENTITY_PASSPORT" Type="varchar" MaxLength="20" />
+          <Property Name="RELATIONSHIP" Type="varchar" MaxLength="50" />
+          <Property Name="NATIONALITY" Type="varchar" MaxLength="20" />
+          <Property Name="FROM_MONTH" Type="varchar" MaxLength="6" />
+          <Property Name="TO_MONTH" Type="varchar" MaxLength="6" />
+          <Property Name="DELETE_FLAG" Type="char" MaxLength="1" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="REG_COUNTRY" Type="varchar" MaxLength="20" />
+          <Property Name="REG_CITY" Type="varchar" MaxLength="20" />
+          <Property Name="REG_DISTRICT" Type="varchar" MaxLength="20" />
+          <Property Name="REG_WARD" Type="varchar" MaxLength="20" />
+          <Property Name="MAIN_ID" Type="int" />
+          <Property Name="HISTORY_NO" Type="int" />
+        </EntityType>
+        <EntityType Name="KY_EMPLOYEE_MASTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COMPANY_ID" Type="int" Nullable="false" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EMPLOYEE_NO_PE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EMPLOYEE_NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EMPLOYEE_NAME_FULL" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="USER_ID" Type="varchar" MaxLength="20" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="200" />
+          <Property Name="ABSENCE_NOT_PAY_BF" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="ABSENCE_NOT_PAY_AT" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="200" />
+          <Property Name="ADDRESS_EFFECTIVE_DT" Type="date" />
+          <Property Name="WORK_PLACE" Type="nvarchar" MaxLength="100" />
+          <Property Name="WORK_PLACE_EFFECTIVE_DT" Type="date" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="EMAIL_EFFECTIVE_DT" Type="date" />
+          <Property Name="NATIONALITY" Type="nvarchar" MaxLength="100" />
+          <Property Name="CONTINENTS" Type="varchar" MaxLength="10" />
+          <Property Name="IDENTITY_PASSPORT" Type="varchar" MaxLength="20" />
+          <Property Name="PERSONAL_TAX_CODE" Type="varchar" MaxLength="20" />
+          <Property Name="UNIVERSITY" Type="nvarchar" MaxLength="100" />
+          <Property Name="QUALIFICATION" Type="varchar" MaxLength="50" />
+          <Property Name="LEVEL" Type="varchar" MaxLength="10" />
+          <Property Name="LEVEL_EFFECTIVE_DT" Type="date" />
+          <Property Name="LEVEL_GROUP" Type="varchar" MaxLength="10" />
+          <Property Name="LEVEL_GROUP_EFFECTIVE_DT" Type="date" />
+          <Property Name="PHONE_NO" Type="varchar" MaxLength="20" />
+          <Property Name="CONTRACT_TYPE" Type="varchar" MaxLength="20" />
+          <Property Name="CONTRACT_TYPE_EFFECTIVE_DT" Type="date" />
+          <Property Name="EMERGENCY_PHONE_NO" Type="varchar" MaxLength="20" />
+          <Property Name="EMPLOYEE_TYPE" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="EMP_TYPE_EFFECTIVE_DT" Type="date" />
+          <Property Name="GENDER" Type="char" MaxLength="1" />
+          <Property Name="BIRTH_DT" Type="date" />
+          <Property Name="ENTRY_DT" Type="date" />
+          <Property Name="STANDARD_HOURS" Type="numeric" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="STANDARD_HOURS_EFFECTIVE_DT" Type="date" />
+          <Property Name="QUIT_DT" Type="date" />
+          <Property Name="CONTRACT_FORM" Type="varchar" MaxLength="1" />
+          <Property Name="CONTRACT_FORM_EFECTIVE_DT" Type="date" />
+          <Property Name="PROBATION_END_DT" Type="date" />
+          <Property Name="EXCHANGE_RATE_SOCIAL_INSU_SAL" Type="numeric" Precision="11" Scale="1" Nullable="false" />
+          <Property Name="INSURANCE" Type="varchar" MaxLength="100" />
+          <Property Name="INSURANCE_EFFECTIVE_DT" Type="date" />
+          <Property Name="INSURANCE_UNION_MONTH" Type="varchar" MaxLength="6" />
+          <Property Name="INSURANCE_CODE" Type="varchar" MaxLength="10" />
+          <Property Name="HOSPITAL" Type="varchar" MaxLength="10" />
+          <Property Name="HOSPITAL_EFECTIVE_DT" Type="date" />
+          <Property Name="PIT" Type="varchar" MaxLength="100" />
+          <Property Name="PIT_EFFECTIVE_DT" Type="date" />
+          <Property Name="CERTIFICATE_LIST" Type="nvarchar" MaxLength="200" />
+          <Property Name="LABOUR_UNION_DT" Type="date" />
+          <Property Name="DELETE_FLAG" Type="char" MaxLength="1" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="KY_LONGTERM_ABSENCE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ABSENCE_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FROM_DT" Type="date" />
+          <Property Name="TO_DT" Type="date" />
+          <Property Name="START_WORK_DT" Type="date" />
+          <Property Name="DELETE_FLAG" Type="char" MaxLength="1" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="MAIN_ID" Type="int" />
+          <Property Name="HISTORY_NO" Type="int" />
+        </EntityType>
+        <EntityType Name="KY_OTHER_PAY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PAY_TYPE" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="PAY_DESC" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="VALUE" Type="numeric" Precision="11" Scale="1" Nullable="false" />
+          <Property Name="UNIT" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="YEAR_MONTH" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ARREA_YEAR_MONTH" Type="varchar" MaxLength="6" />
+          <Property Name="DELETE_FLAG" Type="char" MaxLength="1" />
+          <Property Name="DISTRIBUTION_FLAG" Type="char" MaxLength="1" />
+          <Property Name="DISTRIBUTION_MONTHS" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="VND_VALUE" Type="numeric" Precision="11" Scale="2" />
+        </EntityType>
+        <EntityType Name="KY_OVERTIME_TOTAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WORKING_TIME_ID" Type="int" Nullable="false" />
+          <Property Name="OT_HOURS_PROB" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="OT_HOURS_OFFI" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="OT_TYPE" Type="int" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="KY_POLICY_MASTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="POLICY_CD" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="POLICY_NAME" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="POLICY_TYPE" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="GROUP_NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="LIMIT_STEP" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="NUM_VALUE" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="CHAR_VALUE" Type="nvarchar" MaxLength="200" />
+          <Property Name="UNIT" Type="char" MaxLength="1" />
+          <Property Name="LIMIT_STEP_UNIT" Type="char" MaxLength="1" />
+          <Property Name="ITEM_REF" Type="varchar" MaxLength="10" />
+          <Property Name="EFFECTIVE_DT" Type="date" Nullable="false" />
+          <Property Name="DELETE_FLAG" Type="char" MaxLength="1" />
+          <Property Name="ALLOW_EDIT" Type="char" MaxLength="1" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="MAIN_ID" Type="int" />
+          <Property Name="HISTORY_NO" Type="int" />
+        </EntityType>
+        <EntityType Name="KY_QUANTITY_PRODUCT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COMPANY_CD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PRODUCT_TYPE" Type="varchar" MaxLength="3" />
+          <Property Name="QUANTITY" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="YEAR_MONTH" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="KY_RATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MAIN_ID" Type="int" />
+          <Property Name="HISTORY_NO" Type="int" />
+          <Property Name="COMPANY_ID" Type="int" Nullable="false" />
+          <Property Name="EXCHANGE_RATE" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="EFFECTIVE_DT" Type="date" Nullable="false" />
+          <Property Name="RATE_TYPE" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="KY_SALARY_ARREAR_DISTRIBUTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="YEAR_MONTH" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="INCOME" Type="numeric" Precision="11" Scale="1" Nullable="false" />
+          <Property Name="DISTRIBUTION_AMOUNT" Type="numeric" Precision="11" Scale="1" Nullable="false" />
+          <Property Name="DISTRIBUTION_MONTH" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="REST_AMOUNT" Type="numeric" Precision="11" Scale="1" Nullable="false" />
+          <Property Name="NUMBER_MONTHS" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="KY_SALARY_FORMULA_MASTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COMPANY_ID" Type="int" Nullable="false" />
+          <Property Name="FORMULA_CD" Type="varchar" MaxLength="10" />
+          <Property Name="FORMULA_NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="FORMULA_VALUE" Type="nvarchar" MaxLength="1000" />
+          <Property Name="FORMULA_TYPE" Type="char" MaxLength="1" />
+          <Property Name="EFFECTIVE_DT" Type="date" Nullable="false" />
+          <Property Name="DELETE_FLAG" Type="char" MaxLength="1" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="MAIN_ID" Type="int" />
+          <Property Name="HISTORY_NO" Type="int" />
+        </EntityType>
+        <EntityType Name="KY_SALARY_MASTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="BASIC_SALARY_OFFICAL" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="BASIC_SALARY_PROBATION" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="SALARY_HOUR" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="SALARY_CAL_SOCIAL_INSU" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="BANK_ACCOUNT" Type="varchar" MaxLength="20" />
+          <Property Name="BANK_NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="UNIT" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="ALLOWANCE_LIST" Type="nvarchar" MaxLength="200" />
+          <Property Name="OT_TYPE" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="FORMULA_CD" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EFFECTIVE_DT" Type="date" Nullable="false" />
+          <Property Name="DELETE_FLAG" Type="char" MaxLength="1" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="MAIN_ID" Type="int" />
+          <Property Name="HISTORY_NO" Type="int" />
+          <Property Name="EXCHANGE_RATE_SOCIAL_INSU_SAL" Type="numeric" Precision="7" Scale="0" />
+          <Property Name="PRODUCT_SALARY" Type="varchar" MaxLength="1" />
+          <Property Name="SALARY_UNIT" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="KY_SALARY_RESULT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COMPANY_ID" Type="int" Nullable="false" />
+          <Property Name="DEPT_CD" Type="varchar" MaxLength="20" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="YEAR_MONTH" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="HISTORY_NO" Type="numeric" Precision="1" Scale="0" />
+          <Property Name="YEAR_MONTH_RECEIVE" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="DATE_FROM" Type="date" />
+          <Property Name="DATE_TO" Type="date" />
+          <Property Name="PROBATION_SALARY" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="OFFICAL_SALARY" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="SALARY_UNIT" Type="varchar" MaxLength="3" />
+          <Property Name="SALARY_ALLOWANCE_PIT" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="HOURLY_PRICE_PROB" Type="numeric" Precision="8" Scale="1" />
+          <Property Name="HOURLY_PRICE_OFFI" Type="numeric" Precision="8" Scale="1" />
+          <Property Name="AMOUNT_DEDUCTED_PROB" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="AMOUNT_DEDUCTED_OFFI" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="AMOUNT_DEDUCTED_SUMARY" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="OT_SUMARY" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="TOTAL_AMOUNT" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="MEMBER_FEE" Type="numeric" Precision="8" Scale="0" />
+          <Property Name="STATUS" Type="varchar" MaxLength="50" />
+          <Property Name="LATE_NIGHT_ALLOWANCE_PROB" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="LATE_NIGHT_ALLOWANCE_OFFI" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="SOCIAL_INSU_AMOUNT" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="HEALTH_INSU_AMOUNT" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="UMEMPLOYEE_INSU_AMOUNT" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="INCOME_BEFORE_TAX" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="OT_NOT_PIT" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="FAMILY_ALLOWANCES" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="TAX_INCOME" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="CAL_TAX_INCOME" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="PIT" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="NOT_INCLUDED_TAX_INCOME" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="TOTAL_PAY" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="APP_FLG" Type="char" MaxLength="1" />
+          <Property Name="SEVERANCE_ALLOWANCE" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="START_DT_CAL_SAL" Type="date" />
+          <Property Name="END_DT_CAL_SAL" Type="date" />
+          <Property Name="OT_ALLOWANCE" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="OTHER" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="OTHER_UNIT" Type="varchar" MaxLength="3" />
+          <Property Name="OTHER_REMARK" Type="nvarchar" MaxLength="210" />
+          <Property Name="SABBTICAL_100" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="SABBTICAL_300" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="AMOUNT_SABBTICAL_100" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="AMOUNT_SABBTICAL_300" Type="numeric" Precision="11" Scale="1" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="KY_WORKINGTIME_TOTAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="YEAR_MONTH" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="FROM_DATE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TO_DATE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="STD_WORK_HOUR" Type="numeric" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="PROB_DAYS" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="OFFI_DAYS" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="WORKING_TIME" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="ABSENCE" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="PROB_ABSENCE" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TB_M_COMPANY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COMPANY_CD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="COMPANY_NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="200" />
+          <Property Name="COMPANY_TAX_CODE" Type="varchar" MaxLength="20" />
+          <Property Name="ACTIVE_FLAG" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="PAYROLL_STATUS" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="STANDAR_WORKING_DAYS" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="COMPANY_AREA" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TB_M_DEPARTMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEPT_CD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DEPT_NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="COMPANY_CD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ACTIVE_FLAG" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TB_M_EMP_DEPT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COMPANY_CD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DEPT_CD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="100" />
+          <Property Name="START_DT" Type="date" Nullable="false" />
+          <Property Name="MAIN_FLAG" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DELETE_FLAG" Type="char" MaxLength="1" />
+          <Property Name="INACTIVE_DT" Type="date" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TB_M_SYSTEM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COMPANY_CD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CATEGORY" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CD" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VALUE" Type="nvarchar" MaxLength="100" />
+          <Property Name="CHAR_VALUE_1" Type="nvarchar" MaxLength="100" />
+          <Property Name="CHAR_VALUE_2" Type="nvarchar" MaxLength="100" />
+          <Property Name="CHAR_VALUE_3" Type="nvarchar" MaxLength="100" />
+          <Property Name="NUM_VALUE_1" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="NUM_VALUE_2" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="NUM_VALUE_3" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="200" />
+          <Property Name="LIST_ORDER" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="ACTIVE_FLAG" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TB_R_WORKING_TIME">
+          <Key>
+            <PropertyRef Name="WORKING_TIME_CD" />
+          </Key>
+          <Property Name="WORKING_TIME_CD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COMPANY_CD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="REVISION" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="DEPT_CD" Type="varchar" MaxLength="20" />
+          <Property Name="WORKING_TITLE" Type="varchar" MaxLength="5" />
+          <Property Name="WORKING_DATE" Type="date" Nullable="false" />
+          <Property Name="ACT_IN_TIME" Type="varchar" MaxLength="4" />
+          <Property Name="ACT_OUT_TIME" Type="varchar" MaxLength="4" />
+          <Property Name="WORKING_TIME" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="ABSENCE_TIME" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="TOTAL_OT_TIME" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="LATE_OT_TIME" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="TOTAL_LATE_TIME" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="DEDUCTED_UNPAID" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="DEDUCTED_PAID" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="ATTENDANCE_TYPE" Type="char" MaxLength="1" />
+          <Property Name="WORKING_TYPE" Type="char" MaxLength="1" />
+          <Property Name="SPECIAL_TYPE" Type="varchar" MaxLength="10" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="200" />
+          <Property Name="DEDUCTED_NON_WORK_PLAN" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="DEDUCTED_NON_WORK_ACTUAL" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="MAIN_SHIFT" Type="char" MaxLength="1" />
+          <Property Name="CURRENT_SHIFT" Type="char" MaxLength="1" />
+          <Property Name="STD_IN_TIME" Type="varchar" MaxLength="5" />
+          <Property Name="STD_OUT_TIME" Type="varchar" MaxLength="5" />
+          <Property Name="STD_WORK_HOUR" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="STATUS" Type="char" MaxLength="1" />
+          <Property Name="CONFIRMED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="WITHDRAWN_BY" Type="varchar" MaxLength="20" />
+          <Property Name="CREATED_DT" Type="date" />
+          <Property Name="CONFIRMED_DT" Type="date" />
+          <Property Name="WITHDRAWN_DT" Type="date" />
+          <Property Name="UPDATED_DT" Type="date" />
+        </EntityType>
+        <EntityType Name="TB_R_WORKING_TIME_HIS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WORKING_TIME_CD" Type="int" Nullable="false" />
+          <Property Name="COMPANY_CD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EMPLOYEE_NO" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="REVISION" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="DEPT_CD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="WORKING_TITLE" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="WORKING_DATE" Type="date" Nullable="false" />
+          <Property Name="ACT_IN_TIME" Type="varchar" MaxLength="4" />
+          <Property Name="ACT_OUT_TIME" Type="varchar" MaxLength="4" />
+          <Property Name="WORKING_TIME" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="ABSENCE_TIME" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="TOTAL_OT_TIME" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="LATE_OT_TIME" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="TOTAL_LATE_TIME" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="DEDUCTED_UNPAID" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="DEDUCTED_PAID" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="ATTENDANCE_TYPE" Type="char" MaxLength="1" />
+          <Property Name="WORKING_TYPE" Type="char" MaxLength="1" />
+          <Property Name="SPECIAL_TYPE" Type="varchar" MaxLength="10" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="200" />
+          <Property Name="DEDUCTED_NON_WORK_PLAN" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="DEDUCTED_NON_WORK_ACTUAL" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="MAIN_SHIFT" Type="char" MaxLength="1" />
+          <Property Name="CURRENT_SHIFT" Type="char" MaxLength="1" />
+          <Property Name="STD_IN_TIME" Type="varchar" MaxLength="5" />
+          <Property Name="STD_OUT_TIME" Type="varchar" MaxLength="5" />
+          <Property Name="STD_WORK_HOUR" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="CONFIRMED_BY" Type="varchar" MaxLength="20" />
+          <Property Name="WITHDRAWN_BY" Type="varchar" MaxLength="20" />
+          <Property Name="CREATED_DT" Type="date" />
+          <Property Name="CONFIRMED_DT" Type="date" />
+          <Property Name="WITHDRAWN_DT" Type="date" />
+          <Property Name="UPDATED_DT" Type="date" />
+          <Property Name="YEAR_MONTH" Type="varchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <Function Name="GetAuthorityMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeNo" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GetEmployeeAuthority" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SearchDependent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyCd" Type="varchar(max)" Mode="In" />
+          <Parameter Name="DeptCd" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EmployeeNo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EmployeeName" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SearchEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyId" Type="int" Mode="In" />
+          <Parameter Name="DeptCd" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EmployeeNo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EmployeeName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IncludeQuitFlag" Type="char" Mode="In" />
+          <Parameter Name="EffectiveDtFrom" Type="date" Mode="In" />
+          <Parameter Name="EffectiveDtTo" Type="date" Mode="In" />
+        </Function>
+        <Function Name="SearchSalaryCalulate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyId" Type="int" Mode="In" />
+          <Parameter Name="startDt" Type="date" Mode="In" />
+          <Parameter Name="endDt" Type="date" Mode="In" />
+          <Parameter Name="yearMonth" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SearchSalaryMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyId" Type="int" Mode="In" />
+          <Parameter Name="DeptCd" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EmployeeNo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EmployeeName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="EffectiveDtFrom" Type="date" Mode="In" />
+          <Parameter Name="EffectiveDtTo" Type="date" Mode="In" />
+        </Function>
+        <Function Name="STRING_SPLIT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Input" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Character" Type="char" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Item" Type="nvarchar" MaxLength="1000" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="KyuyoModelStoreContainer">
+          <EntitySet Name="KY_ALLOWANCE_MASTER" EntityType="Self.KY_ALLOWANCE_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_ALLOWANCE_RESULT" EntityType="Self.KY_ALLOWANCE_RESULT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_AUTHORITY" EntityType="Self.KY_AUTHORITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_CLOSING_DATE" EntityType="Self.KY_CLOSING_DATE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_DEPENDENT" EntityType="Self.KY_DEPENDENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_EMPLOYEE_MASTER" EntityType="Self.KY_EMPLOYEE_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_LONGTERM_ABSENCE" EntityType="Self.KY_LONGTERM_ABSENCE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_OTHER_PAY" EntityType="Self.KY_OTHER_PAY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_OVERTIME_TOTAL" EntityType="Self.KY_OVERTIME_TOTAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_POLICY_MASTER" EntityType="Self.KY_POLICY_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_QUANTITY_PRODUCT" EntityType="Self.KY_QUANTITY_PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_RATE" EntityType="Self.KY_RATE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_SALARY_ARREAR_DISTRIBUTION" EntityType="Self.KY_SALARY_ARREAR_DISTRIBUTION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_SALARY_FORMULA_MASTER" EntityType="Self.KY_SALARY_FORMULA_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_SALARY_MASTER" EntityType="Self.KY_SALARY_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_SALARY_RESULT" EntityType="Self.KY_SALARY_RESULT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KY_WORKINGTIME_TOTAL" EntityType="Self.KY_WORKINGTIME_TOTAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_M_COMPANY" EntityType="Self.TB_M_COMPANY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_M_DEPARTMENT" EntityType="Self.TB_M_DEPARTMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_M_EMP_DEPT" EntityType="Self.TB_M_EMP_DEPT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_M_SYSTEM" EntityType="Self.TB_M_SYSTEM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_R_WORKING_TIME" EntityType="Self.TB_R_WORKING_TIME" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_R_WORKING_TIME_HIS" EntityType="Self.TB_R_WORKING_TIME_HIS" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KyuyoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="KY_CLOSING_DATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COMPANY_ID" Type="Int32" Nullable="false" />
+          <Property Name="YEAR_MONTH" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLOSING_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="KY_LONGTERM_ABSENCE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMPLOYEE_NO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ABSENCE_NO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FROM_DT" Type="DateTime" Precision="0" />
+          <Property Name="TO_DT" Type="DateTime" Precision="0" />
+          <Property Name="START_WORK_DT" Type="DateTime" Precision="0" />
+          <Property Name="DELETE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAIN_ID" Type="Int32" />
+          <Property Name="HISTORY_NO" Type="Int32" />
+        </EntityType>
+        <EntityType Name="KY_OVERTIME_TOTAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WORKING_TIME_ID" Type="Int32" Nullable="false" />
+          <Property Name="OT_HOURS_PROB" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="OT_HOURS_OFFI" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="OT_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="KY_SALARY_ARREAR_DISTRIBUTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMPLOYEE_NO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="YEAR_MONTH" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="INCOME" Type="Decimal" Precision="11" Scale="1" Nullable="false" />
+          <Property Name="DISTRIBUTION_AMOUNT" Type="Decimal" Precision="11" Scale="1" Nullable="false" />
+          <Property Name="DISTRIBUTION_MONTH" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="REST_AMOUNT" Type="Decimal" Precision="11" Scale="1" Nullable="false" />
+          <Property Name="NUMBER_MONTHS" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TB_M_COMPANY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COMPANY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COMPANY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="COMPANY_TAX_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PAYROLL_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="STANDAR_WORKING_DAYS" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="COMPANY_AREA" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TB_M_SYSTEM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COMPANY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CATEGORY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VALUE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CHAR_VALUE_1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CHAR_VALUE_2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CHAR_VALUE_3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NUM_VALUE_1" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="NUM_VALUE_2" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="NUM_VALUE_3" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="REMARK" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LIST_ORDER" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="ACTIVE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="KyuyoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="KY_CLOSING_DATE" EntityType="Self.KY_CLOSING_DATE" />
+          <EntitySet Name="KY_LONGTERM_ABSENCE" EntityType="Self.KY_LONGTERM_ABSENCE" />
+          <EntitySet Name="KY_OVERTIME_TOTAL" EntityType="Self.KY_OVERTIME_TOTAL" />
+          <EntitySet Name="KY_SALARY_ARREAR_DISTRIBUTION" EntityType="Self.KY_SALARY_ARREAR_DISTRIBUTION" />
+          <EntitySet Name="TB_M_COMPANY" EntityType="Self.TB_M_COMPANY" />
+          <EntitySet Name="TB_M_SYSTEM" EntityType="Self.TB_M_SYSTEM" />
+          <EntitySet Name="TB_M_DEPARTMENT" EntityType="KyuyoModel.TB_M_DEPARTMENT" />
+          <EntitySet Name="KY_ALLOWANCE_MASTER" EntityType="KyuyoModel.KY_ALLOWANCE_MASTER" />
+          <EntitySet Name="KY_ALLOWANCE_RESULT" EntityType="KyuyoModel.KY_ALLOWANCE_RESULT" />
+          <EntitySet Name="KY_AUTHORITY" EntityType="KyuyoModel.KY_AUTHORITY" />
+          <EntitySet Name="KY_POLICY_MASTER" EntityType="KyuyoModel.KY_POLICY_MASTER" />
+          <FunctionImport Name="GetEmployeeAuthority" ReturnType="Collection(KyuyoModel.GetEmployeeAuthority_Result)">
+          <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="STRING_SPLIT" IsComposable="true" ReturnType="Collection(String)">
+            <Parameter Name="Input" Mode="In" Type="String" />
+            <Parameter Name="Character" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="KY_DEPENDENT" EntityType="KyuyoModel.KY_DEPENDENT" />
+          <EntitySet Name="KY_SALARY_FORMULA_MASTER" EntityType="KyuyoModel.KY_SALARY_FORMULA_MASTER" />
+          <EntitySet Name="KY_OTHER_PAY" EntityType="KyuyoModel.KY_OTHER_PAY" />
+          <EntitySet Name="TB_M_EMP_DEPT" EntityType="KyuyoModel.TB_M_EMP_DEPT" />
+          <EntitySet Name="KY_EMPLOYEE_MASTER" EntityType="KyuyoModel.KY_EMPLOYEE_MASTER" />
+          <EntitySet Name="TB_R_WORKING_TIME" EntityType="KyuyoModel.TB_R_WORKING_TIME" />
+          <EntitySet Name="TB_R_WORKING_TIME_HIS" EntityType="KyuyoModel.TB_R_WORKING_TIME_HIS" />
+          <FunctionImport Name="SearchDependent" ReturnType="Collection(KyuyoModel.SearchDependent_Result)">
+            <Parameter Name="CompanyCd" Mode="In" Type="String" />
+            <Parameter Name="DeptCd" Mode="In" Type="String" />
+            <Parameter Name="EmployeeNo" Mode="In" Type="String" />
+            <Parameter Name="EmployeeName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchEmployee" ReturnType="Collection(KyuyoModel.SearchEmployee_Result)">
+            <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+            <Parameter Name="DeptCd" Mode="In" Type="String" />
+            <Parameter Name="EmployeeNo" Mode="In" Type="String" />
+            <Parameter Name="EmployeeName" Mode="In" Type="String" />
+            <Parameter Name="IncludeQuitFlag" Mode="In" Type="String" />
+            <Parameter Name="EffectiveDtFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="EffectiveDtTo" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetAuthorityMenu" ReturnType="Collection(KyuyoModel.GetAuthorityMenu_Result)">
+          <Parameter Name="EmployeeNo" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="KY_SALARY_RESULT" EntityType="KyuyoModel.KY_SALARY_RESULT" />
+          <EntitySet Name="KY_RATE" EntityType="KyuyoModel.KY_RATE" />
+          <EntitySet Name="KY_WORKINGTIME_TOTAL" EntityType="KyuyoModel.KY_WORKINGTIME_TOTAL" />
+          <EntitySet Name="KY_SALARY_MASTER" EntityType="KyuyoModel.KY_SALARY_MASTER" />
+          <FunctionImport Name="SearchSalaryMaster" ReturnType="Collection(KyuyoModel.SearchSalaryMaster_Result)">
+            <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+            <Parameter Name="DeptCd" Mode="In" Type="String" />
+            <Parameter Name="EmployeeNo" Mode="In" Type="String" />
+            <Parameter Name="EmployeeName" Mode="In" Type="String" />
+            <Parameter Name="EffectiveDtFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="EffectiveDtTo" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SearchSalaryCalulate" ReturnType="Collection(KyuyoModel.SearchSalaryCalulate_Result)">
+            <Parameter Name="companyId" Mode="In" Type="Int32" />
+            <Parameter Name="startDt" Mode="In" Type="DateTime" />
+            <Parameter Name="endDt" Mode="In" Type="DateTime" />
+            <Parameter Name="yearMonth" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="KY_QUANTITY_PRODUCT" EntityType="KyuyoModel.KY_QUANTITY_PRODUCT" />
+        </EntityContainer>
+        <EntityType Name="TB_M_DEPARTMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEPT_CD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DEPT_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="COMPANY_CD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVE_FLAG" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="KY_ALLOWANCE_MASTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COMPANY_ID" Type="Int32" Nullable="false" />
+          <Property Name="ALLOWANCE_CD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ALLOWANCE_NAME" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="GROUP_CD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GROUP_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VALUE_OFFICAL" Type="Decimal" Nullable="false" Precision="11" Scale="1" />
+          <Property Name="VALUE_PROB" Type="Decimal" Nullable="false" Precision="11" Scale="1" />
+          <Property Name="UNIT" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ALLOWANCE_FLG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EFFECTIVE_DT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DELETE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAIN_ID" Type="Int32" />
+          <Property Name="HISTORY_NO" Type="Int32" />
+        </EntityType>
+        <EntityType Name="KY_ALLOWANCE_RESULT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMPLOYEE_NO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ALLOWANCE_CD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="YEAR_MONTH" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ALLOWANCE_PROB" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="ALLOWANCE_OFFI" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="TYPE_FLG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="KY_AUTHORITY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMPLOYEE_NO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SCREEN_ACCESSES" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="KY_POLICY_MASTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="POLICY_CD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="POLICY_NAME" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="POLICY_TYPE" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="GROUP_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LIMIT_STEP" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="NUM_VALUE" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="CHAR_VALUE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UNIT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="LIMIT_STEP_UNIT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ITEM_REF" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EFFECTIVE_DT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DELETE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ALLOW_EDIT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAIN_ID" Type="Int32" />
+          <Property Name="HISTORY_NO" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="GetEmployeeAuthority_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="EmployeeNo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ScreenAccess" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="KY_DEPENDENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMPLOYEE_NO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DEPENDENT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BIRTH_DT" Type="DateTime" Precision="0" />
+          <Property Name="NUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NUMBER_BOOK" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DEPENDENT_TAX_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IDENTITY_PASSPORT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RELATIONSHIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NATIONALITY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FROM_MONTH" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="TO_MONTH" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="DELETE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="REG_COUNTRY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="REG_CITY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="REG_DISTRICT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="REG_WARD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAIN_ID" Type="Int32" />
+          <Property Name="HISTORY_NO" Type="Int32" />
+        </EntityType>
+        <EntityType Name="KY_SALARY_FORMULA_MASTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COMPANY_ID" Type="Int32" Nullable="false" />
+          <Property Name="FORMULA_CD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FORMULA_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FORMULA_VALUE" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="FORMULA_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EFFECTIVE_DT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DELETE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAIN_ID" Type="Int32" />
+          <Property Name="HISTORY_NO" Type="Int32" />
+        </EntityType>
+        <EntityType Name="KY_OTHER_PAY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PAY_TYPE" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="PAY_DESC" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VALUE" Type="Decimal" Nullable="false" Precision="11" Scale="1" />
+          <Property Name="UNIT" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="YEAR_MONTH" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ARREA_YEAR_MONTH" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="DELETE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DISTRIBUTION_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DISTRIBUTION_MONTHS" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_NO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VND_VALUE" Type="Decimal" Precision="11" Scale="2" />
+        </EntityType>
+        <EntityType Name="TB_M_EMP_DEPT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COMPANY_CD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DEPT_CD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_NO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TITLE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="START_DT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MAIN_FLAG" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DELETE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="INACTIVE_DT" Type="DateTime" Precision="0" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="KY_EMPLOYEE_MASTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COMPANY_ID" Type="Int32" Nullable="false" />
+          <Property Name="EMPLOYEE_NO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_NO_PE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EMPLOYEE_NAME_FULL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="USER_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ABSENCE_NOT_PAY_BF" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="ABSENCE_NOT_PAY_AT" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS_EFFECTIVE_DT" Type="DateTime" Precision="0" />
+          <Property Name="WORK_PLACE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WORK_PLACE_EFFECTIVE_DT" Type="DateTime" Precision="0" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL_EFFECTIVE_DT" Type="DateTime" Precision="0" />
+          <Property Name="NATIONALITY" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CONTINENTS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IDENTITY_PASSPORT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PERSONAL_TAX_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UNIVERSITY" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QUALIFICATION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LEVEL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LEVEL_EFFECTIVE_DT" Type="DateTime" Precision="0" />
+          <Property Name="LEVEL_GROUP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LEVEL_GROUP_EFFECTIVE_DT" Type="DateTime" Precision="0" />
+          <Property Name="PHONE_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRACT_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRACT_TYPE_EFFECTIVE_DT" Type="DateTime" Precision="0" />
+          <Property Name="EMERGENCY_PHONE_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_TYPE" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="EMP_TYPE_EFFECTIVE_DT" Type="DateTime" Precision="0" />
+          <Property Name="GENDER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="BIRTH_DT" Type="DateTime" Precision="0" />
+          <Property Name="ENTRY_DT" Type="DateTime" Precision="0" />
+          <Property Name="STANDARD_HOURS" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+          <Property Name="STANDARD_HOURS_EFFECTIVE_DT" Type="DateTime" Precision="0" />
+          <Property Name="QUIT_DT" Type="DateTime" Precision="0" />
+          <Property Name="CONTRACT_FORM" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRACT_FORM_EFECTIVE_DT" Type="DateTime" Precision="0" />
+          <Property Name="PROBATION_END_DT" Type="DateTime" Precision="0" />
+          <Property Name="EXCHANGE_RATE_SOCIAL_INSU_SAL" Type="Decimal" Nullable="false" Precision="11" Scale="1" />
+          <Property Name="INSURANCE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="INSURANCE_EFFECTIVE_DT" Type="DateTime" Precision="0" />
+          <Property Name="INSURANCE_UNION_MONTH" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="INSURANCE_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HOSPITAL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HOSPITAL_EFECTIVE_DT" Type="DateTime" Precision="0" />
+          <Property Name="PIT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PIT_EFFECTIVE_DT" Type="DateTime" Precision="0" />
+          <Property Name="CERTIFICATE_LIST" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LABOUR_UNION_DT" Type="DateTime" Precision="0" />
+          <Property Name="DELETE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TB_R_WORKING_TIME">
+          <Key>
+            <PropertyRef Name="WORKING_TIME_CD" />
+          </Key>
+          <Property Name="WORKING_TIME_CD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COMPANY_CD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_NO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="REVISION" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="DEPT_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="WORKING_TITLE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="WORKING_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ACT_IN_TIME" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ACT_OUT_TIME" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="WORKING_TIME" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="ABSENCE_TIME" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="TOTAL_OT_TIME" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="LATE_OT_TIME" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="TOTAL_LATE_TIME" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="DEDUCTED_UNPAID" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="DEDUCTED_PAID" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="ATTENDANCE_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="WORKING_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="SPECIAL_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="REMARK" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DEDUCTED_NON_WORK_PLAN" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="DEDUCTED_NON_WORK_ACTUAL" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="MAIN_SHIFT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CURRENT_SHIFT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="STD_IN_TIME" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="STD_OUT_TIME" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="STD_WORK_HOUR" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CONFIRMED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="WITHDRAWN_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="0" />
+          <Property Name="CONFIRMED_DT" Type="DateTime" Precision="0" />
+          <Property Name="WITHDRAWN_DT" Type="DateTime" Precision="0" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="TB_R_WORKING_TIME_HIS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WORKING_TIME_CD" Type="Int32" Nullable="false" />
+          <Property Name="COMPANY_CD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_NO" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="REVISION" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+          <Property Name="DEPT_CD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="WORKING_TITLE" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="WORKING_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ACT_IN_TIME" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ACT_OUT_TIME" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="WORKING_TIME" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="ABSENCE_TIME" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="TOTAL_OT_TIME" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="LATE_OT_TIME" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="TOTAL_LATE_TIME" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="DEDUCTED_UNPAID" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="DEDUCTED_PAID" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="ATTENDANCE_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="WORKING_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="SPECIAL_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="REMARK" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DEDUCTED_NON_WORK_PLAN" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="DEDUCTED_NON_WORK_ACTUAL" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="MAIN_SHIFT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CURRENT_SHIFT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="STD_IN_TIME" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="STD_OUT_TIME" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="STD_WORK_HOUR" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="CONFIRMED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="WITHDRAWN_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="0" />
+          <Property Name="CONFIRMED_DT" Type="DateTime" Precision="0" />
+          <Property Name="WITHDRAWN_DT" Type="DateTime" Precision="0" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="0" />
+          <Property Name="YEAR_MONTH" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="SearchDependent_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="EmployeeNo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Dependent" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="BirthDt" Nullable="true" />
+          <Property Type="String" Name="DependentTaxCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="IdPassport" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Number" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="NumberBook" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Relationship" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nationality" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FromMonth" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="ToMonth" Nullable="true" MaxLength="6" />
+          <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="MainId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SearchEmployee_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="CompanyId" Nullable="false" />
+          <Property Type="String" Name="CompanyCd" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="EmployeeNo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="EmployeeNoPE" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="EmployeeNameFull" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="UserId" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="EmployeeType" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="EmployeeTypeName" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="BirthDt" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="WorkPlace" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Nationality" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Continents" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="IdentityPassport" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PersonalTaxCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="University" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Qualification" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Level" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="LevelGroup" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="EntryDt" Nullable="true" />
+          <Property Type="DateTime" Name="ProbationEndDt" Nullable="true" />
+          <Property Type="DateTime" Name="LabourUnionDt" Nullable="true" />
+          <Property Type="DateTime" Name="QuitDt" Nullable="true" />
+          <Property Type="String" Name="ContractForm" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ContractType" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PhoneNo" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="EmergencyPhoneNo" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="StandardHours" Nullable="false" Precision="3" Scale="1" />
+          <Property Type="String" Name="InsuranceUnionMonth" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="InsuaranceCode" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Hospital" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Insurance" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PIT" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="AbsenceNotPayBf" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="AbsenceNotPayAt" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="CertificateList" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DeleteFlag" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="EmpTypeEffectiveDt" Nullable="true" />
+          <Property Type="DateTime" Name="EmailEffectiveDt" Nullable="true" />
+          <Property Type="DateTime" Name="AddressEffectiveDt" Nullable="true" />
+          <Property Type="DateTime" Name="WorkPlaceEffectiveDt" Nullable="true" />
+          <Property Type="DateTime" Name="LevelEffctiveDt" Nullable="true" />
+          <Property Type="DateTime" Name="LevelGroupEffectiveDt" Nullable="true" />
+          <Property Type="DateTime" Name="ContractFormEffectiveDt" Nullable="true" />
+          <Property Type="DateTime" Name="ContractTypeEffectiveDt" Nullable="true" />
+          <Property Type="DateTime" Name="StandardHoursEffeciveDt" Nullable="true" />
+          <Property Type="DateTime" Name="HospitalEffectiveDt" Nullable="true" />
+          <Property Type="DateTime" Name="InsuranceEffectiveDt" Nullable="true" />
+          <Property Type="DateTime" Name="PITEffectiveDt" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetAuthorityMenu_Result">
+          <Property Type="String" Name="ScreenId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ScreenName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Url" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AccessLevel" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="AllowView" Nullable="true" />
+          <Property Type="Int32" Name="Type" Nullable="true" />
+          <Property Type="String" Name="ShowFlag" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="KY_SALARY_RESULT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COMPANY_ID" Type="Int32" Nullable="false" />
+          <Property Name="DEPT_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_NO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="YEAR_MONTH" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="HISTORY_NO" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="YEAR_MONTH_RECEIVE" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_FROM" Type="DateTime" Precision="0" />
+          <Property Name="DATE_TO" Type="DateTime" Precision="0" />
+          <Property Name="PROBATION_SALARY" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="OFFICAL_SALARY" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="SALARY_UNIT" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="SALARY_ALLOWANCE_PIT" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="HOURLY_PRICE_PROB" Type="Decimal" Precision="8" Scale="1" />
+          <Property Name="HOURLY_PRICE_OFFI" Type="Decimal" Precision="8" Scale="1" />
+          <Property Name="AMOUNT_DEDUCTED_PROB" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="AMOUNT_DEDUCTED_OFFI" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="AMOUNT_DEDUCTED_SUMARY" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="OT_SUMARY" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="TOTAL_AMOUNT" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="MEMBER_FEE" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LATE_NIGHT_ALLOWANCE_PROB" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="LATE_NIGHT_ALLOWANCE_OFFI" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="SOCIAL_INSU_AMOUNT" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="HEALTH_INSU_AMOUNT" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="UMEMPLOYEE_INSU_AMOUNT" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="INCOME_BEFORE_TAX" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="OT_NOT_PIT" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="FAMILY_ALLOWANCES" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="TAX_INCOME" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="CAL_TAX_INCOME" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="PIT" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="NOT_INCLUDED_TAX_INCOME" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="TOTAL_PAY" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="APP_FLG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="SEVERANCE_ALLOWANCE" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="START_DT_CAL_SAL" Type="DateTime" Precision="0" />
+          <Property Name="END_DT_CAL_SAL" Type="DateTime" Precision="0" />
+          <Property Name="OT_ALLOWANCE" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="OTHER" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="OTHER_UNIT" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="OTHER_REMARK" Type="String" MaxLength="210" FixedLength="false" Unicode="true" />
+          <Property Name="SABBTICAL_100" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="SABBTICAL_300" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="AMOUNT_SABBTICAL_100" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="AMOUNT_SABBTICAL_300" Type="Decimal" Precision="11" Scale="1" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="KY_RATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAIN_ID" Type="Int32" />
+          <Property Name="HISTORY_NO" Type="Int32" />
+          <Property Name="COMPANY_ID" Type="Int32" Nullable="false" />
+          <Property Name="EXCHANGE_RATE" Type="Decimal" Nullable="false" Precision="7" Scale="0" />
+          <Property Name="EFFECTIVE_DT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RATE_TYPE" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="KY_WORKINGTIME_TOTAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMPLOYEE_NO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="YEAR_MONTH" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="FROM_DATE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TO_DATE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="STD_WORK_HOUR" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+          <Property Name="PROB_DAYS" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+          <Property Name="OFFI_DAYS" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+          <Property Name="WORKING_TIME" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="ABSENCE" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="PROB_ABSENCE" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="KY_SALARY_MASTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMPLOYEE_NO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BASIC_SALARY_OFFICAL" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="BASIC_SALARY_PROBATION" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="SALARY_HOUR" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="SALARY_CAL_SOCIAL_INSU" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="BANK_ACCOUNT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BANK_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UNIT" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="ALLOWANCE_LIST" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="OT_TYPE" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FORMULA_CD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EFFECTIVE_DT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DELETE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAIN_ID" Type="Int32" />
+          <Property Name="HISTORY_NO" Type="Int32" />
+          <Property Name="EXCHANGE_RATE_SOCIAL_INSU_SAL" Type="Decimal" Precision="7" Scale="0" />
+          <Property Name="PRODUCT_SALARY" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SALARY_UNIT" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="SearchSalaryMaster_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="EmployeeNo" Nullable="false" MaxLength="10" />
+          <Property Type="Decimal" Name="BasicSalaryOffical" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="Decimal" Name="BasicSalaryProbation" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="Decimal" Name="SalaryHour" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="Decimal" Name="SalaryCalSocialInsu" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="String" Name="BankAccount" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="SalaryUnit" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="Unit" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="ProductSalary" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="AllowanceList" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OTType" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="FormulaCd" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="EffectiveDt" Nullable="false" />
+          <Property Type="String" Name="DeleteFlag" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="CreatedDt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="MainId" Nullable="true" />
+          <Property Type="Int32" Name="HistoryNo" Nullable="true" />
+          <Property Type="Decimal" Name="ExchangeRateSocialInsuSal" Nullable="true" Precision="7" Scale="0" />
+          <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SearchSalaryCalulate_Result">
+          <Property Type="Int32" Name="Id" Nullable="true" />
+          <Property Type="String" Name="EmployeeNo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Bounus" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Arrear" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="ProbationSalary" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="Decimal" Name="OfficalSalary" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="Decimal" Name="BasicSalary" Nullable="true" Precision="12" Scale="2" />
+          <Property Type="Decimal" Name="TotalPay" Nullable="true" Precision="11" Scale="1" />
+          <Property Type="Decimal" Name="Other" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="String" Name="OtherUnit" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="SalaryUnit" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="OtherRemark" Nullable="true" MaxLength="210" />
+          <Property Type="Decimal" Name="Sabbtical100" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="Sabbtical300" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AppFlag" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="KY_QUANTITY_PRODUCT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COMPANY_CD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_NO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_TYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="QUANTITY" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="YEAR_MONTH" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KyuyoModelStoreContainer" CdmEntityContainer="KyuyoEntities">
+          <EntitySetMapping Name="KY_CLOSING_DATE">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_CLOSING_DATE">
+              <MappingFragment StoreEntitySet="KY_CLOSING_DATE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+                <ScalarProperty Name="YEAR_MONTH" ColumnName="YEAR_MONTH" />
+                <ScalarProperty Name="CLOSING_DATE" ColumnName="CLOSING_DATE" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KY_LONGTERM_ABSENCE">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_LONGTERM_ABSENCE">
+              <MappingFragment StoreEntitySet="KY_LONGTERM_ABSENCE">
+                <ScalarProperty Name="HISTORY_NO" ColumnName="HISTORY_NO" />
+                <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="ABSENCE_NO" ColumnName="ABSENCE_NO" />
+                <ScalarProperty Name="FROM_DT" ColumnName="FROM_DT" />
+                <ScalarProperty Name="TO_DT" ColumnName="TO_DT" />
+                <ScalarProperty Name="START_WORK_DT" ColumnName="START_WORK_DT" />
+                <ScalarProperty Name="DELETE_FLAG" ColumnName="DELETE_FLAG" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KY_OVERTIME_TOTAL">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_OVERTIME_TOTAL">
+              <MappingFragment StoreEntitySet="KY_OVERTIME_TOTAL">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WORKING_TIME_ID" ColumnName="WORKING_TIME_ID" />
+                <ScalarProperty Name="OT_HOURS_PROB" ColumnName="OT_HOURS_PROB" />
+                <ScalarProperty Name="OT_HOURS_OFFI" ColumnName="OT_HOURS_OFFI" />
+                <ScalarProperty Name="OT_TYPE" ColumnName="OT_TYPE" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KY_SALARY_ARREAR_DISTRIBUTION">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_SALARY_ARREAR_DISTRIBUTION">
+              <MappingFragment StoreEntitySet="KY_SALARY_ARREAR_DISTRIBUTION">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="YEAR_MONTH" ColumnName="YEAR_MONTH" />
+                <ScalarProperty Name="INCOME" ColumnName="INCOME" />
+                <ScalarProperty Name="DISTRIBUTION_AMOUNT" ColumnName="DISTRIBUTION_AMOUNT" />
+                <ScalarProperty Name="DISTRIBUTION_MONTH" ColumnName="DISTRIBUTION_MONTH" />
+                <ScalarProperty Name="REST_AMOUNT" ColumnName="REST_AMOUNT" />
+                <ScalarProperty Name="NUMBER_MONTHS" ColumnName="NUMBER_MONTHS" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_M_COMPANY">
+            <EntityTypeMapping TypeName="KyuyoModel.TB_M_COMPANY">
+              <MappingFragment StoreEntitySet="TB_M_COMPANY">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="COMPANY_CD" ColumnName="COMPANY_CD" />
+                <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="COMPANY_TAX_CODE" ColumnName="COMPANY_TAX_CODE" />
+                <ScalarProperty Name="ACTIVE_FLAG" ColumnName="ACTIVE_FLAG" />
+                <ScalarProperty Name="PAYROLL_STATUS" ColumnName="PAYROLL_STATUS" />
+                <ScalarProperty Name="STANDAR_WORKING_DAYS" ColumnName="STANDAR_WORKING_DAYS" />
+                <ScalarProperty Name="COMPANY_AREA" ColumnName="COMPANY_AREA" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_M_SYSTEM">
+            <EntityTypeMapping TypeName="KyuyoModel.TB_M_SYSTEM">
+              <MappingFragment StoreEntitySet="TB_M_SYSTEM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="COMPANY_CD" ColumnName="COMPANY_CD" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="CD" ColumnName="CD" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="CHAR_VALUE_1" ColumnName="CHAR_VALUE_1" />
+                <ScalarProperty Name="CHAR_VALUE_2" ColumnName="CHAR_VALUE_2" />
+                <ScalarProperty Name="CHAR_VALUE_3" ColumnName="CHAR_VALUE_3" />
+                <ScalarProperty Name="NUM_VALUE_1" ColumnName="NUM_VALUE_1" />
+                <ScalarProperty Name="NUM_VALUE_2" ColumnName="NUM_VALUE_2" />
+                <ScalarProperty Name="NUM_VALUE_3" ColumnName="NUM_VALUE_3" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="LIST_ORDER" ColumnName="LIST_ORDER" />
+                <ScalarProperty Name="ACTIVE_FLAG" ColumnName="ACTIVE_FLAG" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_M_DEPARTMENT">
+            <EntityTypeMapping TypeName="KyuyoModel.TB_M_DEPARTMENT">
+              <MappingFragment StoreEntitySet="TB_M_DEPARTMENT">
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="ACTIVE_FLAG" ColumnName="ACTIVE_FLAG" />
+                <ScalarProperty Name="COMPANY_CD" ColumnName="COMPANY_CD" />
+                <ScalarProperty Name="DEPT_NAME" ColumnName="DEPT_NAME" />
+                <ScalarProperty Name="DEPT_CD" ColumnName="DEPT_CD" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KY_ALLOWANCE_MASTER">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_ALLOWANCE_MASTER">
+              <MappingFragment StoreEntitySet="KY_ALLOWANCE_MASTER">
+                <ScalarProperty Name="HISTORY_NO" ColumnName="HISTORY_NO" />
+                <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="DELETE_FLAG" ColumnName="DELETE_FLAG" />
+                <ScalarProperty Name="EFFECTIVE_DT" ColumnName="EFFECTIVE_DT" />
+                <ScalarProperty Name="ALLOWANCE_FLG" ColumnName="ALLOWANCE_FLG" />
+                <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+                <ScalarProperty Name="VALUE_PROB" ColumnName="VALUE_PROB" />
+                <ScalarProperty Name="VALUE_OFFICAL" ColumnName="VALUE_OFFICAL" />
+                <ScalarProperty Name="GROUP_NAME" ColumnName="GROUP_NAME" />
+                <ScalarProperty Name="GROUP_CD" ColumnName="GROUP_CD" />
+                <ScalarProperty Name="ALLOWANCE_NAME" ColumnName="ALLOWANCE_NAME" />
+                <ScalarProperty Name="ALLOWANCE_CD" ColumnName="ALLOWANCE_CD" />
+                <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KY_ALLOWANCE_RESULT">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_ALLOWANCE_RESULT">
+              <MappingFragment StoreEntitySet="KY_ALLOWANCE_RESULT">
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="TYPE_FLG" ColumnName="TYPE_FLG" />
+                <ScalarProperty Name="ALLOWANCE_OFFI" ColumnName="ALLOWANCE_OFFI" />
+                <ScalarProperty Name="ALLOWANCE_PROB" ColumnName="ALLOWANCE_PROB" />
+                <ScalarProperty Name="YEAR_MONTH" ColumnName="YEAR_MONTH" />
+                <ScalarProperty Name="ALLOWANCE_CD" ColumnName="ALLOWANCE_CD" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KY_AUTHORITY">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_AUTHORITY">
+              <MappingFragment StoreEntitySet="KY_AUTHORITY">
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="SCREEN_ACCESSES" ColumnName="SCREEN_ACCESSES" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KY_POLICY_MASTER">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_POLICY_MASTER">
+              <MappingFragment StoreEntitySet="KY_POLICY_MASTER">
+                <ScalarProperty Name="HISTORY_NO" ColumnName="HISTORY_NO" />
+                <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="ALLOW_EDIT" ColumnName="ALLOW_EDIT" />
+                <ScalarProperty Name="DELETE_FLAG" ColumnName="DELETE_FLAG" />
+                <ScalarProperty Name="EFFECTIVE_DT" ColumnName="EFFECTIVE_DT" />
+                <ScalarProperty Name="ITEM_REF" ColumnName="ITEM_REF" />
+                <ScalarProperty Name="LIMIT_STEP_UNIT" ColumnName="LIMIT_STEP_UNIT" />
+                <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+                <ScalarProperty Name="CHAR_VALUE" ColumnName="CHAR_VALUE" />
+                <ScalarProperty Name="NUM_VALUE" ColumnName="NUM_VALUE" />
+                <ScalarProperty Name="LIMIT_STEP" ColumnName="LIMIT_STEP" />
+                <ScalarProperty Name="GROUP_NAME" ColumnName="GROUP_NAME" />
+                <ScalarProperty Name="POLICY_TYPE" ColumnName="POLICY_TYPE" />
+                <ScalarProperty Name="POLICY_NAME" ColumnName="POLICY_NAME" />
+                <ScalarProperty Name="POLICY_CD" ColumnName="POLICY_CD" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetEmployeeAuthority" FunctionName="KyuyoModel.Store.GetEmployeeAuthority">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KyuyoModel.GetEmployeeAuthority_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="ScreenAccess" ColumnName="ScreenAccess" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="STRING_SPLIT" FunctionName="KyuyoModel.Store.STRING_SPLIT" />
+          <EntitySetMapping Name="KY_DEPENDENT">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_DEPENDENT">
+              <MappingFragment StoreEntitySet="KY_DEPENDENT">
+                <ScalarProperty Name="HISTORY_NO" ColumnName="HISTORY_NO" />
+                <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+                <ScalarProperty Name="REG_WARD" ColumnName="REG_WARD" />
+                <ScalarProperty Name="REG_DISTRICT" ColumnName="REG_DISTRICT" />
+                <ScalarProperty Name="REG_CITY" ColumnName="REG_CITY" />
+                <ScalarProperty Name="REG_COUNTRY" ColumnName="REG_COUNTRY" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="DELETE_FLAG" ColumnName="DELETE_FLAG" />
+                <ScalarProperty Name="TO_MONTH" ColumnName="TO_MONTH" />
+                <ScalarProperty Name="FROM_MONTH" ColumnName="FROM_MONTH" />
+                <ScalarProperty Name="NATIONALITY" ColumnName="NATIONALITY" />
+                <ScalarProperty Name="RELATIONSHIP" ColumnName="RELATIONSHIP" />
+                <ScalarProperty Name="IDENTITY_PASSPORT" ColumnName="IDENTITY_PASSPORT" />
+                <ScalarProperty Name="DEPENDENT_TAX_CODE" ColumnName="DEPENDENT_TAX_CODE" />
+                <ScalarProperty Name="NUMBER_BOOK" ColumnName="NUMBER_BOOK" />
+                <ScalarProperty Name="NUMBER" ColumnName="NUMBER" />
+                <ScalarProperty Name="BIRTH_DT" ColumnName="BIRTH_DT" />
+                <ScalarProperty Name="DEPENDENT" ColumnName="DEPENDENT" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KY_SALARY_FORMULA_MASTER">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_SALARY_FORMULA_MASTER">
+              <MappingFragment StoreEntitySet="KY_SALARY_FORMULA_MASTER">
+                <ScalarProperty Name="HISTORY_NO" ColumnName="HISTORY_NO" />
+                <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="DELETE_FLAG" ColumnName="DELETE_FLAG" />
+                <ScalarProperty Name="EFFECTIVE_DT" ColumnName="EFFECTIVE_DT" />
+                <ScalarProperty Name="FORMULA_TYPE" ColumnName="FORMULA_TYPE" />
+                <ScalarProperty Name="FORMULA_VALUE" ColumnName="FORMULA_VALUE" />
+                <ScalarProperty Name="FORMULA_NAME" ColumnName="FORMULA_NAME" />
+                <ScalarProperty Name="FORMULA_CD" ColumnName="FORMULA_CD" />
+                <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KY_OTHER_PAY">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_OTHER_PAY">
+              <MappingFragment StoreEntitySet="KY_OTHER_PAY">
+                <ScalarProperty Name="VND_VALUE" ColumnName="VND_VALUE" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="DISTRIBUTION_MONTHS" ColumnName="DISTRIBUTION_MONTHS" />
+                <ScalarProperty Name="DISTRIBUTION_FLAG" ColumnName="DISTRIBUTION_FLAG" />
+                <ScalarProperty Name="DELETE_FLAG" ColumnName="DELETE_FLAG" />
+                <ScalarProperty Name="ARREA_YEAR_MONTH" ColumnName="ARREA_YEAR_MONTH" />
+                <ScalarProperty Name="YEAR_MONTH" ColumnName="YEAR_MONTH" />
+                <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="PAY_DESC" ColumnName="PAY_DESC" />
+                <ScalarProperty Name="PAY_TYPE" ColumnName="PAY_TYPE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_M_EMP_DEPT">
+            <EntityTypeMapping TypeName="KyuyoModel.TB_M_EMP_DEPT">
+              <MappingFragment StoreEntitySet="TB_M_EMP_DEPT">
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="INACTIVE_DT" ColumnName="INACTIVE_DT" />
+                <ScalarProperty Name="DELETE_FLAG" ColumnName="DELETE_FLAG" />
+                <ScalarProperty Name="MAIN_FLAG" ColumnName="MAIN_FLAG" />
+                <ScalarProperty Name="START_DT" ColumnName="START_DT" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="DEPT_CD" ColumnName="DEPT_CD" />
+                <ScalarProperty Name="COMPANY_CD" ColumnName="COMPANY_CD" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KY_EMPLOYEE_MASTER">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_EMPLOYEE_MASTER">
+              <MappingFragment StoreEntitySet="KY_EMPLOYEE_MASTER">
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="DELETE_FLAG" ColumnName="DELETE_FLAG" />
+                <ScalarProperty Name="LABOUR_UNION_DT" ColumnName="LABOUR_UNION_DT" />
+                <ScalarProperty Name="CERTIFICATE_LIST" ColumnName="CERTIFICATE_LIST" />
+                <ScalarProperty Name="PIT_EFFECTIVE_DT" ColumnName="PIT_EFFECTIVE_DT" />
+                <ScalarProperty Name="PIT" ColumnName="PIT" />
+                <ScalarProperty Name="HOSPITAL_EFECTIVE_DT" ColumnName="HOSPITAL_EFECTIVE_DT" />
+                <ScalarProperty Name="HOSPITAL" ColumnName="HOSPITAL" />
+                <ScalarProperty Name="INSURANCE_CODE" ColumnName="INSURANCE_CODE" />
+                <ScalarProperty Name="INSURANCE_UNION_MONTH" ColumnName="INSURANCE_UNION_MONTH" />
+                <ScalarProperty Name="INSURANCE_EFFECTIVE_DT" ColumnName="INSURANCE_EFFECTIVE_DT" />
+                <ScalarProperty Name="INSURANCE" ColumnName="INSURANCE" />
+                <ScalarProperty Name="EXCHANGE_RATE_SOCIAL_INSU_SAL" ColumnName="EXCHANGE_RATE_SOCIAL_INSU_SAL" />
+                <ScalarProperty Name="PROBATION_END_DT" ColumnName="PROBATION_END_DT" />
+                <ScalarProperty Name="CONTRACT_FORM_EFECTIVE_DT" ColumnName="CONTRACT_FORM_EFECTIVE_DT" />
+                <ScalarProperty Name="CONTRACT_FORM" ColumnName="CONTRACT_FORM" />
+                <ScalarProperty Name="QUIT_DT" ColumnName="QUIT_DT" />
+                <ScalarProperty Name="STANDARD_HOURS_EFFECTIVE_DT" ColumnName="STANDARD_HOURS_EFFECTIVE_DT" />
+                <ScalarProperty Name="STANDARD_HOURS" ColumnName="STANDARD_HOURS" />
+                <ScalarProperty Name="ENTRY_DT" ColumnName="ENTRY_DT" />
+                <ScalarProperty Name="BIRTH_DT" ColumnName="BIRTH_DT" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="EMP_TYPE_EFFECTIVE_DT" ColumnName="EMP_TYPE_EFFECTIVE_DT" />
+                <ScalarProperty Name="EMPLOYEE_TYPE" ColumnName="EMPLOYEE_TYPE" />
+                <ScalarProperty Name="EMERGENCY_PHONE_NO" ColumnName="EMERGENCY_PHONE_NO" />
+                <ScalarProperty Name="CONTRACT_TYPE_EFFECTIVE_DT" ColumnName="CONTRACT_TYPE_EFFECTIVE_DT" />
+                <ScalarProperty Name="CONTRACT_TYPE" ColumnName="CONTRACT_TYPE" />
+                <ScalarProperty Name="PHONE_NO" ColumnName="PHONE_NO" />
+                <ScalarProperty Name="LEVEL_GROUP_EFFECTIVE_DT" ColumnName="LEVEL_GROUP_EFFECTIVE_DT" />
+                <ScalarProperty Name="LEVEL_GROUP" ColumnName="LEVEL_GROUP" />
+                <ScalarProperty Name="LEVEL_EFFECTIVE_DT" ColumnName="LEVEL_EFFECTIVE_DT" />
+                <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
+                <ScalarProperty Name="QUALIFICATION" ColumnName="QUALIFICATION" />
+                <ScalarProperty Name="UNIVERSITY" ColumnName="UNIVERSITY" />
+                <ScalarProperty Name="PERSONAL_TAX_CODE" ColumnName="PERSONAL_TAX_CODE" />
+                <ScalarProperty Name="IDENTITY_PASSPORT" ColumnName="IDENTITY_PASSPORT" />
+                <ScalarProperty Name="CONTINENTS" ColumnName="CONTINENTS" />
+                <ScalarProperty Name="NATIONALITY" ColumnName="NATIONALITY" />
+                <ScalarProperty Name="EMAIL_EFFECTIVE_DT" ColumnName="EMAIL_EFFECTIVE_DT" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="WORK_PLACE_EFFECTIVE_DT" ColumnName="WORK_PLACE_EFFECTIVE_DT" />
+                <ScalarProperty Name="WORK_PLACE" ColumnName="WORK_PLACE" />
+                <ScalarProperty Name="ADDRESS_EFFECTIVE_DT" ColumnName="ADDRESS_EFFECTIVE_DT" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="ABSENCE_NOT_PAY_AT" ColumnName="ABSENCE_NOT_PAY_AT" />
+                <ScalarProperty Name="ABSENCE_NOT_PAY_BF" ColumnName="ABSENCE_NOT_PAY_BF" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="EMPLOYEE_NAME_FULL" ColumnName="EMPLOYEE_NAME_FULL" />
+                <ScalarProperty Name="EMPLOYEE_NAME" ColumnName="EMPLOYEE_NAME" />
+                <ScalarProperty Name="EMPLOYEE_NO_PE" ColumnName="EMPLOYEE_NO_PE" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_R_WORKING_TIME">
+            <EntityTypeMapping TypeName="KyuyoModel.TB_R_WORKING_TIME">
+              <MappingFragment StoreEntitySet="TB_R_WORKING_TIME">
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="WITHDRAWN_DT" ColumnName="WITHDRAWN_DT" />
+                <ScalarProperty Name="CONFIRMED_DT" ColumnName="CONFIRMED_DT" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="WITHDRAWN_BY" ColumnName="WITHDRAWN_BY" />
+                <ScalarProperty Name="CONFIRMED_BY" ColumnName="CONFIRMED_BY" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="STD_WORK_HOUR" ColumnName="STD_WORK_HOUR" />
+                <ScalarProperty Name="STD_OUT_TIME" ColumnName="STD_OUT_TIME" />
+                <ScalarProperty Name="STD_IN_TIME" ColumnName="STD_IN_TIME" />
+                <ScalarProperty Name="CURRENT_SHIFT" ColumnName="CURRENT_SHIFT" />
+                <ScalarProperty Name="MAIN_SHIFT" ColumnName="MAIN_SHIFT" />
+                <ScalarProperty Name="DEDUCTED_NON_WORK_ACTUAL" ColumnName="DEDUCTED_NON_WORK_ACTUAL" />
+                <ScalarProperty Name="DEDUCTED_NON_WORK_PLAN" ColumnName="DEDUCTED_NON_WORK_PLAN" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="SPECIAL_TYPE" ColumnName="SPECIAL_TYPE" />
+                <ScalarProperty Name="WORKING_TYPE" ColumnName="WORKING_TYPE" />
+                <ScalarProperty Name="ATTENDANCE_TYPE" ColumnName="ATTENDANCE_TYPE" />
+                <ScalarProperty Name="DEDUCTED_PAID" ColumnName="DEDUCTED_PAID" />
+                <ScalarProperty Name="DEDUCTED_UNPAID" ColumnName="DEDUCTED_UNPAID" />
+                <ScalarProperty Name="TOTAL_LATE_TIME" ColumnName="TOTAL_LATE_TIME" />
+                <ScalarProperty Name="LATE_OT_TIME" ColumnName="LATE_OT_TIME" />
+                <ScalarProperty Name="TOTAL_OT_TIME" ColumnName="TOTAL_OT_TIME" />
+                <ScalarProperty Name="ABSENCE_TIME" ColumnName="ABSENCE_TIME" />
+                <ScalarProperty Name="WORKING_TIME" ColumnName="WORKING_TIME" />
+                <ScalarProperty Name="ACT_OUT_TIME" ColumnName="ACT_OUT_TIME" />
+                <ScalarProperty Name="ACT_IN_TIME" ColumnName="ACT_IN_TIME" />
+                <ScalarProperty Name="WORKING_DATE" ColumnName="WORKING_DATE" />
+                <ScalarProperty Name="WORKING_TITLE" ColumnName="WORKING_TITLE" />
+                <ScalarProperty Name="DEPT_CD" ColumnName="DEPT_CD" />
+                <ScalarProperty Name="REVISION" ColumnName="REVISION" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="COMPANY_CD" ColumnName="COMPANY_CD" />
+                <ScalarProperty Name="WORKING_TIME_CD" ColumnName="WORKING_TIME_CD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_R_WORKING_TIME_HIS">
+            <EntityTypeMapping TypeName="KyuyoModel.TB_R_WORKING_TIME_HIS">
+              <MappingFragment StoreEntitySet="TB_R_WORKING_TIME_HIS">
+                <ScalarProperty Name="YEAR_MONTH" ColumnName="YEAR_MONTH" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="WITHDRAWN_DT" ColumnName="WITHDRAWN_DT" />
+                <ScalarProperty Name="CONFIRMED_DT" ColumnName="CONFIRMED_DT" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="WITHDRAWN_BY" ColumnName="WITHDRAWN_BY" />
+                <ScalarProperty Name="CONFIRMED_BY" ColumnName="CONFIRMED_BY" />
+                <ScalarProperty Name="STD_WORK_HOUR" ColumnName="STD_WORK_HOUR" />
+                <ScalarProperty Name="STD_OUT_TIME" ColumnName="STD_OUT_TIME" />
+                <ScalarProperty Name="STD_IN_TIME" ColumnName="STD_IN_TIME" />
+                <ScalarProperty Name="CURRENT_SHIFT" ColumnName="CURRENT_SHIFT" />
+                <ScalarProperty Name="MAIN_SHIFT" ColumnName="MAIN_SHIFT" />
+                <ScalarProperty Name="DEDUCTED_NON_WORK_ACTUAL" ColumnName="DEDUCTED_NON_WORK_ACTUAL" />
+                <ScalarProperty Name="DEDUCTED_NON_WORK_PLAN" ColumnName="DEDUCTED_NON_WORK_PLAN" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="SPECIAL_TYPE" ColumnName="SPECIAL_TYPE" />
+                <ScalarProperty Name="WORKING_TYPE" ColumnName="WORKING_TYPE" />
+                <ScalarProperty Name="ATTENDANCE_TYPE" ColumnName="ATTENDANCE_TYPE" />
+                <ScalarProperty Name="DEDUCTED_PAID" ColumnName="DEDUCTED_PAID" />
+                <ScalarProperty Name="DEDUCTED_UNPAID" ColumnName="DEDUCTED_UNPAID" />
+                <ScalarProperty Name="TOTAL_LATE_TIME" ColumnName="TOTAL_LATE_TIME" />
+                <ScalarProperty Name="LATE_OT_TIME" ColumnName="LATE_OT_TIME" />
+                <ScalarProperty Name="TOTAL_OT_TIME" ColumnName="TOTAL_OT_TIME" />
+                <ScalarProperty Name="ABSENCE_TIME" ColumnName="ABSENCE_TIME" />
+                <ScalarProperty Name="WORKING_TIME" ColumnName="WORKING_TIME" />
+                <ScalarProperty Name="ACT_OUT_TIME" ColumnName="ACT_OUT_TIME" />
+                <ScalarProperty Name="ACT_IN_TIME" ColumnName="ACT_IN_TIME" />
+                <ScalarProperty Name="WORKING_DATE" ColumnName="WORKING_DATE" />
+                <ScalarProperty Name="WORKING_TITLE" ColumnName="WORKING_TITLE" />
+                <ScalarProperty Name="DEPT_CD" ColumnName="DEPT_CD" />
+                <ScalarProperty Name="REVISION" ColumnName="REVISION" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="COMPANY_CD" ColumnName="COMPANY_CD" />
+                <ScalarProperty Name="WORKING_TIME_CD" ColumnName="WORKING_TIME_CD" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SearchDependent" FunctionName="KyuyoModel.Store.SearchDependent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KyuyoModel.SearchDependent_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
+                <ScalarProperty Name="Dependent" ColumnName="Dependent" />
+                <ScalarProperty Name="BirthDt" ColumnName="BirthDt" />
+                <ScalarProperty Name="DependentTaxCode" ColumnName="DependentTaxCode" />
+                <ScalarProperty Name="IdPassport" ColumnName="IdPassport" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="NumberBook" ColumnName="NumberBook" />
+                <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="FromMonth" ColumnName="FromMonth" />
+                <ScalarProperty Name="ToMonth" ColumnName="ToMonth" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="MainId" ColumnName="MainId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchEmployee" FunctionName="KyuyoModel.Store.SearchEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KyuyoModel.SearchEmployee_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CompanyCd" ColumnName="CompanyCd" />
+                <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
+                <ScalarProperty Name="EmployeeNoPE" ColumnName="EmployeeNoPE" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeNameFull" ColumnName="EmployeeNameFull" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
+                <ScalarProperty Name="EmployeeTypeName" ColumnName="EmployeeTypeName" />
+                <ScalarProperty Name="BirthDt" ColumnName="BirthDt" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="WorkPlace" ColumnName="WorkPlace" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Continents" ColumnName="Continents" />
+                <ScalarProperty Name="IdentityPassport" ColumnName="IdentityPassport" />
+                <ScalarProperty Name="PersonalTaxCode" ColumnName="PersonalTaxCode" />
+                <ScalarProperty Name="University" ColumnName="University" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="LevelGroup" ColumnName="LevelGroup" />
+                <ScalarProperty Name="EntryDt" ColumnName="EntryDt" />
+                <ScalarProperty Name="ProbationEndDt" ColumnName="ProbationEndDt" />
+                <ScalarProperty Name="LabourUnionDt" ColumnName="LabourUnionDt" />
+                <ScalarProperty Name="QuitDt" ColumnName="QuitDt" />
+                <ScalarProperty Name="ContractForm" ColumnName="ContractForm" />
+                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="EmergencyPhoneNo" ColumnName="EmergencyPhoneNo" />
+                <ScalarProperty Name="StandardHours" ColumnName="StandardHours" />
+                <ScalarProperty Name="InsuranceUnionMonth" ColumnName="InsuranceUnionMonth" />
+                <ScalarProperty Name="InsuaranceCode" ColumnName="InsuaranceCode" />
+                <ScalarProperty Name="Hospital" ColumnName="Hospital" />
+                <ScalarProperty Name="Insurance" ColumnName="Insurance" />
+                <ScalarProperty Name="PIT" ColumnName="PIT" />
+                <ScalarProperty Name="AbsenceNotPayBf" ColumnName="AbsenceNotPayBf" />
+                <ScalarProperty Name="AbsenceNotPayAt" ColumnName="AbsenceNotPayAt" />
+                <ScalarProperty Name="CertificateList" ColumnName="CertificateList" />
+                <ScalarProperty Name="DeleteFlag" ColumnName="DeleteFlag" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="EmpTypeEffectiveDt" ColumnName="EmpTypeEffectiveDt" />
+                <ScalarProperty Name="EmailEffectiveDt" ColumnName="EmailEffectiveDt" />
+                <ScalarProperty Name="AddressEffectiveDt" ColumnName="AddressEffectiveDt" />
+                <ScalarProperty Name="WorkPlaceEffectiveDt" ColumnName="WorkPlaceEffectiveDt" />
+                <ScalarProperty Name="LevelEffctiveDt" ColumnName="LevelEffctiveDt" />
+                <ScalarProperty Name="LevelGroupEffectiveDt" ColumnName="LevelGroupEffectiveDt" />
+                <ScalarProperty Name="ContractFormEffectiveDt" ColumnName="ContractFormEffectiveDt" />
+                <ScalarProperty Name="ContractTypeEffectiveDt" ColumnName="ContractTypeEffectiveDt" />
+                <ScalarProperty Name="StandardHoursEffeciveDt" ColumnName="StandardHoursEffeciveDt" />
+                <ScalarProperty Name="HospitalEffectiveDt" ColumnName="HospitalEffectiveDt" />
+                <ScalarProperty Name="InsuranceEffectiveDt" ColumnName="InsuranceEffectiveDt" />
+                <ScalarProperty Name="PITEffectiveDt" ColumnName="PITEffectiveDt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAuthorityMenu" FunctionName="KyuyoModel.Store.GetAuthorityMenu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KyuyoModel.GetAuthorityMenu_Result">
+                <ScalarProperty Name="ScreenId" ColumnName="ScreenId" />
+                <ScalarProperty Name="ScreenName" ColumnName="ScreenName" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
+                <ScalarProperty Name="AllowView" ColumnName="AllowView" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ShowFlag" ColumnName="ShowFlag" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="KY_SALARY_RESULT">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_SALARY_RESULT">
+              <MappingFragment StoreEntitySet="KY_SALARY_RESULT">
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="AMOUNT_SABBTICAL_300" ColumnName="AMOUNT_SABBTICAL_300" />
+                <ScalarProperty Name="AMOUNT_SABBTICAL_100" ColumnName="AMOUNT_SABBTICAL_100" />
+                <ScalarProperty Name="SABBTICAL_300" ColumnName="SABBTICAL_300" />
+                <ScalarProperty Name="SABBTICAL_100" ColumnName="SABBTICAL_100" />
+                <ScalarProperty Name="OTHER_REMARK" ColumnName="OTHER_REMARK" />
+                <ScalarProperty Name="OTHER_UNIT" ColumnName="OTHER_UNIT" />
+                <ScalarProperty Name="OTHER" ColumnName="OTHER" />
+                <ScalarProperty Name="OT_ALLOWANCE" ColumnName="OT_ALLOWANCE" />
+                <ScalarProperty Name="END_DT_CAL_SAL" ColumnName="END_DT_CAL_SAL" />
+                <ScalarProperty Name="START_DT_CAL_SAL" ColumnName="START_DT_CAL_SAL" />
+                <ScalarProperty Name="SEVERANCE_ALLOWANCE" ColumnName="SEVERANCE_ALLOWANCE" />
+                <ScalarProperty Name="APP_FLG" ColumnName="APP_FLG" />
+                <ScalarProperty Name="TOTAL_PAY" ColumnName="TOTAL_PAY" />
+                <ScalarProperty Name="NOT_INCLUDED_TAX_INCOME" ColumnName="NOT_INCLUDED_TAX_INCOME" />
+                <ScalarProperty Name="PIT" ColumnName="PIT" />
+                <ScalarProperty Name="CAL_TAX_INCOME" ColumnName="CAL_TAX_INCOME" />
+                <ScalarProperty Name="TAX_INCOME" ColumnName="TAX_INCOME" />
+                <ScalarProperty Name="FAMILY_ALLOWANCES" ColumnName="FAMILY_ALLOWANCES" />
+                <ScalarProperty Name="OT_NOT_PIT" ColumnName="OT_NOT_PIT" />
+                <ScalarProperty Name="INCOME_BEFORE_TAX" ColumnName="INCOME_BEFORE_TAX" />
+                <ScalarProperty Name="UMEMPLOYEE_INSU_AMOUNT" ColumnName="UMEMPLOYEE_INSU_AMOUNT" />
+                <ScalarProperty Name="HEALTH_INSU_AMOUNT" ColumnName="HEALTH_INSU_AMOUNT" />
+                <ScalarProperty Name="SOCIAL_INSU_AMOUNT" ColumnName="SOCIAL_INSU_AMOUNT" />
+                <ScalarProperty Name="LATE_NIGHT_ALLOWANCE_OFFI" ColumnName="LATE_NIGHT_ALLOWANCE_OFFI" />
+                <ScalarProperty Name="LATE_NIGHT_ALLOWANCE_PROB" ColumnName="LATE_NIGHT_ALLOWANCE_PROB" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="MEMBER_FEE" ColumnName="MEMBER_FEE" />
+                <ScalarProperty Name="TOTAL_AMOUNT" ColumnName="TOTAL_AMOUNT" />
+                <ScalarProperty Name="OT_SUMARY" ColumnName="OT_SUMARY" />
+                <ScalarProperty Name="AMOUNT_DEDUCTED_SUMARY" ColumnName="AMOUNT_DEDUCTED_SUMARY" />
+                <ScalarProperty Name="AMOUNT_DEDUCTED_OFFI" ColumnName="AMOUNT_DEDUCTED_OFFI" />
+                <ScalarProperty Name="AMOUNT_DEDUCTED_PROB" ColumnName="AMOUNT_DEDUCTED_PROB" />
+                <ScalarProperty Name="HOURLY_PRICE_OFFI" ColumnName="HOURLY_PRICE_OFFI" />
+                <ScalarProperty Name="HOURLY_PRICE_PROB" ColumnName="HOURLY_PRICE_PROB" />
+                <ScalarProperty Name="SALARY_ALLOWANCE_PIT" ColumnName="SALARY_ALLOWANCE_PIT" />
+                <ScalarProperty Name="SALARY_UNIT" ColumnName="SALARY_UNIT" />
+                <ScalarProperty Name="OFFICAL_SALARY" ColumnName="OFFICAL_SALARY" />
+                <ScalarProperty Name="PROBATION_SALARY" ColumnName="PROBATION_SALARY" />
+                <ScalarProperty Name="DATE_TO" ColumnName="DATE_TO" />
+                <ScalarProperty Name="DATE_FROM" ColumnName="DATE_FROM" />
+                <ScalarProperty Name="YEAR_MONTH_RECEIVE" ColumnName="YEAR_MONTH_RECEIVE" />
+                <ScalarProperty Name="HISTORY_NO" ColumnName="HISTORY_NO" />
+                <ScalarProperty Name="YEAR_MONTH" ColumnName="YEAR_MONTH" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="DEPT_CD" ColumnName="DEPT_CD" />
+                <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KY_RATE">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_RATE">
+              <MappingFragment StoreEntitySet="KY_RATE">
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="RATE_TYPE" ColumnName="RATE_TYPE" />
+                <ScalarProperty Name="EFFECTIVE_DT" ColumnName="EFFECTIVE_DT" />
+                <ScalarProperty Name="EXCHANGE_RATE" ColumnName="EXCHANGE_RATE" />
+                <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+                <ScalarProperty Name="HISTORY_NO" ColumnName="HISTORY_NO" />
+                <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KY_WORKINGTIME_TOTAL">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_WORKINGTIME_TOTAL">
+              <MappingFragment StoreEntitySet="KY_WORKINGTIME_TOTAL">
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="PROB_ABSENCE" ColumnName="PROB_ABSENCE" />
+                <ScalarProperty Name="ABSENCE" ColumnName="ABSENCE" />
+                <ScalarProperty Name="WORKING_TIME" ColumnName="WORKING_TIME" />
+                <ScalarProperty Name="OFFI_DAYS" ColumnName="OFFI_DAYS" />
+                <ScalarProperty Name="PROB_DAYS" ColumnName="PROB_DAYS" />
+                <ScalarProperty Name="STD_WORK_HOUR" ColumnName="STD_WORK_HOUR" />
+                <ScalarProperty Name="TO_DATE" ColumnName="TO_DATE" />
+                <ScalarProperty Name="FROM_DATE" ColumnName="FROM_DATE" />
+                <ScalarProperty Name="YEAR_MONTH" ColumnName="YEAR_MONTH" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KY_SALARY_MASTER">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_SALARY_MASTER">
+              <MappingFragment StoreEntitySet="KY_SALARY_MASTER">
+                <ScalarProperty Name="SALARY_UNIT" ColumnName="SALARY_UNIT" />
+                <ScalarProperty Name="PRODUCT_SALARY" ColumnName="PRODUCT_SALARY" />
+                <ScalarProperty Name="EXCHANGE_RATE_SOCIAL_INSU_SAL" ColumnName="EXCHANGE_RATE_SOCIAL_INSU_SAL" />
+                <ScalarProperty Name="HISTORY_NO" ColumnName="HISTORY_NO" />
+                <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="DELETE_FLAG" ColumnName="DELETE_FLAG" />
+                <ScalarProperty Name="EFFECTIVE_DT" ColumnName="EFFECTIVE_DT" />
+                <ScalarProperty Name="FORMULA_CD" ColumnName="FORMULA_CD" />
+                <ScalarProperty Name="OT_TYPE" ColumnName="OT_TYPE" />
+                <ScalarProperty Name="ALLOWANCE_LIST" ColumnName="ALLOWANCE_LIST" />
+                <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+                <ScalarProperty Name="BANK_NAME" ColumnName="BANK_NAME" />
+                <ScalarProperty Name="BANK_ACCOUNT" ColumnName="BANK_ACCOUNT" />
+                <ScalarProperty Name="SALARY_CAL_SOCIAL_INSU" ColumnName="SALARY_CAL_SOCIAL_INSU" />
+                <ScalarProperty Name="SALARY_HOUR" ColumnName="SALARY_HOUR" />
+                <ScalarProperty Name="BASIC_SALARY_PROBATION" ColumnName="BASIC_SALARY_PROBATION" />
+                <ScalarProperty Name="BASIC_SALARY_OFFICAL" ColumnName="BASIC_SALARY_OFFICAL" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SearchSalaryMaster" FunctionName="KyuyoModel.Store.SearchSalaryMaster">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KyuyoModel.SearchSalaryMaster_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
+                <ScalarProperty Name="BasicSalaryOffical" ColumnName="BasicSalaryOffical" />
+                <ScalarProperty Name="BasicSalaryProbation" ColumnName="BasicSalaryProbation" />
+                <ScalarProperty Name="SalaryHour" ColumnName="SalaryHour" />
+                <ScalarProperty Name="SalaryCalSocialInsu" ColumnName="SalaryCalSocialInsu" />
+                <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="SalaryUnit" ColumnName="SalaryUnit" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="ProductSalary" ColumnName="ProductSalary" />
+                <ScalarProperty Name="AllowanceList" ColumnName="AllowanceList" />
+                <ScalarProperty Name="OTType" ColumnName="OTType" />
+                <ScalarProperty Name="FormulaCd" ColumnName="FormulaCd" />
+                <ScalarProperty Name="EffectiveDt" ColumnName="EffectiveDt" />
+                <ScalarProperty Name="DeleteFlag" ColumnName="DeleteFlag" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="MainId" ColumnName="MainId" />
+                <ScalarProperty Name="HistoryNo" ColumnName="HistoryNo" />
+                <ScalarProperty Name="ExchangeRateSocialInsuSal" ColumnName="ExchangeRateSocialInsuSal" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchSalaryCalulate" FunctionName="KyuyoModel.Store.SearchSalaryCalulate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KyuyoModel.SearchSalaryCalulate_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="Bounus" ColumnName="Bounus" />
+                <ScalarProperty Name="Arrear" ColumnName="Arrear" />
+                <ScalarProperty Name="ProbationSalary" ColumnName="ProbationSalary" />
+                <ScalarProperty Name="OfficalSalary" ColumnName="OfficalSalary" />
+                <ScalarProperty Name="BasicSalary" ColumnName="BasicSalary" />
+                <ScalarProperty Name="TotalPay" ColumnName="TotalPay" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="OtherUnit" ColumnName="OtherUnit" />
+                <ScalarProperty Name="SalaryUnit" ColumnName="SalaryUnit" />
+                <ScalarProperty Name="OtherRemark" ColumnName="OtherRemark" />
+                <ScalarProperty Name="Sabbtical100" ColumnName="Sabbtical100" />
+                <ScalarProperty Name="Sabbtical300" ColumnName="Sabbtical300" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AppFlag" ColumnName="AppFlag" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="KY_QUANTITY_PRODUCT">
+            <EntityTypeMapping TypeName="KyuyoModel.KY_QUANTITY_PRODUCT">
+              <MappingFragment StoreEntitySet="KY_QUANTITY_PRODUCT">
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="YEAR_MONTH" ColumnName="YEAR_MONTH" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="PRODUCT_TYPE" ColumnName="PRODUCT_TYPE" />
+                <ScalarProperty Name="EMPLOYEE_NO" ColumnName="EMPLOYEE_NO" />
+                <ScalarProperty Name="COMPANY_CD" ColumnName="COMPANY_CD" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

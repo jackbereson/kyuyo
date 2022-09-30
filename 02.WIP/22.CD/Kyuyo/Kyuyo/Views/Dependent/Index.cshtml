@@ -1,0 +1,285 @@
+﻿@using Kyuyo.BL.Resources;
+@using Kyuyo.BL.Resources.Dependent;
+@using Kyuyo.Infrastructure.Utils;
+@using Kyuyo.Models;
+@using Newtonsoft.Json;
+@model DependentModel
+@{
+    Layout = "~/Views/Shared/_AITLayout.cshtml";
+    ViewBag.Title = StringsM011.Title;
+    ViewBag.Ctrl = "/AppJs/Dependent/DependentCtrl.js";
+}
+@section header{
+    <h4 class="titleHeader">
+        <i class="ait-icon fa fa-briefcase"></i> ...
+        @StringsM011.Title
+    </h4>
+}
+
+<div class="page-content-wrapper-inner container-fluid" ng-controller="DependentCtrl" ng-init="init(@JsonConvert.SerializeObject(Model))">
+    <div class="page-header">
+        <h1 class="page-title">@StringsM011.Title</h1>
+    </div>
+
+    <!-- Primary form -->
+    <div class="primary-form">
+        <form name="form.dependentSearchForm" ng-validate="validationOptions">
+            @{
+                if (Model.Editable)
+                {
+                    <div ng-show="isErrorMessage" class="alert alert-warning">
+                        <div class="alert-content" ng-repeat="message in errorMessage">
+                            {{message}}
+                        </div>
+                    </div>
+                }
+            }
+
+            <div class="row">
+                <div class="col-xs-3 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="cbCompany">@StringsM011.CompanyCd</label>
+                        <select class="form-control required"
+                                ng-options="opt.CompanyCd as opt.CompanyCd for opt in listCompany track by opt.CompanyCd"
+                                ng-change="onChangeCompany(search.CompanyCd)"
+                                id="cbCompanyCd" name="CompanyCd" ng-model="search.CompanyCd" selectpicker>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="cbDepartment">@StringsM011.Deparment</label>
+                        <select class="form-control"
+                                ng-options="opt.DeptCd as opt.DeptName for opt in listDept track by opt.DeptCd"
+                                id="cbDeptCd" name="DeptCd" ng-model="search.DeptCd" selectpicker>
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtEmployeeNoSearch">@StringsM011.EmployeeNo</label>
+                        <input id="txtEmployeeNoSearch" maxlength="10" autofocus type="text" name="EmployeeNoSearch" ng-model="search.EmployeeNo" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-xs-3 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtEmployeeNameSearch">@StringsM011.EmployeeName</label>
+                        <input id="txtEmployeeNameSearch" maxlength="100" type="text" name="EmployeeNameSearch" ng-model="search.EmployeeName" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <button class="btn btn-primary" ng-click="searchFn(); cancelFn();"><i class="fa fa-search" aria-hidden="true"></i>@Strings.Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Primary form -->
+    <div class="primary-form no-border-top">
+        <form name="form.dependentForm" ng-validate="validationOptions">
+
+             <!--Validate client message-->
+            <div class="group-messages" role="alert" ng-show="isBodyMessage == false">
+            </div>
+
+            <!--Validate server-->
+            <div class="alert" ng-class="classBodyMessage" ng-if="isBodyMessage == true">
+                <div ng-repeat="message in errorBodyMessage">{{message}}</div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-xs-12 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtEmployee">@StringsM011.CompanyCd</label>
+                        <b>{{companyName}}</b>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4" ng-if="control.comInput == true">
+                    <div class="form-group form-inline">
+                        <label for="txtEmployeeNo">@StringsM011.Employee</label>
+                        <input  maxlength="100" id="txtEmployeeNo" disabled type="text" name="EmployeeNo" ng-model="model.EmployeeName" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-7" ng-show="control.comInput == false">
+                    <div class="form-group form-inline">
+                        <label for="txtEmployeeNo">@StringsM011.Employee</label>
+                        <app-search-employee ng-default-company="model.CompanyId" multiple="false" name="EmployeeNo" ng-model="employeeDto"></app-search-employee>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group form-inline">
+                        <div class="group-checkbox-radio">
+                            <div class="form-inline">
+                                <label class="radio">
+                                    <input type="radio" name="IdentityPassport" ng-disabled="control.comInput && !model.IdPassportFlag" ng-checked="model.IdPassportFlag" ng-click="changeTypeFn(true)" ><span></span>
+                                    @StringsM011.HaveIdentityPassport
+                                </label>
+
+                                <label class="radio">
+                                    <input type="radio" name="IdentityPassport" ng-disabled="control.comInput && model.IdPassportFlag" ng-checked="!model.IdPassportFlag" ng-click="changeTypeFn(false)"><span></span>
+                                    @StringsM011.NotYetIdentityPassport
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <label><span>I.@StringsM011.HaveIdentityPassport</span></label>
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtFullName">@StringsM011.Fullname</label>
+                        <input id="txtFullName" maxlength="100" ng-disabled="control.comInput || !model.IdPassportFlag" type="text" name="Dependent" ng-model="model.Dependent1" class="form-control required" />
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="calBirthDay">@StringsM011.Birthday</label>
+                        <input type="text" date-picker id="calBirthDay" ng-disabled="control.comInput || !model.IdPassportFlag" name="BirthDt" ng-model="model.Birthday1" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtTaxCode">@StringsM011.TaxCode</label>
+                        <input id="txtTaxCode" maxlength="20" ng-disabled="control.comInput || !model.IdPassportFlag" type="text" name="DependentTaxCode" ng-model="model.DependentTaxCode" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtIdentityPassport">@StringsM011.IdentityPassport</label>
+                        <input id="txtIdentityPassport" maxlength="20" ng-disabled="control.comInput || !model.IdPassportFlag" type="text" name="IdPassport" ng-model="model.IdPassport" class="form-control required" />
+                    </div>
+                </div>
+            </div>
+            <label><span>II.@StringsM011.NotYetIdentityPassport</span></label>
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtFullName2">@StringsM011.Fullname</label>
+                        <input id="txtFullName2" maxlength="100" ng-disabled="control.comInput || model.IdPassportFlag" type="text" name="Dependent" ng-model="model.Dependent2" class="form-control required" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-7">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><label>@StringsM011.BirthCertificateInfo</label></div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="form-group form-inline">
+                                        <label for="calBirthDay2">@StringsM011.Birthday</label>
+                                        <input type="text" id="calBirthDay2" ng-disabled="control.comInput || model.IdPassportFlag" name="BirthDt" ng-model="model.Birthday2" class="form-control hasDatepicker" date-picker />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4 col-md-6">
+                                    <div class="form-group form-inline">
+                                        <label for="txtNumBirthCertificate">@StringsM011.NumBirthCertificate</label>
+                                        <input id="txtNumBirthCertificate" maxlength="10" ng-disabled="control.comInput || model.IdPassportFlag" type="text" name="Number" ng-model="model.Number" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="form-group form-inline">
+                                        <label for="txtNumBookBirthCertificate">@StringsM011.NumBookBirthCertificate</label>
+                                        <input id="txtNumBookBirthCertificate" maxlength="10" ng-disabled="control.comInput || model.IdPassportFlag" type="text" name="NumberBook" ng-model="model.NumberBook" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group form-inline">
+                                        <label for="txtRegisterPlace">@StringsM011.RegisterPlace</label>
+                                        <input id="txtRegisterPlace" maxlength="100" ng-disabled="control.comInput || model.IdPassportFlag" type="text" name="RegisterPlace" ng-model="model.RegisterPlace" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtRelationship">@StringsM011.Relationship</label>
+                        <input id="txtRelationship" maxlength="50" ng-disabled="control.comInput" type="text" name="Relationship" ng-model="model.Relationship" class="form-control required" />
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtNationality">@StringsM011.Nationality</label>
+                        <input id="txtNationality" maxlength="20" ng-disabled="control.comInput" type="text" name="Nationality" ng-model="model.Nationality" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="calDateFrom">@StringsM011.DateFrom</label>
+                        <input type="text" id="calDateFrom" ng-disabled="control.comInput" name="FromDt" ng-model="model.FromDt1" class="form-control required" date-picker-month />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="calDateTo">@StringsM011.DateTo</label>
+                        <input type="text" id="calDateTo" ng-disabled="control.comInput" name="ToDt" ng-model="model.ToDt1" class="form-control" date-picker-month />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" ng-disabled="control.btnInsert" ng-click="insertFn()"><i class="fa fa-plus" aria-hidden="true"></i>@Strings.Insert</button>
+                <button type="button" class="btn btn-primary" ng-disabled="control.btnUpdate" ng-click="updateFn()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>@Strings.Update</button>
+                <button type="button" class="btn btn-primary" ng-disabled="control.btnDelete" ng-click="deleteFn()"><i class="fa fa-trash-o" aria-hidden="true"></i>@Strings.Delete</button>
+                <button type="button" class="btn btn-primary" ng-disabled="control.btnCancel" ng-click="cancelFn()"><i class="fa fa-repeat" aria-hidden="true"></i>@Strings.Cancel</button>
+            </div>
+        </form>
+
+    </div>
+    <label><span>@StringsM011.DependentList</span></label>
+    <!-- Main content zone -->
+    <div id="main-content-zone" class="table-responsive">
+        <table class="table table-striped table-basic table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th class="col-xs-1">STT</th>
+                    <th class="col-xs-2">@StringsM011.Employee</th>
+                    <th class="col-xs-2">@StringsM011.Dependent</th>
+                    <th class="col-xs-1">@StringsM011.Birthday</th>
+                    <th class="col-xs-2">@StringsM011.Relationship</th>
+                    <th class="col-xs-2">@StringsM011.DateFrom</th>
+                    <th class="col-xs-2">@StringsM011.DateTo</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr ng-repeat="elm in lstDependent" ng-class="{'info' : useIndex === $index}">
+                    <td class="text-center">{{$index + 1}}</td>
+                    <td>{{elm. EmployeeName}}</td>
+                    <td ng-if="control.linkDependent == true">
+                        <a href="javascript:void(0)" ng-click="editFn(elm, $index)">{{elm.Dependent}}</a>
+                    </td>
+                    <td ng-if="control.linkDependent == false">{{elm. Dependent}}</td>
+                    <td>{{elm.BirthDt | datetime}}</td>
+                    <td>{{elm.Relationship}}</td>
+                    <td>{{elm.FromDt | datetime : 'm'}}</td>
+                    <td>{{elm.ToDt | datetime : 'm'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+

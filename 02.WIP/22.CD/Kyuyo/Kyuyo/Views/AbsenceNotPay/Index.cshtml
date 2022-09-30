@@ -1,0 +1,266 @@
+﻿@using Kyuyo.BL.Resources;
+@using Kyuyo.BL.Resources.AbsenceNotPay;
+@using Kyuyo.Infrastructure.Utils;
+@using Kyuyo.Models;
+@using Newtonsoft.Json;
+@model AbsenceNotPayModel
+@{
+    Layout = "~/Views/Shared/_AITLayout.cshtml";
+    ViewBag.Title = StringsM013.Title;
+    ViewBag.Ctrl = "/AppJs/AbsenceNotPay/AbsenceNotPayCtrl.js";
+}
+@section header{
+    <h4 class="titleHeader">
+        <i class="ait-icon fa fa-briefcase"></i> ...
+        @StringsM013.Title
+    </h4>
+}
+
+<div class="page-content-wrapper-inner container-fluid" ng-controller="AbsenceNotPayCtrl" ng-init="init(@JsonConvert.SerializeObject(Model))">
+    <!-- Search Form -->
+    <form name="form.absenceNotPaySearchForm" ng-validate="validationOptions">
+        @{
+            if (Model.Editable)
+            {
+                <div ng-show="isErrorMessage" class="alert alert-warning">
+                    <div class="alert-content" ng-repeat="message in errorMessage">
+                        {{message}}
+                    </div>
+                </div>
+            }
+        }
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tìm kiếm</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="form-horizontal box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">@StringsM013.CompanyCd</label>
+                            <div class="col-sm-8">
+                                <select id="cbCompany" class="form-control required"
+                                        ng-model="search.CompanyId"
+                                        ng-options="company.Id as company.CompanyCd for company in listCompanies track by company.Id"
+                                        ng-change="onChangeCompany(search.CompanyId)"
+                                        selectpicker></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">@StringsM013.Deparment</label>
+                            <div class="col-sm-8">
+                                <select id="cbDepartment" class="form-control"
+                                        ng-model="search.DeptCd"
+                                        ng-options="department.DeptCd as department.DeptName for department in listDepartments track by department.DeptCd" selectpicker>
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">@StringsM013.EmployeeNo</label>
+                            <div class="col-sm-8">
+                                <input id="txtEmployeeNoSearch" maxlength="20" ng-disabled="control.txtEmployeeNoSearch" autofocus type="text" name="EmployeeNoSearch"
+                                       ng-model="search.EmployeeNo" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">@StringsM013.EmployeeName</label>
+                            <div class="col-sm-8">
+                                <input id="txtEmployeeNameSearch" maxlength="100" ng-disabled="control.txtEmployeeNameSearch" autofocus type="text" name="EmployeeNameSearch"
+                                       ng-model="search.EmployeeName" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-primary pull-right" ng-click="searchFn(); cancelFn();"><i class="fa fa-search" aria-hidden="true"></i>@Strings.Search</button>
+            </div>
+        </div>
+    </form>
+    <!-- Input Form -->
+    <form name="form.absenceNotPayForm" ng-validate="validationOptions">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">@StringsM013.Title</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="form-horizontal box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">@StringsM013.CompanyCd</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" disabled value="{{input.CompanyName}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">@StringsM013.Employee</label>
+                            <div class="col-sm-8">
+                                <div ng-show="control.comInput == false">
+                                    <app-search-employee default-company="@Helper.CompanyId()" multiple="false" ng-model="employeeDto"></app-search-employee>
+                                </div>
+                                <div ng-if="control.linkDependent == false">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" ng-class="class" readonly ng-model="employeeDto.EmployeeName" ng-disabled="true">
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="searchDirectiveFn()" class="btn btn-primary" ng-disabled="true"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">@StringsM013.AbsenceType</label>
+                            <div class="col-sm-8">
+                                <select class="form-control required" id="cboAbsenceType" selectpicker ng-model="input.AbsenceNo" name="AbsenceNo"
+                                        ng-options="absence.Value as absence.Name for absence in listAbsenceDescriptions track by absence.Value"
+                                        ng-disabled="control.comInput"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">@StringsM013.FromDt</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="calFromDt" class="form-control required" name="FromDt" ng-model="input.FromDt" date-picker ng-disabled="control.comInput" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">@StringsM013.ToDt</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="calToDt" class="form-control required" name="ToDt" ng-model="input.ToDt" date-picker ng-disabled="control.comInput" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">@StringsM013.ActualDt</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="calActualDt" class="form-control" name="StartWorkDt" ng-model="input.StartWorkDt" date-picker ng-disabled="control.comInput" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+
+            </div>
+            <div class="float-functions">
+                <div class="dropdownBtn-visible-xxs">
+                    <button type="button" class="btn btn-bitbucket dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-arrow-down"></i>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li>
+                            <button type="button" class="btn" ng-disabled="control.btnInsert" ng-click="insertFn()">
+                                <i class="fa fa-plus"></i>
+                                <span class="btn-label">@Strings.Insert</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" ng-disabled="control.btnUpdate" ng-click="updateFn()" class="btn">
+                                <i class="fa fa-pencil-square-o"></i>
+                                <span class="btn-label">@Strings.Update</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" ng-disabled="control.btnCancel" ng-click="cancelFn()" class="btn">
+                                <i class="fa fa-repeat "></i>
+                                <span class="btn-label">@Strings.Cancel</span>
+                            </button>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <button type="button" ng-disabled="control.btnDelete" ng-click="" class="btn">
+                                <i class="fa fa-trash-o"></i>
+                                <span class="btn-label">@Strings.Delete</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="hidden-xxs">
+                    <button type="button" class="btn btn-social btn-color-cyan btn-flat" ng-disabled="control.btnInsert" ng-click="insertFn()">
+                        <i class="fa fa-plus"></i>
+                        <span class="btn-label">@Strings.Insert</span>
+                    </button>
+                    <button type="button" ng-disabled="control.btnUpdate" ng-click="updateFn()" class="btn btn-social btn-color-green btn-flat">
+                        <i class="fa fa-pencil-square-o"></i>
+                        <span class="btn-label">@Strings.Update</span>
+                    </button>
+                    <button type="button" ng-disabled="control.btnCancel" ng-click="cancelFn()" class="btn btn-social btn-color-orange btn-flat">
+                        <i class="fa fa-repeat "></i>
+                        <span class="btn-label">@Strings.Cancel</span>
+                    </button>
+
+                    <button type="button" ng-disabled="control.btnDelete" ng-click="" class="btn btn-social btn-color-red btn-flat">
+                        <i class="fa fa-trash-o"></i>
+                        <span class="btn-label">@Strings.Delete</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- List -->
+    <table id="table" class="table table-striped table-basic table-hover table-bordered">
+        <thead>
+            <tr>
+                <th class="col-xs-1">STT</th>
+                <th class="col-xs-2">@StringsM013.Employee</th>
+                <th class="col-xs-2">@StringsM013.AbsenceType</th>
+                <th class="col-xs-2">@StringsM013.FromDt</th>
+                <th class="col-xs-2">@StringsM013.ToDt</th>
+                <th class="col-xs-2">@StringsM013.ActualDt</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="longtermAbsence in listLongtermAbsences" ng-class="{'selected' : useIndex == $index}"
+                ng-click="doEditDataFn(longtermAbsence, form.absenceNotPayForm, $index)">
+
+                <td class="text-center">{{$index + 1}}</td>
+                <td>{{longtermAbsence.EmployeeName}}</td>
+                <td>{{longtermAbsence.AbsenceDescription}}</td>
+                <td>{{longtermAbsence.FromDt | date:'dd/MM/yyyy'}}</td>
+                <td>{{longtermAbsence.ToDt | date:'dd/MM/yyyy'}}</td>
+                <td>{{longtermAbsence.StartWorkDt | date:'dd/MM/yyyy'}}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+</div>

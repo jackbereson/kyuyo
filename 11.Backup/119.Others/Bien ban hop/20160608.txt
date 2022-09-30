@@ -1,0 +1,72 @@
+﻿Tham gia: 
+Axis: Kanayama, Linh, Miki
+AIT: Ogawa, Hasegawa, Duyen, Trangpt, Minh
+
+Nội　Dung: Giải thích / confirm bảng định nghĩa công việc (Axis) -> xác định các report (main) cần thiết cho nội bộ công ty, các report báo cáo danh cho chính phủ.
+
+1. giải thích luồng định nghĩa công việc: chị Lĩnh.
+ câu hỏi trước khi bắt đầu: các thông tin quản lý nhân sự (thuế, bảo hiểm xã hội...) có được quản lý không? Linh san: ko bao gồm, Duyên san: có bao gồm...
+ -> Minh+Ogawa: hiện tại trước tiên chỉ cần đến bước tính lương được. Tuy nhiên, các thông tin liên quan cần phải có, or nếu có thì tốt hơn...
+ thì sẽ xem xét ở buổi hợp hôm nay.
+ vd: step1: chỉ mỗi phần tính lương. step2: bổ sung thêm các chức năng, thông tin cần thiết liên quan.
+ kết luận: liệt kê tất cả những report đang có, đang dùng của Axis / ACSD / AIT liên quan đến lương rồi quyết định.
+ 
+2. Các chú ý của hiện tại: 
+    -quản lý OT theo thử việc, chính qui. 
+	-OT cho người không được hưởng theo chức vụ, khi vượt thông số gì đó thì sẽ tính: ưu tiên: Ngày > Tháng > Năm. Và tính tỉ lệ như thế nào?
+	-theo chị Lĩnh: về phần tỉ lệ rất phức tạp nên đang tính chung la OT normal cho all trường hợp. tuy nhiên sau này sẽ phải tính chính xác lại.ệ 
+	   confirm: từ chức vụ nào là không tính OT: Manager trở lên, buchou trỏ lên?. 
+	   -> hệ thống: quản lý có tính OT hay không được thiết lập trong master nhân viên, mà không theo chức vụ
+	-nghỉ ky hạn dài, nghỉ thai sản...
+	-Tính hổ trợ packing fee: hiện tại đang tính chi tiết theo tùng ngày, tính toán vào cuối tháng quá tốn thời gian nên có thể thay đổi chế độ luôn tính theo tháng?
+	   -> hệ thống: dựa vào kỳ hạn xin nghỉ để tính tỉ lệ. (lưu ý: nghỉ dài hạn sau khi hết phép)
+	-Axis: làm thế nào để biết được thông tin kintai có thay đổi của tháng đã tính lương rồi (mục đích: truy lãnh lại lương, đôi khi nhiều nên ko nhớ được)   
+	   -> thêm report kintai gi do?
+	-Sai lương: ai sẽ chỉnh sửa (mỗi công ty hay Asix?)
+	   -> trên tiền đề: phía nào tạo thì phía đó sẽ chỉnh sửa (Asix phụ trách tính lương nên Axis sẽ sửa)
+	   
+3. Các report: (bên Axis): Linh san + Duyen san sẽ list lại danh sách report: cái đang cần, cái có thể cần...gửi lại cho AIT
+    ngày 9/6: AIT nhận được.
+	một số report như bên dưới:
+   -Bảng lương (có rất nhiều sheet)
+   -Bảo hiểm xã hội, BHYT, BHTN
+   -Bảng tập hợp chi phí nhân công (dành tính cost)
+   -Bảng lương (1sheet)
+   -Danh sách trả lương bằng chuyển khoản (gửi)
+   -Danh sách trả lương bằng tiền mặt
+  Sau khi nhận được: Trangpt sẽ compare với Lemon3 (sau khi đã tham khảo bên Lemon3)
+	xác định lại các report cần, có thể cần, có thể sử dụng sau này.
+	và chỉnh sửa bổ sung vào flow vận dụng.
+
+4. Anh Ogawa: trong tuần sau cố gắng tạo xong đề án.
+
+
+内容：Axisより仕事定義書を説明して、皆は確認したうえで新給与システムの帳票一覧を決まる（内部帳票、政府に報告の帳票）
+１．Linhさんは給与計算の定義書を説明する。
+　　Duyenさんの質問：人材情報の管理機能がありますか？特に給与とちょっと関係の情報（税情報・保険情報）。
+　　Linhさん：今回は給与計算のみのためので、その情報は全て管理がない。（給与計算できるまで管理しますが、人材系の帳票まではできない）
+　　＝＞小川さん、Minh:前回にこのことを話しました。人材機能・帳票はなしです。
+　　　　今回は給与計算できるまでの機能のみしますが、関係の情報はどち必要かあればもっと良いかなどについては今からの議論である。
+　　　　例えば、Step1：給与計算のみ。Step2:税情報・保険情報の管理できる機能追加など
+　　　　結論：現在AIT/ACSD/AXISに使用しているの給与関係のすべて帳票をリストしてから、決まります。
+２．給与計算での注意こと（Linhさん、金沢さん、Duyenさん、Minh,Trangpt)
+a.社員の残業、試用社員の残業について
+ｂ．残業を貰わないの人について（Manager,部長など）
+　　普通は残業計算なしでなるが、４時間以上（日）、３０時間以上（月）、２００時間以上（年）の場合、超える部分を計算する。優先度：日＞月＞年
+　　また、計算率（Normal率・深夜率などはすごい難し）
+　　どやって社員に対して給与計算しないかについて、　＝＞システムに役職関係なくで、社員毎の給与マスタに定義する。
+ｃ．長期間の休み、産休についてなどは現在の勤怠でまだ管理しないので、給与システムでは管理で来るように
+　　有給があれば、給与なしの長期間休みができない（有給０なってからできる）
+ｄ．Packing feeの手当について、現在は日単位で計算しているため、月末に確認・処理は時間かかる。なので、日単位ではなく月単位ように変更できるか
+　　→上記のｃ．のと関係で、システムは自動計算するので問題ない。
+e.Linhさん、金沢さんの質問：
+　　現在、給与計算した月の勤怠データ修正できて、変更した内容（OTなど）は次月の給与に反映している。変更数が２・３人ぐらいの場合担当者は覚えますが、数人なれば覚えません。
+　　なので、すべて変更したものを管理できるように帳票などが欲し。
+ｆ．給与結果はミスある場合、修正はどれからですか？（各社、Axis？）
+　　→給与計算はAxisの担当なので、Axisから修正する。（処理した方から修正するの前提）
+３．帳票一覧
+　　AxisのLinhさん＋AITのDuyenさんから、現在の使用しているの帳票・あるべき帳票・あれば良いの帳票・本来に欲しいの帳票はリストまとめてから、AITに送る。
+　　（6/9の予定）
+　　AITに貰ってから、Lemon3の帳票と比較し（Lemon3を勉強してから）、必要・あるべき・あれば良いの帳票を決まります。また、運用のフローに追加します。
+　　→Duyen,Trangpt:Lemon３の帳票についてはどれあるか絶対できない（Lemon3の資料にはない）ので、比較しない。
+４．小川さん：来週中に、提案を出来るように頑張る。

@@ -1,0 +1,319 @@
+﻿using Kyuyo.BL.Resources;
+@using Kyuyo.BL.Resources.SalaryFormular;
+@using Kyuyo.Infrastructure.Utils;
+@using Kyuyo.Models;
+@using Newtonsoft.Json;
+@*@model SalaryFormularModel*@
+@{
+    Layout = "~/Views/Shared/_AITLayout.cshtml";
+    ViewBag.Title = @StringsM008.Title;
+}
+@section header{
+    <h4 class="titleHeader">
+        <i class="ait-icon fa fa-briefcase"></i> ...
+        @StringsM008.Title
+    </h4>
+}
+
+
+
+
+<div class="page-content-wrapper-inner container-fluid" ng-controller="SalaryFormularCtrl" ng-init="init(@JsonConvert.SerializeObject(Model))">
+    <div class="page-header">
+        <h1 class="page-title">@StringsM008.Title</h1>
+    </div>
+
+    <!-- Primary form -->
+    <div class="primary-form">
+        <form name="form.salaryFormularSearchForm" ng-validate="validationOptions">
+            @{
+                if (Model.Editable)
+                {
+                    <div ng-show="isErrorMessage" class="alert" ng-class="classMessage">
+                        <div class="alert-content" ng-repeat="message in errorMessage">
+                            {{message}}
+                        </div>
+                    </div>
+                }
+            }
+
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="cbCompany">@StringsM008.CompanyCd</label>
+                        <select id="cbCompany" class="selectpicker required" ng-model="search.CompanyCd" selectpicker>
+                            @*@{
+                                foreach (var company in Model.ListCompany)
+                                {
+                                    <option value=@company.CompanyCd>@company.CompanyCd</option>
+                                }
+                            }*@
+                            <option>Vui lòng chọn...</option>
+                            <option>AIT</option>
+                            <option>ACSD</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-5">
+                    <div class="form-group form-inline">
+                        <label>@StringsM008.EffectiveDt</label>
+                        <input type="date" id="calValidateFrom1" pattern="dd/mm/yyyy" ng-disabled="control.calValidateFrom1" ng-model="model.ValidateFrom1" />
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>～<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <input type="date" id="calValidateTo1" ng-disabled="control.calValidateTo1" ng-model="model.ValidateTo1" />
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    @*<button class="btn btn-primary" ng-click="searchFn(); cancelFn();"><i class="fa fa-search" aria-hidden="true"></i> @Strings.Search</button>*@
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Primary form -->
+    <div class="primary-form no-border-top">
+        <form name="form.salaryFormularForm" ng-submit="form.specialInsuranceForm.validate() && insertFn()" ng-validate="validationOptions">
+
+             <!--Validate client message-->
+            <div class="group-messages" role="alert" ng-show="isBodyMessage == false"></div>
+
+            <!--Validate server-->
+            <div class="alert" ng-class="classBodyMessage" ng-if="isBodyMessage == true">
+                <div ng-repeat="message in errorBodyMessage">{{message}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="txtFormularCd">@StringsM008.FormularCd</label>
+                        <input id="txtFormularCd" maxlength="20" ng-disabled="control.txtFormularCd" autofocus type="text" name="FormularCd" ng-model="model.FormularCd" class="form-control required" />
+                    </div>
+                </div>
+                <div class="col-xs-4 col-md-5">
+                    <div class="form-group form-inline">
+                        <label for="txtFormularNm">@StringsM008.FormularNm</label>
+                        <input id="txtFormularNm" maxlength="100" ng-disabled="control.txtFormularNm" type="text" name="FormularNm" ng-model="model.FormularNm" class="form-control required" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-md-4">
+                    <div class="form-group form-inline">
+                        <label for="calEffectiveDt">@StringsM008.EffectiveDt</label>
+                        <input type="date" id="calEffectiveDt" ng-disabled="control.calEffectiveDt" ng-model="model.EffectiveDt" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-5">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><label>@StringsM008.Attribute</label></div>
+                        <div class="panel-body">
+                            <a href="#">Lương và phụ cấp chịu thuế PIT</a><br/>
+                            <a href="#">Số tiền nghỉ không hưởng lương</a><br />
+                            <a href="#">Tiền lương làm thêm giờ</a><br />
+                            <a href="#">Các loại thưởng</a><br />
+                            <a href="#">Các loại truy thu/truy lĩnh</a><br />
+                            <a href="#">Thu chi hộ khác</a><br />
+                            <a href="#">Phí đoàn viên công đoàn</a><br />
+                            <a href="#">Phụ cấp/trợ cấp không chịu thuế PIT</a><br/>
+                            <a href="#">Phụ cấp ca đêm</a><br/>
+                            <a href="#">Phụ cấp OT đêm khuya</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="panel panel-empty">
+                        <div class="panel-body" style="margin-top:100px;">
+                            <a href="#"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a><br/>
+                            <a href="#"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-5">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><label>@StringsM008.FormularSetup</label></div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group form-inline">
+                                        <select id="cboOperator" class="selectpicker">
+                                            <option>&nbsp;</option>
+                                            <option>+</option>
+                                            <option>-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="form-group form-inline">
+                                        <span>
+                                            <a href="#">Lương và phụ cấp chịu thuế PIT</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group form-inline">
+                                        <select id="cboOperator" class="selectpicker">
+                                            <option>&nbsp;</option>
+                                            <option>+</option>
+                                            <option selected="selected">-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="form-group form-inline">
+                                        <span>
+                                            <a href="#">Số tiền nghỉ không hưởng lương</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group form-inline">
+                                        <select id="cboOperator" class="selectpicker">
+                                            <option>&nbsp;</option>
+                                            <option selected="selected">+</option>
+                                            <option>-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="form-group form-inline">
+                                        <span>
+                                            <a href="#">Tiền lương làm thêm giờ</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group form-inline">
+                                        <select id="cboOperator" class="selectpicker">
+                                            <option>&nbsp;</option>
+                                            <option selected="selected">+</option>
+                                            <option>-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="form-group form-inline">
+                                        <span>
+                                            <a href="#">Các loại thưởng</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group form-inline">
+                                        <select id="cboOperator" class="selectpicker">
+                                            <option>&nbsp;</option>
+                                            <option selected="selected">+</option>
+                                            <option>-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="form-group form-inline">
+                                        <span>
+                                            <a href="#">Các loại truy thu/truy lĩnh</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group form-inline">
+                                        <select id="cboOperator" class="selectpicker">
+                                            <option>&nbsp;</option>
+                                            <option selected="selected">+</option>
+                                            <option>-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="form-group form-inline">
+                                        <span>
+                                            <a href="#">Thu chi hộ khác</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="panel panel-empty">
+                        <div class="panel-body" style="margin-top:100px;">
+                            <a href="#"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></a><br />
+                            <a href="#"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></a><br />
+                            <a href="#"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></a><br/>
+                            <a href="#"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a><br />
+                        </div>
+                    </div>
+                </div>
+             </div>
+            <div class="col-xs-pull-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><label>@StringsM008.FormularContent</label></div>
+                    <div class="panel-body">
+                        Thu nhập trước thuế (NET) = Lương và phụ cấp chịu thuế PIT - Số tiền nghỉ không hưởng lương + Tiền lương làm thêm giờ +
+                        Các loại thưởng + Các loại truy thu/truy lĩnh + Thu chi hộ khác
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @*<button type="submit" class="btn btn-primary" ng-disabled="control.btnInsert" ><i class="fa fa-plus" aria-hidden="true"></i>@Strings.Insert</button>
+                <button type="button" class="btn btn-primary" ng-disabled="control.btnUpdate" ng-click="updateFn()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>@Strings.Update</button>
+                <button type="button" class="btn btn-primary" ng-disabled="control.btnDelete" ng-click="">@Strings.Delete</button>
+                <button type="button" class="btn btn-primary" ng-disabled="control.btnCancel" ng-click="cancelFn()">@Strings.Cancel</button>*@
+            </div>
+        </form>
+
+    </div>
+
+    <!-- Main content zone -->
+    <div id="main-content-zone" class="table-responsive">
+        <table class="table table-striped table-basic table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th class="col-xs-1">STT</th>
+                    <th class="col-xs-2">@StringsM008.FormularCd</th>
+                    <th class="col-xs-2">@StringsM008.FormularNm</th>
+                    <th class="col-xs-4">@StringsM008.FormularContent</th>
+                    <th class="col-xs-2">@StringsM008.EffectiveDt</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td>
+                        <a href="javascript:void(0)">BTAX_NET</a>
+                    </td>
+                    <td>Thu nhập trước thuế (NET)</td>
+                    <td>Thu nhập trước thuế (NET) = Lương và phụ cấp chịu thuế PIT - Số tiền nghỉ không hưởng lương + Tiền lương làm thêm giờ +
+                        Các loại thưởng + Các loại truy thu/truy lĩnh + Thu chi hộ khác</td>
+                    <td>16/08/2016</td>
+                </tr>
+                <tr>
+                    <td class="text-center">2</td>
+                    <td>
+                        <a href="javascript:void(0)">BTAX_GROSS</a>
+                    </td>
+                    <td>Thu nhập trước thuế (GROSS)</td>
+                    <td>
+                        Thu nhập trước thuế (GROSS) = Lương và phụ cấp chịu thuế PIT - Số tiền nghỉ không hưởng lương + Tiền lương làm thêm giờ +
+                        Các loại thưởng + Các loại truy thu/truy lĩnh + Thu chi hộ khác
+                    </td>
+                    <td>16/08/2016</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+

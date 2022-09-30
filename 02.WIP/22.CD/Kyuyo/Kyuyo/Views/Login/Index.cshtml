@@ -1,0 +1,67 @@
+﻿@using Kyuyo.BL.Resources
+@using Newtonsoft.Json
+@using Kyuyo.Infrastructure.Utils
+@{
+    Layout = null;
+}
+@model Dictionary<object, object>
+
+<!DOCTYPE html>
+<html ng-app="KyuyoApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Title</title>
+    @Styles.Render("~/Content/css-temp")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="ng-cloak login-page" ng-controller="LoginCtrl">
+    <div class="login-box" ng-init="init(@JsonConvert.SerializeObject(Model))">
+        <div class="login-logo">
+            <h1><b>KYUYO</b></h1>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <form autocomplete="nope" name="loginForm" class="form-horizontal" ng-submit="loginForm.validate() && login()" ng-validate="validationOptions">
+                <div class="group-messages" role="alert" ng-class="{'api-messages': errMessages.length > 0}">
+                    <div ng-repeat="err in errMessages" ng-bind="err"></div>
+                </div>
+
+                <div class="form-group form-group-sm">
+                    <label class="control-label col-md-3" for="UserCode">@Strings.UserCode</label>
+                    <div class="col-md-9">
+                        <input class="form-control" id="UserCode" name="UserCode" ng-model="auth.UserCode" type="text" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm">
+                    <label class="control-label col-md-3" for="Password">@Strings.Password</label>
+                    <div class="col-md-9">
+                        <input class="form-control" id="Password" name="Password" ng-model="auth.Password" type="password" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm text-right">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">@Strings.Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap-temp")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/angularMe")
+    @Scripts.Render("~/bundles/customScripts-plugins")
+    <script src="~/Scripts/angular-sanitize.js"></script>
+    <script src="~/AIT-Admin/plugins/MassAutocomplete-master/massautocomplete.js"></script>
+    <script src="~/AppJs/Login/LoginCtrl.js"></script>
+    <script src="/Resource/Strings?c=@Helper.GetLanguageKey()" type="text/javascript"></script>
+    <script src="/Resource/Messages?c=@Helper.GetLanguageKey()" type="text/javascript"></script>
+    @*@RenderSection("scripts", required: false)*@
+
+</body>
+</html>

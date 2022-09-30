@@ -1,0 +1,11 @@
+﻿@using Kyuyo.BL.Resources;
+@{
+    Layout = null;
+}
+<div class="input-group">
+    <input type="text" name="EmployeeNo" ng-model="modelDirective.EmployeeNo" style="position: absolute; z-index: -10; visibility: hidden;" />
+    <input type="text" class="form-control" ng-class="class"  readonly ng-disabled="directiveDisabled" ng-model="modelDirective.EmployeeName">
+    <span class="input-group-btn">
+        <button type="button" ng-click="searchDirectiveFn()" ng-disabled="directiveDisabled" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> </button>
+    </span>
+</div>

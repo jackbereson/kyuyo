@@ -1,0 +1,99 @@
+﻿@using Kyuyo.BL.Resources;
+@using Kyuyo.BL.Resources.ImportWorkingTime;
+@using Kyuyo.Infrastructure.Utils;
+@using Kyuyo.Models;
+@using Newtonsoft.Json;
+@model ImportWorkingTimeModel
+@{
+    Layout = "~/Views/Shared/_AITLayout.cshtml";
+    ViewBag.Title = @StringsM015.Title;
+    ViewBag.Ctrl = "/AppJs/ImportWorkingTime/ImportWorkingTimeCtrl.js";
+}
+@section header{
+    <h4 class="titleHeader">
+        <i class="ait-icon fa fa-briefcase"></i> ...
+        @StringsM015.Title
+    </h4>
+}
+<div class="page-content-wrapper-inner container-fluid" ng-controller="ImportWorkingTimeCtrl" ng-init="init(@JsonConvert.SerializeObject(Model))">
+
+    <form name="form.importWTForm" ng-validate="validationOptions">
+
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tìm kiếm</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="form-horizontal box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM015.Company</label>
+                            <div class="col-sm-8">
+                                <select id="cbCompany" class="selectpicker required" name="CompanyId" ng-disabled="disable"
+                                        ng-options="opt.Id as opt.CompanyCd for opt in listCompany track by opt.Id"
+                                        ng-model="model.CompanyId" selectpicker></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM015.MonthYear</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="calMonthYear" ng-disabled="disable" ng-model="model.YearMonth" name="YearMonth" class="form-control" date-picker-month />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Strings.File</label>
+                            <div class="col-sm-8">
+                                <div class="input-group input-group-sm">
+                                    <input id="txtFileName" readonly type="text" name="FileName" ng-model="file.name" class="form-control" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" ngf-select="changeFile($file)" ngf-accept="'.xlsx,.xls'"><i class="fa fa-file"></i></button>
+
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM015.ImportType</label>
+                            <div class="col-sm-8">
+                                <div class="group-checkbox-radio">
+                                    <div class="form-inline">
+                                        <label class="radio">
+                                            <input type="radio" name="ImportType" value="0" ng-model="model.Type"><span></span>
+                                            @StringsM015.ImportNew
+                                        </label>
+
+                                        <label class="radio">
+                                            <input type="radio" name="ImportType" value="1" ng-model="model.Type"><span></span>
+                                            @StringsM015.Update
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button type="button" class="btn btn-primary" ng-click="importFn()">@Strings.Import</button>
+                <a href="~/Template/ImportWorkingTimeTemplate.xls" class="btn btn-primary">@Strings.ExportTemplate</a>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+

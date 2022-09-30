@@ -1,0 +1,295 @@
+﻿@using Kyuyo.BL.Resources;
+@using Kyuyo.BL.Resources.Deparment;
+@using Kyuyo.Infrastructure.Utils;
+@using Kyuyo.Models;
+@using Newtonsoft.Json;
+@model DepartmentModel
+@{
+    Layout = "~/Views/Shared/_AITLayout.cshtml";
+    ViewBag.Title = StringsM020.Title;
+    ViewBag.Ctrl = "/AppJs/Department/DepartmentCtrl.js";
+}
+@section header{
+<h4 class="titleHeader">
+    <i class="ait-icon fa fa-briefcase"></i> ...
+    @StringsM020.Title
+</h4>
+}
+
+
+@section scripts{
+    @*<script>
+        $(document).ready(function () {
+            var rowCount = $('#table >tbody >tr').length;
+
+            $("#maxrows").val(rowCount);
+
+            var $tbody = $("#table tbody").on('click', 'tr', function () {
+                selected($(this));
+            });
+
+
+            $('#goto_first').click(function () {
+                var $first = $tbody.find('tr').first();
+                selected($first);
+            });
+
+            $('#goto_prev').click(gotoPrevious);
+
+            $('#goto_next').click(gotoNext);
+
+            $('#goto_last').click(function () {
+                var $last = $tbody.find('tr').last();
+                selected($last);
+            });
+
+            $('#goto_row').click(function () {
+
+                var $row = prompt("Enter row number")
+
+                selected($("#table tr").eq($row));
+
+            });
+
+            $('#remove_row').click(function () {
+
+                var $row = $tbody.find('.selected')
+
+                $row.remove();
+
+                renumberRows()
+
+            });
+
+            function gotoNext() {
+                var $next = $tbody.find('.selected').next();
+                selected($next);
+            }
+
+            function gotoPrevious() {
+                var $prev = $tbody.find('.selected').prev();
+                selected($prev);
+            }
+
+            $(document).keydown(function (e) {
+
+                if ($tbody.find('.selected').length) {
+
+                    if (e.which == 40) {//down arrow
+                        gotoNext();
+                    }
+
+                    else if (e.which == 38) {//up arrow
+                        gotoPrevious();
+                    }
+                }
+
+            });
+
+            function selected($row) {
+                if ($row.length) {
+                    $tbody.children().removeClass("selected");
+                    $row.addClass('selected');
+                    $("#rownum").val($row[0].rowIndex);
+                }
+            }
+
+            function renumberRows() {
+                $('#table tr').each(function (index, el) {
+                    $(this).children('td').first().text(index++);
+                });
+            }
+        });
+    </script>*@
+ }
+
+<div class="page-content-wrapper-inner container-fluid" ng-controller="DepartmentCtrl" ng-init="init(@JsonConvert.SerializeObject(Model))">
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">@Strings.Search</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+        </div>
+
+        <div class="form-horizontal box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@StringsM020.CompanyCd</label>
+                        <div class="col-sm-8">
+                            <select id="cbCompany" class="selectpicker required" ng-model="search.CompanyCd" selectpicker>
+                                @{
+                                    foreach (var company in Model.ListCompany)
+                                    {
+                                        <option value=@company.CompanyCd>@company.CompanyCd</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 hidden-xs hidden-sm">
+                    <button class="btn btn-primary" ng-click="searchFn(); cancelFn();"><i class="fa fa-search" aria-hidden="true"></i> @Strings.Search</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-footer visible-xs visible-sm">
+            <button class="btn btn-primary pull-right" ng-click="searchFn(); cancelFn();"><i class="fa fa-search" aria-hidden="true"></i> @Strings.Search</button>
+        </div>
+    </div>
+
+    <form name="form.deptForm" ng-validate="validationOptions">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">@StringsM020.TitleInfo</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            
+            <div class="form-horizontal box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM020.CompanyCd</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" disabled value="{{companyName}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM020.DeptCd</label>
+                            <div class="col-sm-8">
+                                <input id="txtDeptCd" maxlength="10" ng-disabled="control.txtDeptCd" autofocus type="text" name="DeptCd" ng-model="model.DeptCd" class="form-control required" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM020.DeptName</label>
+                            <div class="col-sm-8">
+                                <input id="txtDeptName" maxlength="100" ng-disabled="control.txtDeptName" type="text" name="DeptName" ng-model="model.DeptName" class="form-control required" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <label class="checkbox">
+                                    <input type="checkbox" ng-disabled="control.rdActiveFlag" ng-model="model.ActiveFlag">
+                                    <span></span>@StringsM020.Active
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer ">
+            </div>
+        </div>
+
+        <div class="float-functions">
+            <div class="dropdownBtn-visible-xxs">
+                    <button type="button" class="btn btn-bitbucket dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-arrow-down"></i>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li>
+                            <button type="button" class="btn" ng-disabled="control.btnInsert" ng-click="insertFn()">
+                                <i class="fa fa-plus"></i>
+                                <span class="btn-label">@Strings.Insert</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" ng-disabled="control.btnUpdate" ng-click="updateFn()" class="btn">
+                                <i class="fa fa-pencil-square-o"></i>
+                                <span class="btn-label">@Strings.Update</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" ng-disabled="control.btnCancel" ng-click="cancelFn()" class="btn">
+                                <i class="fa fa-repeat "></i>
+                                <span class="btn-label">@Strings.Cancel</span>
+                            </button>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <button type="button" ng-disabled="control.btnDelete" ng-click="" class="btn">
+                                <i class="fa fa-trash-o"></i>
+                                <span class="btn-label">@Strings.Delete</span>
+                            </button>
+                        </li>
+                    </ul>
+            </div>
+            <div class="hidden-xxs">
+                <button type="button" class="btn btn-social btn-color-cyan btn-flat" ng-disabled="control.btnInsert" ng-click="insertFn()">
+                    <i class="fa fa-plus"></i>
+                    <span class="btn-label">@Strings.Insert</span>
+                </button>
+                <button type="button" ng-disabled="control.btnUpdate" ng-click="updateFn()" class="btn btn-social btn-color-green btn-flat">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <span class="btn-label">@Strings.Update</span>
+                </button>
+                <button type="button" ng-disabled="control.btnCancel" ng-click="cancelFn()" class="btn btn-social btn-color-orange btn-flat">
+                    <i class="fa fa-repeat "></i>
+                    <span class="btn-label">@Strings.Cancel</span>
+                </button>
+
+                <button type="button" ng-disabled="control.btnDelete" ng-click="" class="btn btn-social btn-color-red btn-flat">
+                    <i class="fa fa-trash-o"></i>
+                    <span class="btn-label">@Strings.Delete</span>
+                </button>
+            </div>
+        </div>
+    </form>
+    <table class="table table-striped table-basic table-hover table-bordered" id="table">
+        <thead>
+            <tr>
+                <th class="col-xs-1 text-center">STT</th>
+                <th class="col-xs-2 text-center">@StringsM020.DeptCd</th>
+                <th class="col-xs-7 text-center">@StringsM020.DeptName</th>
+                <th class="col-xs-2 text-center">@StringsM020.Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="dept in listDept" ng-class="{'selected' : useIndex == $index}" ng-click="editModelFn(dept, form.deptForm, $index)">
+                <td class="text-center">{{$index + 1}}</td>
+                <td> {{dept.DeptCd}}</td>
+                <td>{{dept.DeptName}}</td>
+                <td class="text-center">
+                    <span class="badge bg-red" ng-if="dept.ActiveFlag == false">@StringsM020.Passive</span>
+                    <span class="badge bg-green" ng-if="dept.ActiveFlag == true">@StringsM020.Active</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+

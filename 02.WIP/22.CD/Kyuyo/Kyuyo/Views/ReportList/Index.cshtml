@@ -1,0 +1,126 @@
+﻿@using Kyuyo.BL.Resources;
+@using Kyuyo.BL.Resources.ReportList;
+@using Kyuyo.Infrastructure.Utils;
+@using Kyuyo.Models;
+@using Newtonsoft.Json;
+@model ReportListModel
+@{
+    Layout = "~/Views/Shared/_AITLayout.cshtml";
+    ViewBag.Title = @StringsM019.Title;
+    ViewBag.Ctrl = "/AppJs/ReportList/ReportListCtrl.js";
+}
+
+@section header{
+    <h4 class="titleHeader">
+        <i class="ait-icon fa fa-briefcase"></i> ...
+        @StringsM019.Title
+    </h4>
+}
+
+
+
+<div class="page-content-wrapper-inner container-fluid" ng-controller="ReportListCtrl" ng-init="init(@JsonConvert.SerializeObject(Model))">
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Tìm kiếm</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="form-horizontal box-body">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@StringsM019.Company</label>
+                        <div class="col-sm-8">
+                            <select id="cbCompany" class="selectpicker required" ng-model="search.CompanyCd" selectpicker>
+                                <option>Vui lòng chọn...</option>
+                                <option>AIT</option>
+                                <option>ACSD</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-8">
+                            <div class="form-inline">
+                                <label class="radio">
+                                    <input type="radio" name="TypeReport" id="monthlyReport" value="0" checked=""><span></span>
+                                    @StringsM019.MonthlyReport
+                                </label>
+
+                                <label class="radio">
+                                    <input type="radio" name="TypeReport" id="dailyReport" value="1"><span></span>
+                                    @StringsM019.DailyReport
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@StringsM019.MonthlyReport</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" id="calValidateFrom1" ng-disabled="control.calValidateFrom1" ng-model="search.EffectDtFrom" class="form-control" date-picker />
+                                <div class="input-group-addon">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>
+                                <input type="text" id="calValidateTo1" ng-disabled="control.calValidateTo1" ng-model="search.EffectDtTo" class="form-control" date-picker />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@StringsM019.DailyReport</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" id="calValidateFrom1" ng-disabled="control.calValidateFrom1" ng-model="search.EffectDtFrom" class="form-control" date-picker />
+                                <div class="input-group-addon">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>
+                                <input type="text" id="calValidateTo1" ng-disabled="control.calValidateTo1" ng-model="search.EffectDtTo" class="form-control" date-picker />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6"  ng-repeat="item in reportLists">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label"></label>
+                        <div class="col-sm-6">
+                            <label style="padding:3px;">
+                                <input type="checkbox" name="{{item.name}}" id="{{item.name}}" ng-model="item.isSelected"><span></span> {{item.title}}
+                             </label>
+                        </div>
+                        <div class="col-sm-5">
+                            <label style="padding:3px;">
+                                <input type="checkbox" id="{{item.name}}" ng-model="item.isCalByCanlendar"><span></span> @StringsM019.CalByCalendar
+                            </label>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <button type="button" class="btn btn-primary pull-right" ng-disabled="control.btnExportReport" ng-click="">@StringsM019.ExportReportBtn</button>
+        </div>
+    </div>
+
+</div>
+

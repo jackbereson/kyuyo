@@ -1,0 +1,1082 @@
+﻿@using Kyuyo.BL.Resources;
+@using Kyuyo.BL.Resources.Employee;
+@using Kyuyo.Infrastructure.Utils;
+@using Kyuyo.Models;
+@using Newtonsoft.Json;
+@model EmployeeModel
+@{
+    Layout = "~/Views/Shared/_AITLayout.cshtml";
+    ViewBag.Title = StringsM009.Title;
+    ViewBag.Ctrl = "/AppJs/Employee/EmployeeCtrl.js";
+
+    Model.Editable = true;
+}
+
+@section header{
+    <h4 class="titleHeader">
+        <i class="ait-icon fa fa-briefcase"></i> ...
+        @StringsM009.Title
+    </h4>
+}
+
+<div class="page-content-wrapper-inner container-fluid" ng-controller="EmployeeCtrl" ng-init="init(@JsonConvert.SerializeObject(Model))">
+    <form name="form.empSearchForm">
+        @{
+            if (Model.Editable)
+            {
+                <div ng-show="isErrorMessage" class="alert" ng-class="classMessage">
+                    <div class="alert-content" ng-repeat="message in errorMessage">
+                        {{message}}
+                    </div>
+                </div>
+            }
+        }
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">@Strings.Search</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="form-horizontal box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM009.CompanyCd</label>
+                            <div class="col-sm-8">
+                                <select class="form-control required"
+                                        ng-options="opt.Id as opt.CompanyCd for opt in listCompany track by opt.Id"
+                                        ng-change="onChangeCompany(search.CompanyId)"
+                                        id="cbCompanyCd" name="CompanyCd" ng-model="search.CompanyId" selectpicker></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM009.EffectiveDt</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="calValidateFrom1" date-picker ng-model="search.FromDt1" />
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="calValidateTo1" date-picker ng-model="search.ToDt1" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="search.HistoryFlag == false">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM009.Department</label>
+                            <div class="col-sm-8">
+                                <select class="form-control"
+                                        ng-options="opt.DeptCd as opt.DeptName for opt in listDept track by opt.DeptCd"
+                                        id="cbDeptCd" name="DeptCd" ng-model="search.DeptCd" selectpicker>
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <label class="radio">
+                                    <input type="checkbox" name="IncludeRetireEmployee" id="includeRetireEmployee" ng-model="search.IncludeQuit"><span></span>
+                                    @StringsM009.IncludeRetireEmployee
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="search.HistoryFlag == false">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM009.EmployeeNo</label>
+                            <div class="col-sm-8">
+                                <input id="txtEmployeeNoSearch" maxlength="20" autofocus type="text" name="EmployeeNoSearch" ng-model="search.EmployeeNo" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM009.EmployeeName</label>
+                            <div class="col-sm-8">
+                                <input id="txtEmployeeNameSearch" maxlength="100" ng-disabled="control.txtEmployeeNameSearch" type="text" name="EmployeeNameSearch" ng-model="search.EmployeeName" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="search.HistoryFlag == true">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@StringsM009.EmployeeNo</label>
+                            <div class="col-sm-9">
+                                <app-search-employee default-company="@Helper.CompanyId()" multiple="false" ng-model="employeeDto" style="float:left;width:88%;margin-right:1%">
+                                </app-search-employee>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <label class="radio">
+                                    <input type="checkbox" name="IncludeRetireEmployee" id="includeRetireEmployee" ng-model="search.IncludeQuit"><span></span>
+                                    @StringsM009.IncludeRetireEmployee
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <label class="radio">
+                                    <input type="checkbox" name="IncludeRetireEmployee" id="includeRetireEmployee" ng-model="search.HistoryFlag"><span></span>
+                                    @*@StringsM009.IncludeRetireEmployee*@
+                                    Hiển thị thông tin lịch sử của nhân viên
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button class="btn btn-primary" ng-click="searchFn(); cancelFn();"><i class="fa fa-search" aria-hidden="true"></i>@Strings.Search</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">@StringsM009.TitleImport</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="form-horizontal box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@StringsM009.CompanyCd</label>
+                        <div class="col-sm-8">
+                            Aureole Infonation Technology Inc.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">@*@StringsM009.EffectiveDt*@ Ngày so sánh dữ liệu PE</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="calValidateFrom1" date-picker ng-model="search.FromDt1" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@Strings.File</label>
+                        <div class="col-sm-8">
+                            <div class="input-group input-group-sm">
+                                <input id="txtSalary" readonly ng-disabled="control.txtSalary" type="text" name="Salary" ng-model="file.name" class="form-control" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" ng-disabled="control.btnBrowse" ngf-select="changeFile($file, IMPORT)" ngf-accept="'.xlsx,.xls'">@Strings.Browse</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label"></label>
+                        <div class="col-sm-8">
+                            <button type="button" class="btn btn-primary" ng-disabled="control.btnImport" ng-click="importFn(IMPORT)">@Strings.Import</button>
+                            <a class="btn btn-primary" ng-disabled="control.btnExportTemplate" href="~/Template/012_SalaryMaster.xls">@Strings.ExportTemplate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+
+    <form name="form.employeeForm" ng-validate="validationOptions">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+
+                <li class="active"><a href="#normalType" data-toggle="tab" aria-expanded="false">Thông tin cơ bản</a></li>
+                <li class=""><a href="#licenseType" data-toggle="tab" aria-expanded="false">Bằng cắp</a></li>
+                <li class=""><a href="#contractType" data-toggle="tab" aria-expanded="true">Thông tin nhân sự</a></li>
+
+            </ul>
+            <div class="tab-content clearfix">
+                    <div class="tab-pane active" id="normalType">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.EmployeeNo</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtEmployeeNo" maxlength="10" ng-disabled="control.txtEmpCd" type="text" name="EmployeeNo" ng-model="model.EmployeeNo" class="form-control required" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.EmployeeNoPE</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtEmployeeNoPE" maxlength="10" ng-disabled="control.comInput" type="text" name="EmployeeNoPE" ng-model="model.EmployeeNoPE" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.EmployeeName</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtEmployeeName" maxlength="100" ng-disabled="control.comInput" type="text" name="EmployeeName" ng-model="model.EmployeeName" class="form-control required" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.EmployeeNameFull</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtEmployeeNameFull" maxlength="100" ng-disabled="control.comInput" type="text" name="EmployeeNameFull" ng-model="model.EmployeeNameFull" class="form-control required" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.UserId</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtEmployeeName" maxlength="20" ng-disabled="control.comInput" type="text" name="UserId" ng-model="model.UserId" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.EmployeeType</label>
+                                    <div class="col-sm-8">
+                                        <select id="cbEmployeeType" name="EmployeeType" ng-disabled="control.comInput"
+                                                ng-model="model.EmployeeType"
+                                                ng-options="opt.Cd as opt.Remark for opt in listEmployeeType track by opt.Cd"
+                                                class="form-control required" selectpicker>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.Birthday</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="calBirthDay" name="BirthDt" ng-disabled="control.comInput" ng-model="model.BirthDt1" class="form-control" date-picker />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-inline">
+                                    <label class="col-sm-3 control-label">@StringsM009.Gender</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio">
+                                            <input type="radio" ng-disabled="control.comInput" name="Gender" ng-model="model.Gender" value="M" checked=""><span></span>
+                                            @StringsM009.Male
+                                        </label>
+
+                                        <label class="radio">
+                                            <input type="radio" ng-disabled="control.comInput" name="Gender" ng-model="model.Gender" value="F"><span></span>
+                                            @StringsM009.Female
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.Address</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtAddress" maxlength="200" ng-disabled="control.comInput" type="text" name="Address" ng-model="model.Address" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.Email</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtEmail" maxlength="100" ng-disabled="control.comInput" type="text" name="Email" ng-model="model.Email" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.Nationality</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtNationality" maxlength="100" ng-disabled="control.comInput" type="text" name="Nationality" ng-model="model.Nationality" class="form-control required" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.Continents</label>
+                                    <div class="col-sm-8">
+                                        <select id="cbContinent" ng-disabled="control.comInput" ng-model="model.Continents" selectpicker>
+                                            <option></option>
+                                            @{
+                                                foreach (var opt in Model.ListContinents)
+                                                {
+                                                    <option value="@opt.Cd">@opt.Remark</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.NumberTaxCode</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtNumberTaxCode" maxlength="20" ng-disabled="control.comInput" type="text" name="PersonalTaxCode" ng-model="model.PersonalTaxCode" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.IdentifyPassport</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtIdentifyPassport" maxlength="20" ng-disabled="control.comInput" type="text" name="IdentityPassport" ng-model="model.IdentityPassport" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"></label>
+                                    <div class="col-sm-8">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"></label>
+                                    <div class="col-sm-8">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.PhoneNumber</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtPhoneNumber" maxlength="20" ng-disabled="control.comInput" type="text" name="PhoneNo" ng-model="model.PhoneNo" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.EmergencyNumber</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtEmergencyNumber" maxlength="20" ng-disabled="control.comInput" type="text" name="EmergencyPhoneNo" ng-model="model.EmergencyPhoneNo" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tab-pane " id="licenseType">
+                    <div class="form-horizontal">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.University</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtUniversity" maxlength="100" ng-disabled="control.comInput" type="text" name="University" ng-model="model.University" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.Qualification</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtQualification" maxlength="50" ng-disabled="control.comInput" type="text" name="Qualification" ng-model="model.Qualification" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subbox-header">
+                            @StringsM009.Certificates
+                        </div>
+                        <div class="subbox-body">
+                            <table class="table table-striped table-basic table-hover table-bordered" id="table">
+                                <tbody>
+                                    @{
+                                        foreach (var certi in Model.ListCertificate)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <label class="checkbox">
+                                                        <input ng-disabled="control.comInput" ng-checked="checkCerticate('@certi.AllowanceCd')" ng-click="toggleCerticate('@certi.AllowanceCd')" type="checkbox"><span></span>@certi.AllowanceName
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            From
+                                                        </div>
+                                                        <input type="text" id="calCartiFrom-@certi.AllowanceCd" name="CartiFrom-@certi.AllowanceCd" ng-disabled="control.comInput || checkCerticate('@certi.AllowanceCd') == false" class="form-control" ng-model="model.lstCertificate['@certi.AllowanceCd'].fromDt" date-picker />
+                                                        <div class="input-group-addon">
+                                                            To
+                                                        </div>
+                                                        <input type="text" id="calCartiTo-@certi.AllowanceCd" name="CartiTo-@certi.AllowanceCd" ng-disabled="control.comInput || checkCerticate('@certi.AllowanceCd') == false" class="form-control" ng-model="model.lstCertificate['@certi.AllowanceCd'].toDt" date-picker />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        @*<div class="row">
+                            <div class="col-sm-6 subbox-padding-right">
+                                <div class="subbox-header">
+                                    @StringsM009.Certificates
+                                </div>
+                                <div class="subbox-body">
+                                    <table class="table table-striped table-basic table-hover table-bordered" id="table">
+                                        <tbody>
+                                            @{
+                                                foreach (var certi in Model.ListCertificate)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <label class="checkbox">
+                                                                <input ng-disabled="control.comInput" ng-checked="checkCerticate('@certi.AllowanceCd')" ng-click="toggleCerticate('@certi.AllowanceCd')" type="checkbox"><span></span>@certi.AllowanceName
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    From
+                                                                </div>
+                                                                <input type="text" id="calCartiFrom-@certi.AllowanceCd" name="CartiFrom-@certi.AllowanceCd" ng-disabled="control.comInput || checkCerticate('@certi.AllowanceCd') == false" class="form-control" ng-model="model.lstCertificate['@certi.AllowanceCd'].fromDt" date-picker />
+                                                                <div class="input-group-addon">
+                                                                    To
+                                                                </div>
+                                                                <input type="text" id="calCartiTo-@certi.AllowanceCd" name="CartiTo-@certi.AllowanceCd" ng-disabled="control.comInput || checkCerticate('@certi.AllowanceCd') == false" class="form-control" ng-model="model.lstCertificate['@certi.AllowanceCd'].toDt" date-picker />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 subbox-padding-left">
+                                <div class="subbox-header">
+                                    @StringsM009.Certificates
+                                </div>
+                                <div class="subbox-body">
+                                    <table class="table table-striped table-basic table-hover table-bordered" id="table">
+                                        <tbody>
+                                            @{
+                                                foreach (var certi in Model.ListCertificate)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <label class="checkbox">
+                                                                <input ng-disabled="control.comInput" ng-checked="checkCerticate('@certi.AllowanceCd')" ng-click="toggleCerticate('@certi.AllowanceCd')" type="checkbox"><span></span>@certi.AllowanceName
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    From
+                                                                </div>
+                                                                <input type="text" id="calCartiFrom-@certi.AllowanceCd" name="CartiFrom-@certi.AllowanceCd" ng-disabled="control.comInput || checkCerticate('@certi.AllowanceCd') == false" class="form-control" ng-model="model.lstCertificate['@certi.AllowanceCd'].fromDt" date-picker />
+                                                                <div class="input-group-addon">
+                                                                    To
+                                                                </div>
+                                                                <input type="text" id="calCartiTo-@certi.AllowanceCd" name="CartiTo-@certi.AllowanceCd" ng-disabled="control.comInput || checkCerticate('@certi.AllowanceCd') == false" class="form-control" ng-model="model.lstCertificate['@certi.AllowanceCd'].toDt" date-picker />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>*@
+                       
+                        
+                    </div>
+                </div>
+
+                <div class="tab-pane " id="contractType">
+                    <div class="form-horizontal ">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.LevelGroup</label>
+                                    <div class="col-sm-8">
+                                        <select id="cboLevelGroup" ng-disabled="control.comInput"
+                                                ng-options="opt.Cd as opt.Value for opt in listLevelGroup track by opt.Cd"
+                                                ng-model="model.LevelGroup" selectpicker>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.Level</label>
+                                    <div class="col-sm-8">
+                                        <select id="cboLevel" ng-disabled="control.comInput"
+                                                ng-options="opt.Cd as opt.Remark for opt in listLevel track by opt.Cd"
+                                                ng-model="model.Level" selectpicker>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.EntryDate</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="calEntryDate" ng-disabled="control.comInput" name="EntryDt" ng-model="model.EntryDt1" class="form-control required" date-picker />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.ProbationEndDate</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="calProbationEndDate" ng-disabled="control.comInput" name="ProbationEndDt" ng-model="model.ProbationEndDt1" class="form-control" date-picker />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.UnionJoinDate</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="calUnionJoinDate" ng-disabled="control.comInput" name="LabourUnionDt" ng-model="model.LabourUnionDt1" class="form-control" date-picker />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.RetireDate</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="calRetireDate" ng-disabled="control.comInput" name="QuitDt" ng-model="model.QuitDt1" class="form-control" date-picker />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.ContractForm</label>
+                                    <div class="col-sm-8">
+                                        <select id="cbContractForm" ng-disabled="control.comInput" name="ContractForm"
+                                                ng-options="opt.Cd as opt.Value for opt in listContractForm track by opt.Cd"
+                                                ng-model="model.ContractForm" selectpicker>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.ContractType</label>
+                                    <div class="col-sm-8">
+                                        <select id="cboContractType" ng-disabled="control.comInput" name="ContractType"
+                                                ng-options="opt.Cd as opt.Value for opt in listContractType track by opt.Cd"
+                                                ng-model="model.ContractType" selectpicker>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.StandardHours</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtStandardHours" ng-disabled="control.comInput" type="number" name="StandardHours" ng-model="model.StandardHours" class="form-control required" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.MonthJoinInsurance</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="calMonthJoinInsurance" ng-disabled="control.comInput" name="InsuranceUnionMonth" ng-model="model.InsuranceUnionMonth1" class="form-control" date-picker-month />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.InsuCode</label>
+                                    <div class="col-sm-8">
+                                        <select id="cboInsuCode" ng-disabled="control.comInput" name="InsuaranceCode"
+                                                ng-options="opt.Cd as opt.Value for opt in listInsuCode track by opt.Cd"
+                                                ng-model="model.InsuaranceCode" selectpicker>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.Hospital</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="txtHospital" maxlength="100" ng-disabled="control.comInput" name="Hospital" ng-model="model.Hospital" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.WorkingPlace</label>
+                                    <div class="col-sm-8">
+                                        <select id="cboWorkingPlace" ng-disabled="control.comInput" name="WorkPlace"
+                                                ng-options="opt.Cd as opt.Remark for opt in listWorkingPlace track by opt.Cd"
+                                                ng-model="model.WorkPlace" selectpicker>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"></label>
+                                    <div class="col-sm-8">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.AbsenceNotPayDaysBefore2008</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtAbsenceNotPayBf" ng-disabled="control.comInput" type="number" name="AbsenceNotPayBf" ng-model="model.AbsenceNotPayBf" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@StringsM009.AbsenceNotPayDaysAfter2008</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtAbsenceNotPayAt" ng-disabled="control.comInput" type="number" name="AbsenceNotPayAt" ng-model="model.AbsenceNotPayAt" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group form-inline">
+                                    <label class="col-sm-1 control-label"></label>
+                                    <div class="col-sm-8">
+                                        @{
+                                            foreach (var policy in Model.ListInsurance)
+                                            {
+                                                <label class="checkbox">
+                                                    <input type="checkbox" ng-disabled="control.comInput" ng-click="toggleInsurance('@policy.PolicyCd')" ng-checked="checkInsurance('@policy.PolicyCd')"><span></span>@policy.PolicyName
+                                                </label>
+                                            }
+                                        }
+                                        <label class="checkbox">
+                                            <input type="checkbox" ng-disabled="control.comInput" ng-model="model.PIT"><span></span>@StringsM009.PIT
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="buttonZone">
+                            <button type="submit" class="btn btn-primary" ng-disabled="control.btnAddDept" ng-click="addDeptFn()">@StringsM009.AddDepartment</button>
+                        </div>
+
+                    </div>
+                    <br />
+                    <table class="table table-striped table-basic table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-1">STT</th>
+                                <th class="col-xs-2">@StringsM009.Department</th>
+                                <th class="col-xs-2">@StringsM009.TitleClass</th>
+                                <th class="col-xs-2">@StringsM009.StartDate</th>
+                                <th class="col-xs-pull-2">@StringsM009.MainDept</th>
+                                <th class="col-xs-2">@StringsM009.InActiveDate</th>
+                                <th class="col-xs-1"></th>
+                                <th class="col-xs-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="dept in lstEmpDept">
+                                <td class="text-center">{{$index + 1}}</td>
+                                <td>{{dept.DeptName}}</td>
+                                <td>{{dept.Title}}</td>
+                                <td>{{dept.StartDt | datetime}}</td>
+                                <td class="text-center">{{dept.MainFlag == true ? '●' : ''}}</td>
+                                <td>{{dept.InactiveDt | datetime}}</td>
+                                <td class="text-center"><a href="javascript:void(0)" ng-click="editDeptFn(dept)">@StringsM009.Edit</a></td>
+                                <td class="text-center"><a href="javascript:void(0)" ng-click="delDeptFn(dept)">@StringsM009.Delete</a></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+       </div>
+        <div class="float-functions">
+            <div class="dropdownBtn-visible-xxs">
+                <button type="button" class="btn btn-bitbucket dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-arrow-down"></i>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li>
+                        <button type="button" class="btn" ng-disabled="control.btnInsert" ng-click="insertFn()">
+                            <i class="fa fa-plus"></i>
+                            <span class="btn-label">@Strings.Insert</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" ng-disabled="control.btnUpdate" ng-click="updateFn()" class="btn">
+                            <i class="fa fa-pencil-square-o"></i>
+                            <span class="btn-label">@Strings.Update</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" ng-disabled="control.btnCancel" ng-click="cancelFn()" class="btn">
+                            <i class="fa fa-repeat "></i>
+                            <span class="btn-label">@Strings.Cancel</span>
+                        </button>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <button type="button" ng-disabled="control.btnDelete" ng-click="" class="btn">
+                            <i class="fa fa-trash-o"></i>
+                            <span class="btn-label">@Strings.Delete</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="hidden-xxs">
+                <button type="button" class="btn btn-social btn-color-cyan btn-flat" ng-disabled="control.btnInsert" ng-click="insertFn()">
+                    <i class="fa fa-plus"></i>
+                    <span class="btn-label">@Strings.Insert</span>
+                </button>
+                <button type="button" ng-disabled="control.btnUpdate" ng-click="updateFn()" class="btn btn-social btn-color-green btn-flat">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <span class="btn-label">@Strings.Update</span>
+                </button>
+                <button type="button" ng-disabled="control.btnCancel" ng-click="cancelFn()" class="btn btn-social btn-color-orange btn-flat">
+                    <i class="fa fa-repeat "></i>
+                    <span class="btn-label">@Strings.Cancel</span>
+                </button>
+
+                <button type="button" ng-disabled="control.btnDelete" ng-click="" class="btn btn-social btn-color-red btn-flat">
+                    <i class="fa fa-trash-o"></i>
+                    <span class="btn-label">@Strings.Delete</span>
+                </button>
+            </div>
+        </div>
+</form>
+
+    
+
+
+    <!-- Main content zone -->
+    <div id="main-content-zone" class="table-responsive">
+        <table class="table table-striped table-basic table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th class="col-xs-1">@Strings.STT</th>
+                    <th class="col-xs-2">@StringsM009.EmployeeNo</th>
+                    <th class="col-xs-2">@StringsM009.EmployeeName</th>
+                    <th class="col-xs-1">@StringsM009.EmployeeType</th>
+                    <th class="col-xs-2">@StringsM009.MainDept</th>
+                    <th class="col-xs-2">@StringsM009.Email</th>
+                    <th class="col-xs-2">@StringsM009.UpdatedDt</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="emp in lstEmployee" ng-class="{'info': $index === useIndex}">
+                    <td class="text-center">{{$index + 1}}</td>
+                    <td>
+                        <a href="javascript:void(0)" ng-click="editFn(emp, $index)">{{emp.EmployeeNo}}</a>
+                    </td>
+                    <td>{{emp.EmployeeName}}</td>
+                    <td>{{emp.EmployeeTypeName}}</td>
+                    <td>{{emp.DeptName}}</td>
+                    <td>{{emp.Email}}</td>
+                    <td>{{emp.UpdatedDt | datetime}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+@*Popup InfoChange
+<script type="text/ng-template" id="employee/infoChange">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">@StringsM009.InfoChange</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <form name="form.infoChange" ng-validate="validationOptions">
+            <table class="table table-responsive table-basic table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">@Strings.STT</th>
+                        <th class="col-xs-4">@StringsM009.Item</th>
+                        <th class="col-xs-4">@StringsM009.Value</th>
+                        <th class="col-xs-3">@StringsM009.EffectiveDt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center"><span class="text-danger" ng-if="dataInfo.EmployeeType.modified">*</span>1</td>
+                        <td>@StringsM009.EmployeeType</td>
+                        <td>{{dataInfo.EmployeeType.value}}</td>
+                        <td>
+                            <input type="text" name="EmpTypeEffectiveDt" ng-model="model.EmpTypeEffectiveDt" ng-disabled="dataInfo.EmployeeType.disable" class="form-control required" date-picker />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><span class="text-danger" ng-if="dataInfo.Email.modified">*</span>2</td>
+                        <td>@StringsM009.Email</td>
+                        <td>{{dataInfo.Email.value}}</td>
+                        <td>
+                            <input type="text" name="EmailEffectiveDt" ng-model="model.EmailEffectiveDt" ng-disabled="dataInfo.Email.disable" class="form-control required" date-picker />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><span class="text-danger" ng-if="dataInfo.Address.modified">*</span>3</td>
+                        <td>@StringsM009.Address</td>
+                        <td>{{dataInfo.Address.value}}</td>
+                        <td>
+                            <input type="text" name="AddressEffectiveDt" ng-model="model.AddressEffectiveDt" ng-disabled="dataInfo.Address.disable" class="form-control required" date-picker />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><span class="text-danger" ng-if="dataInfo.WorkPlace.modified">*</span>4</td>
+                        <td>@StringsM009.WorkingPlace</td>
+                        <td>{{dataInfo.WorkPlace.value}}</td>
+                        <td>
+                            <input type="text" name="WorkPlaceEffectiveDt" ng-model="model.WorkPlaceEffectiveDt" ng-disabled="dataInfo.WorkPlace.disable" class="form-control required" date-picker />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><span class="text-danger" ng-if="dataInfo.Level.modified">*</span>5</td>
+                        <td>@StringsM009.Level</td>
+                        <td>{{dataInfo.Level.value}}</td>
+                        <td>
+                            <input type="text" name="LevelEffctiveDt" ng-model="model.LevelEffctiveDt" ng-disabled="dataInfo.Level.disable" class="form-control required" date-picker />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><span class="text-danger" ng-if="dataInfo.LevelGroup.modified">*</span>6</td>
+                        <td>@StringsM009.LevelGroup</td>
+                        <td>{{dataInfo.LevelGroup.value}}</td>
+                        <td>
+                            <input type="text" name="LevelGroupEffectiveDt" ng-model="model.LevelGroupEffectiveDt" ng-disabled="dataInfo.LevelGroup.disable" class="form-control required" date-picker />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><span class="text-danger" ng-if="dataInfo.ContractForm.modified">*</span>7</td>
+                        <td>@StringsM009.ContractForm</td>
+                        <td>{{dataInfo.ContractForm.value}}</td>
+                        <td>
+                            <input type="text" name="ContractFormEffectiveDt" ng-model="model.ContractFormEffectiveDt" ng-disabled="dataInfo.ContractForm.disable" class="form-control required" date-picker />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><span class="text-danger" ng-if="dataInfo.ContractType.modified">*</span>8</td>
+                        <td>@StringsM009.ContractType</td>
+                        <td>{{dataInfo.ContractType.value}}</td>
+                        <td>
+                            <input type="text" name="ContractTypeEffectiveDt" ng-model="model.ContractTypeEffectiveDt" ng-disabled="dataInfo.ContractType.disable" class="form-control required" date-picker />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><span class="text-danger" ng-if="dataInfo.StandardHours.modified">*</span>9</td>
+                        <td>@StringsM009.StandardHours</td>
+                        <td>{{dataInfo.StandardHours.value}}</td>
+                        <td>
+                            <input type="text" name="StandardHoursEffeciveDt" ng-model="model.StandardHoursEffeciveDt" class="form-control required" date-picker />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><span class="text-danger" ng-if="dataInfo.Hospital.modified">*</span>10</td>
+                        <td>@StringsM009.Hospital</td>
+                        <td>{{dataInfo.Hospital.value}}</td>
+                        <td>
+                            <input type="text" name="HospitalEffectiveDt" ng-model="model.HospitalEffectiveDt" ng-disabled="dataInfo.Hospital.disable" class="form-control required" date-picker />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><span class="text-danger" ng-if="dataInfo.Insurances.modified">*</span>11</td>
+                        <td>@StringsM009.Insurances</td>
+                        <td>{{dataInfo.Insurances.value}}</td>
+                        <td>
+                            <input type="text" name="InsuranceEffectiveDt" ng-model="model.InsuranceEffectiveDt" ng-disabled="dataInfo.Insurances.disable" class="form-control required" date-picker />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><span class="text-danger" ng-if="dataInfo.PIT.modified">*</span>12</td>
+                        <td>@StringsM009.PIT</td>
+                        <td class="text-center">{{dataInfo.PIT.value}}</td>
+                        <td>
+                            <input type="text" name="PITEffectiveDt" ng-model="model.PITEffectiveDt" ng-disabled="dataInfo.PIT.disable" class="form-control required" date-picker />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="okFn()">@Strings.Ok</button>
+        <button class="btn btn-primary" type="button" ng-click="cancelFn()">@Strings.Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="employee/dept">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">@StringsM009.Department</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <form name="form.empDept" ng-validate="validationOptions">
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="cbDeptCd" class="label-sm">@StringsM009.Department</label>
+                        <select id="cbDeptCd" name="EmployeeType" ng-disabled="disableInput"
+                                ng-model="model.DeptCd"
+                                ng-options="opt.DeptCd as opt.DeptName for opt in listDepartment track by opt.DeptCd"
+                                class="form-control required" selectpicker>
+                        </select>  
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="cbTitle" class="label-sm">@StringsM009.TitleClass</label>
+                        <select id="cbTitle" name="EmployeeType" ng-disabled="disableInput"
+                                ng-model="model.Title"
+                                ng-options="opt.Remark as opt.Remark for opt in listTitle track by opt.Remark"
+                                class="form-control required" selectpicker>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="calStartDt" class="label-sm">@StringsM009.StartDate</label>
+                        <input id="calStartDt" type="text" name="StartDt" ng-model="model.StartDt1" class="form-control required" date-picker />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="model.MainFlag"><span></span>@StringsM009.MainDept
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="calInactiveDt" class="label-sm">@StringsM009.InactiveDt</label>
+                        <input id="calInactiveDt" type="text" name="InactiveDt" ng-model="model.InactiveDt1" class="form-control" date-picker />
+                    </div>
+                </div>
+                
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="okFn()">@Strings.Save</button>
+        <button class="btn btn-primary" type="button" ng-click="cancelFn()">@Strings.Cancel</button>
+    </div>
+</script>*@
+
